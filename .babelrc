@@ -9,6 +9,9 @@
   "env": {
     "test": {
       "presets": ["env", "stage-2"]
+    },
+    "production": {
+      "presets": ["minify"]
     }
   }
 }
