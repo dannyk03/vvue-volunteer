@@ -1,18 +1,23 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
+    <div>i18n: {{ $t("hello") }}</div>
+    <div>i18n: <span v-t="'hello'" /></div>
+    <vv-language-picker />
     <vv-navbar />
     <router-view/>
   </div>
 </template>
 
 <script>
-import VvNavbar from './components/Navbar';
+import VvNavbar from '@/components/Navbar';
+import VvLanguagePicker from '@/components/LanguagePicker';
 
 export default {
   name: 'app',
   components: {
     VvNavbar,
+    VvLanguagePicker,
   },
 };
 </script>
