@@ -7,19 +7,19 @@
 </template>
 
 <script>
-import { locales } from '@/i18n';
+import { locales, setLanguage, DEFAULT_LOCALE } from '@/i18n';
 
 export default {
   name: 'LanguagePicker',
   data() {
     return {
-      locale: 'en', // TODO: Get current locale from api settings
+      locale: DEFAULT_LOCALE,
       locales,
     };
   },
   watch: {
     locale(next) {
-      this.$i18n.locale = next;
+      setLanguage(next);
     },
   },
 };
