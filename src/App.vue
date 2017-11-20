@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import VvNavbar from '@/components/Navbar';
-import VvLanguagePicker from '@/components/LanguagePicker';
+import VvNavbar from '@/shared/components/Navbar';
+import VvLanguagePicker from '@/shared/components/LanguagePicker';
 
 export default {
   name: 'app',
