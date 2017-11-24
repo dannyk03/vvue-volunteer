@@ -1,23 +1,18 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <div>i18n: {{ $t("hello") }}</div>
-    <div>i18n: <span v-t="'hello'" /></div>
-    <vv-language-picker />
-    <vv-navbar />
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script>
-import VvNavbar from '@/shared/components/Navbar';
-import VvLanguagePicker from '@/shared/components/LanguagePicker';
+
 
 export default {
   name: 'app',
-  components: {
-    VvNavbar,
-    VvLanguagePicker,
+  beforeMount() {
+    this.$store.dispatch('global/auth/checkAuthentication')
+      .then(() => this.$router.push('/home'))
+      .catch(() => this.$router.push('/auth/login'));
   },
 };
 </script>
@@ -29,6 +24,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
