@@ -1,6 +1,7 @@
-// import HomePage from './containers/HomePage';
 import routes from './routes';
+import store from './store';
 
-/* eslint-disable */
-export { routes };
-// export default HomePage;
+export {
+  routes,
+  store,
+};
