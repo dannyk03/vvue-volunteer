@@ -3,10 +3,10 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 import camelize from 'camelize';
 import snakecase from 'snakecase-keys';
+import { API_ROOT } from '@/shared/constants/env';
 
 Vue.use(VueAxios, axios);
 
-const API_ROOT = process.env.API_ROOT;
 const API_PATH = API_ROOT;
 
 Vue.axios.defaults.baseURL = API_PATH;
