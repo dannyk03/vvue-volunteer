@@ -5,14 +5,12 @@
 </template>
 
 <script>
-
-
 export default {
   name: 'app',
   beforeMount() {
     this.$store.dispatch('global/auth/checkAuthentication')
       .then(() => this.$router.push('/home'))
-      .catch(() => this.$router.push('/auth/login'));
+      .catch(() => !location.pathname.startsWith('/auth') && this.$router.push('/auth/login'));
   },
 };
 </script>

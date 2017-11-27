@@ -1,13 +1,14 @@
 <template>
-  <router-view />
+  <button>
+    <slot></slot>
+  </button>
 </template>
 
 <script>
 export default {
-  name: 'AuthLayout',
+  name: 'BaseButton',
 };
 </script>
 
 <style lang="scss" scoped>
-
 </style>
