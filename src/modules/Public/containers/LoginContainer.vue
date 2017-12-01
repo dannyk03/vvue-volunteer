@@ -9,6 +9,8 @@
       <vv-base-text-input slot="control" type="password" v-model="credentials.password" />
     </vv-form-field>
 
+    <p>SECRET_CODE: {{secret}}</p>
+
     <button type="submit">Login</button>
   </form>
 </template>
@@ -17,6 +19,7 @@
 import { mapActions } from 'vuex';
 import VvFormField from '@/shared/components/FormField';
 import VvBaseTextInput from '@/shared/components/BaseTextInput';
+import { CLIENT_SECRET } from '@/shared/constants/env';
 
 export default {
   name: 'LoginContainer',
@@ -29,6 +32,7 @@ export default {
       username: '',
       password: '',
     },
+    secret: CLIENT_SECRET,
   }),
   methods: {
     submit() {
