@@ -5,8 +5,6 @@ import global from './modules/global';
 
 Vue.use(Vuex);
 
-console.log('process env', process.env);
-
 export default new Vuex.Store({
   modules: {
     global,
