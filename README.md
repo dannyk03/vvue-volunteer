@@ -1,8 +1,19 @@
-# vue-webpack
-
-> A Vue.js project
-
 ## Build Setup
+
+### Environment variables
+You can configure application via setting env variables before build project.
+
+##### Supported:
+`NODE_ENV`. Could be 'development' or 'production'
+ <br />
+`API_ROOT` - for development http://api2.staging.volunteer-vision.com
+<br />
+`CLIENT_SECRET`
+</br />
+`CLIENT_ID`
+
+
+### Commands
 
 ``` bash
 # install dependencies
