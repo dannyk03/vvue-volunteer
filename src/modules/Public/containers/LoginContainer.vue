@@ -34,7 +34,7 @@ export default {
     submit() {
       this.login(this.credentials)
         .then(() => this.$router.push('/home'))
-        .catch(() => console.error('Bad credentials'));
+        .catch(() => this.notifyError('Bad credentials')); // TODO: i18n
     },
     ...mapActions('global/auth', [
       'login',

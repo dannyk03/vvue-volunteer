@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-// import { store as home } from '@/modules/Home';
 import global from './modules/global';
 
 Vue.use(Vuex);
