@@ -56,7 +56,7 @@ const fetchUsersAPI = () => new Promise(resolve => {
 const fetchUserAPI = id => new Promise(resolve => {
   window.setTimeout(function () {
     resolve(
-      usersDetailsFixture.find(item => item.id === id)
+      { ...usersDetailsFixture.find(item => item.id === id) }
     );
   }, 1000);
 });
@@ -69,7 +69,16 @@ const postUserAPI = user => new Promise(resolve => {
   window.setTimeout(() => {
     user.id = usersFixture.length + 1;
     usersFixture.push(user);
+    usersDetailsFixture.push({ ...user});
     resolve(user);
+  })
+});
+const putUserAPI = user => new Promise(resolve => {
+  window.setTimeout(() => {
+    const found = usersDetailsFixture.find(i => i.id === user.id);
+    Object.assign(found, user);
+
+    resolve(found);
   })
 });
 
@@ -78,6 +87,7 @@ const apis = {
   fetchOne: fetchUserAPI,
   delete: deleteUserAPI,
   post: postUserAPI,
+  put: putUserAPI,
 }
 // /TEMP
 

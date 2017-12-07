@@ -30,16 +30,15 @@ export default (namespaces) => {
     actions: {
       ...useList && { fetchList: 'FETCH_LIST' },
       ...useOne && { fetchOne: 'FETCH_ONE' },
+
       delete: 'DELETE',
       post: 'POST',
-      // put: 'PUT',
+      put: 'PUT',
     },
     mutations: {
       add: 'ADD',
       remove: 'REMOVE',
-      // put: 'PUT',
-      // filter: 'FILTER',
-      // sort: 'SORT',
+      update: 'UPDATE',
 
       ...useList && getMutations(AVAILABLE_NAMESPACES.LIST),
       ...useOne && getMutations(AVAILABLE_NAMESPACES.ONE),

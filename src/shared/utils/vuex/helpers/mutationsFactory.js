@@ -31,6 +31,10 @@ export default {
     if (!state.list.data) state.list.data = [];
     state.list.data.push(element);
   },
+  update: (state, element) => {
+    if (!element) throw new Error('Update mutation: there\'s no update passed');
+    Object.assign(state.one.data, element);
+  },
   remove: (state, id) => {
     if (!id) throw new Error('Remove mutation: id must be defined');
 

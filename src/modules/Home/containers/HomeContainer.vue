@@ -29,11 +29,25 @@
     <div v-if="currentUserLoading">Loading...</div>
     <div v-if="currentUser">
       <p>{{currentUser.name}}</p>
-      <ul>
-        <li>Age: {{currentUser.age}}</li>
-        <li>Phone: {{currentUser.phone}}</li>
-        <li>Email: {{currentUser.email}}</li>
-      </ul>
+      <form @submit.prevent="updateUser">
+        <vv-form-field label="Name">
+          <vv-base-text-input slot="control" v-model="editUser.name" />
+        </vv-form-field>
+
+        <vv-form-field label="Age">
+          <vv-base-text-input slot="control" v-model="editUser.age" />
+        </vv-form-field>
+
+        <vv-form-field label="Email">
+          <vv-base-text-input slot="control" v-model="editUser.email" />
+        </vv-form-field>
+
+        <vv-form-field label="Phone">
+          <vv-base-text-input slot="control" v-model="editUser.phone" />
+        </vv-form-field>
+
+        <button type="updateUser">Update User</button>
+      </form>
     </div>
 
     <vv-home-component />
@@ -68,6 +82,9 @@ export default {
       currentUser: users.getters.one,
       currentUserLoading: users.getters.oneLoading,
     }),
+    editUser() {
+      return { ...this.currentUser };
+    },
   },
   methods: {
     ...mapActions('home/users', {
@@ -75,6 +92,7 @@ export default {
       fetchOne: users.actions.fetchOne,
       addUser: users.actions.post,
       remove: users.actions.delete,
+      putUser: users.actions.put,
     }),
     // ...mapMutations('home/users', {
     //   addUser: users.mutations.add,
@@ -83,6 +101,9 @@ export default {
       this.addUser({ ...this.newUser });
       this.newUser.name = '';
       this.newUser.age = '';
+    },
+    updateUser() {
+      this.putUser({ ...this.editUser });
     },
   },
 };

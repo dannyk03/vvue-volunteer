@@ -19,7 +19,10 @@ export default {
     savedEntity => commit(mutations.add, savedEntity),
     () => {}, // ??
   ),
-  // put: (requestApi, mutations) => ({ commit }, ) => requestApi(),
+  put: (requestApi, mutations) => ({ commit }, entity) => requestApi(entity).then(
+    savedEntity => commit(mutations.update, savedEntity),
+    () => {}, // ??
+  ),
   delete: (requestApi, mutations) => ({ commit }, id) => requestApi(id).then(
     () => commit(mutations.remove, id),
     () => {}, // ??

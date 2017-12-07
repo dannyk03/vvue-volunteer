@@ -23,7 +23,6 @@ export default (config) => {
 
   const types = namespace({ useList, useOne });
 
-
   const initialState = {
     ...useList && getInitialState(AVAILABLE_NAMESPACES.LIST),
     ...useOne && getInitialState(AVAILABLE_NAMESPACES.ONE),
