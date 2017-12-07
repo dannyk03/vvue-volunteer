@@ -11,8 +11,11 @@ export default {
   path: '/home',
   component: MainLayout,
   beforeEnter(to, from, next) {
-    store.registerModule('home', storeModule);
-    store.commit('REFRESH_STORE');
+    if (!store.state.home) {
+      store.registerModule('home', storeModule);
+      store.commit('REFRESH_STORE');
+    }
+
     next();
   },
   children: [
