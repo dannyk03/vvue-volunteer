@@ -1,48 +1,57 @@
 import createActions from './helpers/createActions';
 import createMutations from './helpers/createMutations';
+import namespace from './namespace';
+import { AVAILABLE_NAMESPACES } from './constants';
+
+const getInitialState = kind => ({
+  [kind]: {
+    data: null,
+    loading: false,
+  },
+});
+
+const getGetters = (types, kind) => ({
+  [types.getters[kind]]: state => state[kind].data,
+  [types.getters[`${kind}Loading`]]: state => state[kind].loading,
+});
 
 export default (config) => {
-  const { types, apis } = config;
+  const { types: rawTypes, apis } = config;
+
+  const useList = rawTypes.includes(AVAILABLE_NAMESPACES.LIST);
+  const useOne = rawTypes.includes(AVAILABLE_NAMESPACES.ONE);
+
+  const types = namespace({ useList, useOne });
+
+
   const initialState = {
-    list: {
-      data: [],
-      loading: false,
-    },
-    one: {
-      data: null,
-      loading: false,
-    },
+    ...useList && getInitialState(AVAILABLE_NAMESPACES.LIST),
+    ...useOne && getInitialState(AVAILABLE_NAMESPACES.ONE),
   };
 
   const getters = {
-    [types.getters.all]: state => state.list.data,
-    [types.getters.allLoading]: state => state.list.loading,
-    [types.getters.one]: state => state.one.data,
-    [types.getters.oneLoading]: state => state.one.loading,
+    ...useList && getGetters(types, AVAILABLE_NAMESPACES.LIST),
+    ...useOne && getGetters(types, AVAILABLE_NAMESPACES.ONE),
   };
 
   const actions = {
-    ...createActions(types.actions, types.mutations, apis, ['fetch', 'fetchOne', 'delete']),
+    ...createActions(types.actions, types.mutations, apis),
   };
 
   const mutations = {
-    ...createMutations(types.mutations, [
-      'allRequested',
-      'allFetched',
-      'allErrored',
-      'oneRequested',
-      'oneFetched',
-      'oneErrored',
-      'add',
-      'remove',
-    ]),
+    ...createMutations(types.mutations),
   };
 
-  return {
+  const module = {
     namespaced: true,
     state: initialState,
     getters,
     actions,
     mutations,
+  };
+
+  return {
+    module,
+    types,
   };
 };

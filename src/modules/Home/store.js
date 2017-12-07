@@ -1,5 +1,4 @@
-import { createModule } from '@/shared/utils/vuex/index';
-import { users } from './mutationTypes';
+import { createModule, AVAILABLE_NAMESPACES as T } from '@/shared/utils/vuex/index';
 
 /* eslint-disable */
 
@@ -62,23 +61,34 @@ const fetchUserAPI = id => new Promise(resolve => {
   }, 1000);
 });
 const deleteUserAPI = id => new Promise(resolve => {
-  window.setTimeout(function () {
+  window.setTimeout(() => {
     resolve();
   }, 1000);
 })
+const postUserAPI = user => new Promise(resolve => {
+  window.setTimeout(() => {
+    user.id = usersFixture.length + 1;
+    usersFixture.push(user);
+    resolve(user);
+  })
+});
 
 const apis = {
-  fetch: fetchUsersAPI,
+  fetchList: fetchUsersAPI,
   fetchOne: fetchUserAPI,
   delete: deleteUserAPI,
+  post: postUserAPI,
 }
 // /TEMP
 
+const { module: usersModule, types: users } = createModule({ types: [T.LIST, T.ONE], apis });
+
+export { users };
 
 export default {
   namespaced: true,
   modules: {
-    users: createModule({ types: users, apis }),
+    users: usersModule,
   },
   state: initialState,
   getters,

@@ -1,4 +1,9 @@
-import { namespace } from '@/shared/utils/vuex/index'; // TODO;
+// import { namespace } from '@/shared/utils/vuex/index'; // TODO;
 
-// TODO: change namespace call
-export const users = namespace(); // eslint-disable-line
+// TODO: move consts to lib
+// const AVAILABLE_NAMESPACES = {
+//   LIST: 'list',
+//   ONE: 'one',
+// };
+
+// export const users = namespace(AVAILABLE_NAMESPACES.LIST); // eslint-disable-line

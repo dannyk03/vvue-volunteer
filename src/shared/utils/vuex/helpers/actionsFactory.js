@@ -1,10 +1,10 @@
 export default {
-  fetch: (requestApi, mutations) => ({ commit }) => {
-    commit(mutations.allRequested);
+  fetchList: (requestApi, mutations) => ({ commit }) => {
+    commit(mutations.listRequested);
 
     return requestApi().then(
-      data => commit(mutations.allFetched, data),
-      () => commit(mutations.allErrored),
+      data => commit(mutations.listFetched, data),
+      () => commit(mutations.listErrored),
     );
   },
   fetchOne: (requestApi, mutations) => ({ commit }, id) => {
@@ -15,6 +15,10 @@ export default {
       () => commit(mutations.oneErrored),
     );
   },
+  post: (requestApi, mutations) => ({ commit }, entity) => requestApi(entity).then(
+    savedEntity => commit(mutations.add, savedEntity),
+    () => {}, // ??
+  ),
   // put: (requestApi, mutations) => ({ commit }, ) => requestApi(),
   delete: (requestApi, mutations) => ({ commit }, id) => requestApi(id).then(
     () => commit(mutations.remove, id),

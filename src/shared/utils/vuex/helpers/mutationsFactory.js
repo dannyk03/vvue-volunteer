@@ -1,14 +1,14 @@
 export default {
-  allRequested: (state) => {
+  listRequested: (state) => {
     state.list.loading = true;
   },
-  allFetched: (state, data) => {
+  listFetched: (state, data) => {
     Object.assign(state.list, {
       data,
       loading: false,
     });
   },
-  allErrored: (state) => {
+  listErrored: (state) => {
     state.list.loading = false;
   },
   oneRequested: (state) => {
@@ -28,7 +28,7 @@ export default {
   },
   add: (state, element) => {
     if (!element) throw new Error('Add mutation: there\'s nothing to add');
-
+    if (!state.list.data) state.list.data = [];
     state.list.data.push(element);
   },
   remove: (state, id) => {

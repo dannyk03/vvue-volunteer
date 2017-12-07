@@ -1,3 +1,5 @@
+import { AVAILABLE_NAMESPACES } from './constants';
+
 const mapValues = (obj, f) => Object.keys(obj).reduce((res, key) => {
   res[key] = f(obj[key], key);
 
@@ -6,32 +8,41 @@ const mapValues = (obj, f) => Object.keys(obj).reduce((res, key) => {
 /* eslint-disable */
 const createConstants = types => mapValues(types, (names, type) => mapValues(names, name => `${type}:${name}`));
 
-export default () => createConstants({
-  getters: {
-    all: 'ALL', // list
-    allLoading: 'ALL_LOADING',
-    one: 'ONE', // one
-    oneLoading: 'ONE_LOADING',
-  },
-  actions: {
-    fetch: 'FETCH',
-    fetchOne: 'FETCH_ONE',
-    delete: 'DELETE',
-    // put: 'PUT',
-  },
-  mutations: {
-    add: 'ADD',
-    remove: 'REMOVE',
-    // put: 'PUT',
-    // filter: 'FILTER',
-    // sort: 'SORT',
-
-    allRequested: 'ALL_REQUESTED',
-    allErrored: 'ALL_ERRORED',
-    allFetched: 'ALL_FETCHED',
-
-    oneRequested: 'ONE_REQUESTED',
-    oneErrored: 'ONE_ERRORED',
-    oneFetched: 'ONE_FETCHED',
-  },
+const getGetters = kind => ({
+  [kind]: kind.toUpperCase(),
+  [`${kind}Loading`]: `${kind.toUpperCase()}_LOADING`,
 });
+
+const getMutations = kind => ({
+  [`${kind}Requested`]: `${kind.toUpperCase()}_REQUESTED`,
+  [`${kind}Errored`]: `${kind.toUpperCase()}_ERRORED`,
+  [`${kind}Fetched`]: `${kind.toUpperCase()}_FETCHED`,
+});
+
+export default (namespaces) => {
+  const { useList, useOne } = namespaces;
+
+  return createConstants({
+    getters: {
+      ...useList && getGetters(AVAILABLE_NAMESPACES.LIST),
+      ...useOne && getGetters(AVAILABLE_NAMESPACES.ONE),
+    },
+    actions: {
+      ...useList && { fetchList: 'FETCH_LIST' },
+      ...useOne && { fetchOne: 'FETCH_ONE' },
+      delete: 'DELETE',
+      post: 'POST',
+      // put: 'PUT',
+    },
+    mutations: {
+      add: 'ADD',
+      remove: 'REMOVE',
+      // put: 'PUT',
+      // filter: 'FILTER',
+      // sort: 'SORT',
+
+      ...useList && getMutations(AVAILABLE_NAMESPACES.LIST),
+      ...useOne && getMutations(AVAILABLE_NAMESPACES.ONE),
+    },
+  });
+}
