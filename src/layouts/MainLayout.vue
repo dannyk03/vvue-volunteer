@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section>
+    <section class="navbar-wrapper">
       <vv-language-picker />
       <vv-navbar />
     </section>
@@ -22,8 +22,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  section {
+  .navbar-wrapper {
     height: 50px;
     background-color: lightgrey;
+    text-align: center;
   }
 </style>

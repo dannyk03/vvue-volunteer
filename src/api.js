@@ -8,4 +8,7 @@ export const login = data => post('/oauth/token', Object.assign({}, data, {
   clientSecret: CLIENT_SECRET,
   scope: '*',
 }));
-export const fetchProfile = () => get('api/users/me');
+export const fetchProfile = () => get('api/v1/me');
+
+export const fetchUsers = () => get('api/v1/users');
+export const fetchUser = id => get(`api/v1/users/${id}`);

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home-page">
     <div>i18n: <span v-t="'hello'" /></div>
 
     HomePage
@@ -12,12 +12,13 @@
 
 <script>
 
-import VvLoginContainer from '@/modules/Public/containers/LoginContainer';
-
 export default {
   name: 'HomePage',
-  components: {
-    VvLoginContainer,
-  },
 };
 </script>
+
+<style lang="scss" scoped>
+  .home-page {
+    text-align: center;
+  }
+</style>

@@ -2,6 +2,7 @@
   <div>
     <router-link :to="{ name: 'home' }">Home</router-link>
     <router-link :to="{ name: 'about' }">About</router-link>
+    <router-link :to="{ name: 'management' }">Management</router-link>
     <a href="/logout" @click.prevent="logout">Logout</a>
   </div>
 </template>
