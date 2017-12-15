@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Notifications from 'vue-notification';
+import Vuetify from 'vuetify';
 
 import notificationMixin from '@/shared/mixins/notificationMixin';
 
@@ -11,6 +12,7 @@ import store from './shared/store';
 
 Vue.config.productionTip = false;
 
+Vue.use(Vuetify);
 Vue.use(Notifications);
 
 Vue.mixin(notificationMixin);
