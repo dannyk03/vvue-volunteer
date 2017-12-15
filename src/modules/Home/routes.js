@@ -1,5 +1,6 @@
 import store from '@/shared/store';
 import MainLayout from '@/layouts/MainLayout';
+import loggedInGuard from '@/shared/utils/loggedInGuard';
 
 import storeModule from './store';
 
@@ -16,7 +17,7 @@ export default {
       store.commit('REFRESH_STORE');
     }
 
-    next();
+    loggedInGuard(store, next);
   },
   children: [
     {
