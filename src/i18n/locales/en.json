@@ -3,5 +3,20 @@
     "en": "English",
     "de": "German"
   },
-  "hello": "good afternoon"
+  "hello": "good afternoon",
+  "user": {
+    "fields": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "gender": "Gender",
+      "birthday": "Birthday",
+      "state": "State",
+      "email": "Email",
+      "city": "City",
+      "postcode": "Postcode",
+      "country": "Country",
+      "timezone": "Timezone",
+      "language": "Language"
+    }
+  }
 }

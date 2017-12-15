@@ -15,8 +15,8 @@ const locales = [
 ];
 
 const links = {
-  en: 'http://www.mocky.io/v2/5a12e3232c0000fb1dace812',
-  de: 'http://www.mocky.io/v2/5a12e7172c0000ba1dace823',
+  en: 'http://www.mocky.io/v2/5a33e96a300000de134b7554',
+  de: 'http://www.mocky.io/v2/5a33e94e300000dd134b7552',
 };
 
 const loadLanguage = lang => fetch(links[lang]).then(response => response.json());
