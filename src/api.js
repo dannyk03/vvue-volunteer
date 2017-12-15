@@ -3,7 +3,6 @@ import { CLIENT_ID, CLIENT_SECRET } from '@/shared/constants/env';
 
 export const registerUser = data => post('api/users', data);
 export const login = data => post('/oauth/token', Object.assign({}, data, {
-  // TODO: store clientId & clientSecret in different place
   grantType: 'password',
   clientId: CLIENT_ID,
   clientSecret: CLIENT_SECRET,

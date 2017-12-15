@@ -19,6 +19,7 @@
     "camelize": "^1.0.0",
     "node-sass": "^4.7.1",
     "sass-loader": "^6.0.6",
+    "snake-case": "^2.1.0",
     "snakecase-keys": "^1.1.0",
     "vue": "^2.5.2",
     "vue-axios": "^2.0.2",
