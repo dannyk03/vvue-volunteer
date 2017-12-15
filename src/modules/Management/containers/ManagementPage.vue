@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h3>ManagementPage</h3>
-  </div>  
+    <router-view />
+  </div>
 </template>
 
 <script>

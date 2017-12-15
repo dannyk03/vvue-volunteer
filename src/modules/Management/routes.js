@@ -1,10 +1,11 @@
 import store from '@/shared/store';
 import MainLayout from '@/layouts/MainLayout';
-
+import loggedInGuard from '@/shared/utils/loggedInGuard';
 import storeModule from './store';
 
 const ManagementPage = () => import(/* webpackChunkName: "management" */'./containers/ManagementPage');
 const UsersContainer = () => import(/* webpackChunkName: "management" */'./containers/UsersContainer');
+const UserContainer = () => import(/* webpackChunkName: "management" */'./containers/UserContainer');
 
 /* eslint-disable */
 export default {
@@ -16,7 +17,7 @@ export default {
       store.commit('REFRESH_STORE');
     }
 
-    next();
+    loggedInGuard(store, next);
   },
   children: [
     {
@@ -25,8 +26,14 @@ export default {
       children: [
         {
           path: 'users',
-          name: 'home-one',
+          name: 'users',
           component: UsersContainer,
+        },
+        {
+          path: 'users/:id',
+          name: 'userDetails',
+          props: true,
+          component: UserContainer,
         },
         {
           path: '',
