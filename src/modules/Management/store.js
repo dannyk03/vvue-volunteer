@@ -1,5 +1,5 @@
 import { createModule, AVAILABLE_NAMESPACES as T } from '@/shared/utils/vuex/index';
-import { fetchUsers, fetchUser } from '@/api';
+import { fetchUsers, fetchUser, updateUser } from '@/api';
 /* eslint-disable */
 
 const initialState = {
@@ -24,7 +24,7 @@ const apis = {
   fetchOne: fetchUser,
   // delete: deleteUserAPI,
   // post: postUserAPI,
-  // put: putUserAPI,
+  put: updateUser,
 }
 
 const { module: usersModule, types: users } = createModule({ types: [T.LIST, T.ONE], apis });

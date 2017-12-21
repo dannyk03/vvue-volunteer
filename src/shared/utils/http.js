@@ -15,17 +15,13 @@ const success = (resolve, response) => resolve(response.data.data);
 const successLogin = (resolve, response) => resolve(response.data);
 const error = (reject, err) => reject(err);
 
-const request = (method, url, rawData, config) => new Promise((resolve, reject) => {
-  if (!(['get', 'post', 'put'].includes(method))) throw new Error(`Http method ${method} does not supported`);
+const request = (method, url, data, config) => new Promise((resolve, reject) => {
+  if (!(['get', 'post', 'put', 'patch'].includes(method))) throw new Error(`Http method ${method} does not supported`);
 
 
-  if (['post', 'put'].includes(method)) {
+  if (['post', 'put', 'patch'].includes(method)) {
     // Data request
     /* eslint-disable */
-    let data = rawData;
-    if (!(rawData instanceof FormData)) {
-      data = snakecase(rawData);
-    }
     return Vue.axios({
       method,
       url,
@@ -38,7 +34,7 @@ const request = (method, url, rawData, config) => new Promise((resolve, reject) 
   return Vue.axios({
     method,
     url,
-    params: rawData ? snakecase(rawData) : {},
+    params: data,
     ...config,
   }).then(resp => success(resolve, resp))
     .catch(r => error(reject, r));
@@ -47,6 +43,7 @@ const request = (method, url, rawData, config) => new Promise((resolve, reject) 
 export const post = (url, data, config) => request('post', url, data, config);
 export const get = (url, query, config) => request('get', url, query, config);
 export const put = (url, data, config) => request('put', url, data, config);
+export const patch = (url, data, config) => request('patch', url, data, config);
 
 export const setAuthHeader = (token) => {
   Vue.axios.defaults.headers.common.Authorization = `Bearer ${token}`;
