@@ -1,26 +1,26 @@
 <template>
   <div id="app">
-    <router-view />
+    <v-app>
+      <router-view />
+      <notifications group="main" position="bottom right" :speed="500" />
+    </v-app>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'app',
-  beforeMount() {
-    this.$store.dispatch('global/auth/checkAuthentication')
-      .then(() => this.$router.push('/home'))
-      .catch(() => !location.pathname.startsWith('/auth') && this.$router.push('/auth/login'));
-  },
 };
 </script>
 
-<style>
+<style lang="scss">
+@import 'vuetify/dist/vuetify.min.css';
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 </style>

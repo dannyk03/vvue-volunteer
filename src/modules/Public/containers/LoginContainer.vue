@@ -1,19 +1,32 @@
 <template>
   <!-- TODO: i18n -->
   <div class="login-container">
-    <form class="login-form" @submit.prevent="submit">
-      <vv-form-field label="Login">
-        <vv-base-text-input slot="control" v-model="credentials.username" />
-      </vv-form-field>
+    <v-form v-model="valid" ref="form" lazy-validation>
+      <vv-base-text-input
+        required
+        label="Username"
+        v-model="credentials.username"
+        :validation="usernameRules"
+      />
 
-      <vv-form-field label="Password">
-        <vv-base-text-input slot="control" type="password" v-model="credentials.password" />
-      </vv-form-field>
+      <vv-base-text-input
+        label="Password"
+        type="password"
+        v-model="credentials.password"
+        required
+        @keypress.enter.native="submit"
+      />
 
-      <vv-base-button type="submit" class="login-button">Login</vv-base-button>
-      <vv-base-button type="button" class="registration-button" @click.native="$router.push('/auth/onboarding')">Registration</vv-base-button>
-    </form>
+      <v-btn
+        class="submit-btn"
+        @click="submit"
+        :disabled="!valid"
+      >
+        login
+      </v-btn>
+    </v-form>
   </div>
+
 </template>
 
 <script>
@@ -34,12 +47,20 @@ export default {
       username: '',
       password: '',
     },
+    valid: true,
+    usernameRules: [
+      v => !!v || 'E-mail is required',
+      v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid',
+    ],
+    checkbox: false,
   }),
   methods: {
     submit() {
-      this.login(this.credentials)
-        .then(() => this.$router.push('/home'))
-        .catch(() => console.error('Bad credentials'));
+      if (this.$refs.form.validate()) {
+        this.login(this.credentials)
+          .then(() => this.$router.push('/home'))
+          .catch(() => this.notifyError('Bad credentials')); // TODO: i18n
+      }
     },
     ...mapActions('global/auth', [
       'login',
@@ -49,26 +70,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  // .login-container {
+  //   width: 300px;
+  //   align-self: center;
+  //   display: flex;
+  //   flex-direction: column;
+  // }
+
   .login-container {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-self: center;
+    width: 80%;
+    max-width: 400px;
 
-    .login-form {
-      width: 300px;
-      align-self: center;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .login-button {
-      margin-top: 10px;
-    }
-
-    .registration-button {
-      margin-top: 20px;
+    form {
+      display: grid;
     }
   }
 </style>

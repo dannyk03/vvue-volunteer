@@ -1,8 +1,13 @@
 <template>
-  <div>
-    <select v-model="locale">
-      <option v-for="item in locales" :value="item" v-t="`languages.${item}`"></option>
-    </select>
+  <div class="language-picker">
+    <v-select
+      :items="items"
+      v-model="locale"
+      label="Language"
+      single-line
+      bottom
+      hide-details
+    />
   </div>
 </template>
 
@@ -15,6 +20,11 @@ export default {
     return {
       locale: DEFAULT_LOCALE,
       locales,
+
+      items: locales.map(item => ({
+        text: this.$t(`languages.${item}`),
+        value: item,
+      })),
     };
   },
   watch: {
@@ -24,3 +34,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+  .language-picker {
+    width: 100px;
+  }
+</style>

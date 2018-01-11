@@ -1,5 +1,6 @@
 import store from '@/shared/store';
 import MainLayout from '@/layouts/MainLayout';
+import loggedInGuard from '@/shared/utils/loggedInGuard';
 
 import storeModule from './store';
 
@@ -11,9 +12,12 @@ export default {
   path: '/home',
   component: MainLayout,
   beforeEnter(to, from, next) {
-    store.registerModule('home', storeModule);
-    store.commit('REFRESH_STORE');
-    next();
+    if (!store.state.home) {
+      store.registerModule('home', storeModule);
+      store.commit('REFRESH_STORE');
+    }
+
+    loggedInGuard(store, next);
   },
   children: [
     {
