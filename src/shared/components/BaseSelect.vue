@@ -1,22 +1,19 @@
 <template>
-  <v-text-field
-    :label="label"
-    :required="required"
-    :rules="validation"
-    :type="type"
+  <v-select
+    :items="items"
     v-model="model"
-  ></v-text-field>
+    :label="label"
+    bottom
+  />
 </template>
 
 <script>
 export default {
-  name: 'BaseTextInput',
+  name: 'BaseSelect',
   props: {
-    type: String,
     label: String,
-    value: String,
-    validation: Object,
-    required: Boolean,
+    items: Array,
+    value: [String, Number, Object],
   },
   data: () => ({
     model: null,

@@ -1,22 +1,17 @@
 <template>
-  <v-text-field
+  <v-checkbox
     :label="label"
-    :required="required"
-    :rules="validation"
-    :type="type"
     v-model="model"
-  ></v-text-field>
+    color="blue accent-1"
+  />
 </template>
 
 <script>
 export default {
-  name: 'BaseTextInput',
+  name: 'BaseCheckbox',
   props: {
-    type: String,
     label: String,
-    value: String,
-    validation: Object,
-    required: Boolean,
+    value: [Boolean],
   },
   data: () => ({
     model: null,

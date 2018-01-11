@@ -3,5 +3,20 @@
     "en": "English",
     "de": "Deutsch"
   },
-  "hello": "guten tag"
+  "hello": "guten tag",
+  "user": {
+    "fields": {
+      "firstName": "Vorname",
+      "lastName": "Familienname",
+      "gender": "Geschlecht",
+      "birthday": "Geburtstag",
+      "state": "Status",
+      "email": "Email",
+      "city": "Stadt",
+      "postcode": "Postleitzahl",
+      "country": "Land",
+      "timezone": "Zeitzone",
+      "language": "Sprache"
+    }
+  }
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>HomeContainer</h3>
+    <h3>SANDBOX</h3>
 
     <h2>Add User:</h2>
     <form @submit.prevent="addNewUser">
