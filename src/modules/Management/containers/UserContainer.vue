@@ -1,13 +1,13 @@
 <template>
-  <div class="pa3">
+  <div class="pa-3">
     <div v-if="loading">Loading...</div>
     <div v-if="user">
       <h3 class="title">
         {{ displayableName }}
         <span v-if="!isEditing" @click="isEditing = true" class="caption">Edit</span>
       </h3>
-      <vv-user-info v-if="!isEditing" :user="user" />
-      <vv-user-info-form v-else :user="user" @save="updateUser" @cancel="isEditing = false" />
+      <vv-user-info class="mt-4" v-if="!isEditing" :user="user" />
+      <vv-user-info-form v-else class="mt-4" :user="user" @save="updateUser" @cancel="isEditing = false" />
     </div>
   </div>
 </template>

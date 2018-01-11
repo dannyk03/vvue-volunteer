@@ -13,6 +13,17 @@
       />
       <!-- <div><span v-t="'user.fields.gender'" />: {{ user.gender }}</div>
       <div><span v-t="'user.fields.birthday'" />: {{ user.birthday }}</div> -->
+      <vv-base-date-picker
+        :label="$t('user.fields.birthday')"
+        v-model="model.birthday"
+      />
+
+      <vv-base-select
+        :label="$t('user.fields.gender')"
+        :items="genders"
+        v-model="model.gender"
+      />
+
       <vv-base-text-input
         :label="$t('user.fields.city')"
         v-model="model.city"
@@ -32,6 +43,11 @@
       <vv-base-text-input
         :label="$t('user.fields.language')"
         v-model="model.language"
+      />
+
+      <vv-base-checkbox
+        label="Accept SMS"
+        v-model="model.acceptSms"
       />
 
       <v-btn
@@ -56,6 +72,9 @@
 <script>
 import { mapActions } from 'vuex';
 import VvBaseTextInput from '@/shared/components/BaseTextInput';
+import VvBaseSelect from '@/shared/components/BaseSelect';
+import VvBaseCheckbox from '@/shared/components/BaseCheckbox';
+import VvBaseDatePicker from '@/shared/components/BaseDatePicker';
 
 export default {
   name: 'UserInfoForm',
@@ -64,10 +83,18 @@ export default {
   },
   components: {
     VvBaseTextInput,
+    VvBaseSelect,
+    VvBaseCheckbox,
+    VvBaseDatePicker,
   },
   data: () => ({
     model: null,
     valid: true,
+    // temp
+    genders: [
+      { text: 'Male', value: 'Male' },
+      { text: 'Female', value: 'Female' },
+    ],
   }),
   methods: {
     ...mapActions('global/auth', [

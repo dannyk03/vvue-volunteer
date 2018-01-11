@@ -2,7 +2,6 @@ import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import camelize from 'camelize';
-import snakecase from 'snakecase-keys';
 import { API_ROOT } from '@/shared/constants/env';
 
 Vue.use(VueAxios, axios);
