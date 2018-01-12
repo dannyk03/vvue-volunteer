@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'Stay';
+  src: url('/static/fonts/Stay.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Gothic';
+  src: url('/static/fonts/SocialGothicMedium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'GothicRegular';
+  src: url('/static/fonts/SocialGothicRegular.otf') format('opentype');
+}
+
+.subheading {
+  color: #6c6c72;
+}
