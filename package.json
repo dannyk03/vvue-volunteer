@@ -5,12 +5,15 @@
   "author": "Yevhenii Kravchenko <yevhenii.kravchenko@gmail.com>",
   "private": true,
   "scripts": {
+    "predev": "yarn run svg",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "unit": "jest test/unit/specs --coverage",
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
-    "build": "node build/build.js"
+    "prebuild": "yarn run svg",
+    "build": "node build/build.js",
+    "svg": "./node_modules/.bin/vsvg -s static/icons/svg -t static/icons/compiled-svg"
   },
   "dependencies": {
     "axios": "^0.17.1",
@@ -28,6 +31,7 @@
     "vue-i18n": "^7.3.2",
     "vue-notification": "^1.3.4",
     "vue-router": "^3.0.1",
+    "vue-svgicon": "^2.1.1",
     "vuetify": "next",
     "vuex": "^3.0.1"
   },

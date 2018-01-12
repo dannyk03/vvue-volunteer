@@ -1,5 +1,6 @@
 import Vue from 'vue';
 
+import VueSVGIcon from 'vue-svgicon';
 import VeeValidate from 'vee-validate';
 import Notifications from 'vue-notification';
 import Vuetify from 'vuetify';
@@ -15,7 +16,15 @@ import store from './shared/store';
 Vue.config.productionTip = false;
 
 Vue.use(VeeValidate);
-Vue.use(Vuetify);
+Vue.use(VueSVGIcon);
+Vue.use(Vuetify, {
+  theme: {
+    primary: '#8fced7',
+    // secondary: 'red',
+    // accent: '#8c9eff',
+    error: '#e7695d',
+  },
+});
 Vue.use(Notifications);
 
 Vue.mixin(notificationMixin);
