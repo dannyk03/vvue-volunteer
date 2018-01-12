@@ -1,0 +1,20 @@
+@import './colors.scss';
+
+.btn {
+  text-transform: none;
+  font-weight: bold;
+  min-width: 150px;
+
+  .btn--depressed {
+
+  }
+
+  .btn-outline {
+
+  }
+
+  &.ghost {
+    color: $teal;
+    border-width: 2px;
+  }
+}
