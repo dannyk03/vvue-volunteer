@@ -1,6 +1,6 @@
 <template>
   <div class="onboarding-profile">
-    <h1>Create your profile and secure it</h1>
+    <h1 class="display-1 mb-4">Create your profile and password</h1>
 
     <!-- <form @submit.prevent="submitStep">
       <vv-base-text-input placeholder="Email" v-model="email" />
@@ -10,10 +10,17 @@
     </form> -->
 
     <vv-form class="grid" @submit="submitStep">
-      <vv-base-text-input v-validate="'email'" placeholder="Email" name="email" v-model="email" />
-      <vv-base-text-input autocomplete="new-password" class="mt2" placeholder="Password" type="password" v-model="password" />
+      <vv-base-text-input label="Email" v-validate="'email'" placeholder="Email" name="email" v-model="email" />
+      <vv-base-text-input label="Password" autocomplete="new-password" class="mt2" placeholder="Password" type="password" v-model="password" />
 
-      <vv-base-button class="mt3" :disabled="!email || !password">Continue</vv-base-button>
+      <vv-base-button
+        @click="submitStep"
+        class="mt-3 submit"
+        :disabled="!email || !password"
+        color="accent"
+      >
+        Sign up
+      </vv-base-button>
     </vv-form>
   </div>
 </template>
@@ -56,11 +63,18 @@ export default {
 
 <style lang="scss" scoped>
   .onboarding-profile {
-    width: 500px;
     display: grid;
+
+    form {
+      width: 340px;
+    }
 
     .grid {
       display: grid;
+    }
+
+    .submit {
+      width: 150px;
     }
   }
 </style>

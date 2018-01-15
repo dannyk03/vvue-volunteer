@@ -7,15 +7,13 @@
     <div class="main-image" />
 
     <div class="top-line">
-      <v-btn
-        class="ghost"
+      <vv-base-button
         @click="$router.push('/auth/onboarding')"
-        round
-        depressed
+        color="secondary"
         outline
       >
         Registration
-      </v-btn>
+      </vv-base-button>
     </div>
 
     <v-form v-model="valid" ref="form" lazy-validation>
@@ -38,16 +36,14 @@
         <router-link :to="{ name: 'forgot' }">Forgot password?</router-link>
       </div>
 
-      <v-btn
-        class="submit-btn ma-0"
+      <vv-base-button
+        class="submit-btn"
         @click="submit"
         :disabled="!valid"
-        color="warning"
-        depressed
-        round
+        color="accent"
       >
         Sign In
-      </v-btn>
+      </vv-base-button>
     </v-form>
   </div>
 

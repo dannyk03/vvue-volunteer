@@ -72,7 +72,7 @@
 <script>
 import { mapActions } from 'vuex';
 import VvBaseTextInput from '@/shared/components/BaseTextInput';
-import VvBaseSelect from '@/shared/components/BaseSelect';
+import VvBaseSelect from '@/shared/components/select/BaseSelect';
 import VvBaseCheckbox from '@/shared/components/BaseCheckbox';
 import VvBaseDatePicker from '@/shared/components/BaseDatePicker';
 

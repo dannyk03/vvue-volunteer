@@ -20,15 +20,13 @@
         v-model="credentials.email"
       />
 
-      <v-btn
+      <vv-base-button
         class="submit-btn ma-0"
         @click="submit"
-        color="warning"
-        depressed
-        round
+        color="accent"
       >
         Reset password
-      </v-btn>
+      </vv-base-button>
     </v-form>
 
     <div class="main-image">
@@ -42,6 +40,7 @@
 import { mapActions } from 'vuex';
 import VvBaseTextInput from '@/shared/components/BaseTextInput';
 import VvBaseIcon from '@/shared/components/BaseIcon';
+import VvBaseButton from '@/shared/components/BaseButton';
 import VvLogo from '@/shared/components/Logo';
 import '@/../static/icons/compiled-svg/lock';
 
@@ -50,6 +49,7 @@ export default {
   components: {
     VvBaseTextInput,
     VvBaseIcon,
+    VvBaseButton,
     VvLogo,
   },
   data: () => ({
@@ -129,7 +129,7 @@ export default {
     .no-worries {
       font-family: 'Stay';
       font-size: 38px;
-      color: $accentSecondary;
+      color: $primary;
     }
   }
 </style>

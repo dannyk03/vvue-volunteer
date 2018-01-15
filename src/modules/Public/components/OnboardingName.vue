@@ -1,11 +1,26 @@
 <template>
   <div class="onboarding-name">
-    <h1>Let's know each other. Introduce yourself</h1>
+    <h1 class="display-1 mb-4">Let’s know each and be friends. <span class="accented">Introduce yourself</span></h1>
 
-    <vv-base-text-input placeholder="First Name" v-model="firstName" />
-    <vv-base-text-input class="mt2" placeholder="Last Name" v-model="lastName" />
+    <div class="form">
+      <div class="line">
+        <vv-base-text-input label="First name" class="mr-2" placeholder="First Name" v-model="firstName" />
+        <vv-base-text-input label="Last name" placeholder="Last Name" v-model="lastName" />
+      </div>
 
-    <vv-base-button class="mt3" :disabled="!firstName || !lastName" @click.native="submitStep">Continue</vv-base-button>
+      <vv-base-text-input label="Your phone number" mask="phone" class="mr-2" placeholder="First Name" v-model="firstName" />
+      <vv-base-text-input label="Is it your Whatsapp number?" class="mr-2" placeholder="First Name" v-model="firstName" />
+
+      <vv-base-button
+        color="accent"
+        class="mt-3"
+        :disabled="!firstName || !lastName"
+        @click.native="submitStep"
+      >
+        Next >
+      </vv-base-button>
+    </div>
+
   </div>
 </template>
 
@@ -46,7 +61,16 @@ export default {
 
 <style lang="scss" scoped>
   .onboarding-name {
-    width: 500px;
     display: grid;
+    width: 480px;
+
+    .form {
+      width: 340px;
+    }
+
+    .line {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 </style>
