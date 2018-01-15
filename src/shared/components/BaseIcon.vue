@@ -1,5 +1,5 @@
 <template>
-  <svgicon :name="getIconName()" :width="width" :height="height" :color="getColors()"></svgicon>
+  <svgicon :name="getIconName()" :fill="fill" :width="width" :height="height" :color="getColors()"></svgicon>
 </template>
 
 <script>
@@ -25,6 +25,10 @@
       backgroundColor: {
         type: String,
         default: 'transparent',
+      },
+      fill: {
+        type: Boolean,
+        default: true,
       },
     },
     methods: {

@@ -19,9 +19,9 @@ Vue.use(VeeValidate);
 Vue.use(VueSVGIcon);
 Vue.use(Vuetify, {
   theme: {
-    primary: '#8fced7',
-    // secondary: 'red',
-    // accent: '#8c9eff',
+    primary: '#00b1a7',
+    secondary: '#8fced7',
+    accent: '#fad46f',
     error: '#e7695d',
   },
 });

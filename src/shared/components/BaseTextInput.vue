@@ -4,6 +4,8 @@
     :required="required"
     :rules="validation"
     :type="type"
+    :mask="mask"
+
     v-model="model"
   ></v-text-field>
 </template>
@@ -17,6 +19,7 @@ export default {
     value: String,
     validation: Object,
     required: Boolean,
+    mask: String,
   },
   data: () => ({
     model: null,

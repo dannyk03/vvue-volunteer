@@ -1,3 +1,5 @@
+@import './colors.scss';
+
 @font-face {
   font-family: 'Stay';
   src: url('/static/fonts/Stay.ttf') format('truetype');
@@ -15,4 +17,22 @@
 
 .subheading {
   color: #6c6c72;
+}
+
+.fontAccented {
+  font-family: Stay;
+}
+
+@mixin calloutFont {
+	font-size: 12px;
+	font-weight: bold;
+	text-align: left;
+	color: #6c6c72;
+	color: $primaryGrey;
+  text-transform: uppercase;
+}
+
+@mixin placeholderFont {
+	font-size: 16px;
+	color: $secondaryGrey;
 }

@@ -1,5 +1,6 @@
 <template>
   <v-select
+    class="vv-select"
     :items="items"
     v-model="model"
     :label="label"
@@ -28,6 +29,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-</style>
