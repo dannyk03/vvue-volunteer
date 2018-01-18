@@ -8,9 +8,9 @@
 
     <div class="top-line">
       <vv-base-button
-        @click="$router.push('/auth/onboarding')"
         color="secondary"
         outline
+        :to="{name: 'onboarding'}"
       >
         Registration
       </vv-base-button>
@@ -70,10 +70,6 @@ export default {
       password: '',
     },
     valid: true,
-    // usernameRules: [
-    //   v => !!v || 'E-mail is required',
-    //   v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid',
-    // ],
     checkbox: false,
   }),
   methods: {

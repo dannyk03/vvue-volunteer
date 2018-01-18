@@ -6,6 +6,9 @@
 
 <script>
 export default {
+  $_veeValidate: {
+    validator: 'new',
+  },
   name: 'BaseForm',
   data: () => ({
 
@@ -13,6 +16,7 @@ export default {
   methods: {
     submit() {
       this.$parent.$validator.validateAll().then((result) => {
+        debugger;
         if (result) return this.$emit('submit');
         return false;
       });

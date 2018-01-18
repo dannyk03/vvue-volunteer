@@ -4,17 +4,37 @@
 
     <div class="form">
       <div class="line">
-        <vv-base-text-input label="First name" class="mr-2" placeholder="First Name" v-model="firstName" />
-        <vv-base-text-input label="Last name" placeholder="Last Name" v-model="lastName" />
+        <vv-base-text-input label="First name" class="mr-2" v-model="model.firstName" />
+        <vv-base-text-input label="Last name" v-model="model.lastName" />
       </div>
 
-      <vv-base-text-input label="Your phone number" mask="phone" class="mr-2" placeholder="First Name" v-model="firstName" />
-      <vv-base-text-input label="Is it your Whatsapp number?" class="mr-2" placeholder="First Name" v-model="firstName" />
+      <vv-base-text-input
+        label="Your phone number"
+        mask="phone"
+        class="mr-2"
+        placeholder="First Name"
+        v-model="model.phone"
+      />
+
+      <vv-base-select
+        class="mr-2"
+        label="Is it your Whatsapp number?"
+        :items="whatsAppOptions"
+        v-model="isNumberWhatsApp"
+      />
+
+      <vv-base-text-input
+        v-if="isNumberWhatsApp === 'A'"
+        label="Your Whatsapp number"
+        mask="phone"
+        class="mr-2"
+        v-model="model.whatsAppNumber"
+      />
 
       <vv-base-button
         color="accent"
         class="mt-3"
-        :disabled="!firstName || !lastName"
+        :disabled="!model.firstName || !model.lastName || !model.phone"
         @click.native="submitStep"
       >
         Next >
@@ -28,6 +48,7 @@
 import { mapMutations } from 'vuex';
 import VvBaseTextInput from '@/shared/components/BaseTextInput';
 import VvBaseButton from '@/shared/components/BaseButton';
+import VvBaseSelect from '@/shared/components/select/BaseSelect';
 import { UPDATE_ONBOARDING_INFO } from '../mutationTypes';
 
 export default {
@@ -35,18 +56,26 @@ export default {
   components: {
     VvBaseTextInput,
     VvBaseButton,
+    VvBaseSelect,
   },
   data: () => ({
-    firstName: '',
-    lastName: '',
+    model: {
+      firstName: '',
+      lastName: '',
+      phone: '',
+      whatsAppNumber: '',
+    },
+    isNumberWhatsApp: '',
+    whatsAppOptions: [
+      { value: 'Y', text: 'Yes, it’s my Whatsapp number' },
+      { value: 'A', text: 'No, I enter another' },
+      { value: 'N', text: 'No, I don’t have Whatsapp' },
+    ],
   }),
   methods: {
     submitStep() {
-      this.setNameInfo({
-        firstName: this.firstName,
-        lastName: this.lastName,
-      });
-      this.$router.push('/auth/onboarding/4');
+      this.setNameInfo(this.model);
+      this.$router.push('4');
     },
     ...mapMutations('public', {
       setNameInfo: UPDATE_ONBOARDING_INFO,
@@ -54,7 +83,7 @@ export default {
   },
   mounted() {
     const data = this.$store.getters['public/getNameInfo'];
-    Object.assign(this, data);
+    Object.assign(this.model, data);
   },
 };
 </script>

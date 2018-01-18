@@ -2,26 +2,31 @@
   <div class="onboarding-profile">
     <h1 class="display-1 mb-4">Create your profile and password</h1>
 
-    <!-- <form @submit.prevent="submitStep">
-      <vv-base-text-input placeholder="Email" v-model="email" />
-      <vv-base-text-input autocomplete="new-password" class="mt2" placeholder="Password" type="password" v-model="password" />
+    <v-form class="grid" v-model="valid" ref="form" lazy-validation @submit.prevent="submitStep">
+      <vv-base-text-input
+        label="Email"
+        name="email"
+        :validation="rules.email"
+        v-model="model.email"
+      />
 
-      <vv-base-button class="mt3" :disabled="!email || !password">Continue</vv-base-button>
-    </form> -->
-
-    <vv-form class="grid" @submit="submitStep">
-      <vv-base-text-input label="Email" v-validate="'email'" placeholder="Email" name="email" v-model="email" />
-      <vv-base-text-input label="Password" autocomplete="new-password" class="mt2" placeholder="Password" type="password" v-model="password" />
+      <vv-base-text-input
+        label="Password"
+        autocomplete="new-password"
+        class="mt2"
+        type="password"
+        :validation="rules.password"
+        v-model="model.password"
+      />
 
       <vv-base-button
-        @click="submitStep"
         class="mt-3 submit"
-        :disabled="!email || !password"
         color="accent"
+        type="submit"
       >
         Sign up
       </vv-base-button>
-    </vv-form>
+    </v-form>
   </div>
 </template>
 
@@ -40,16 +45,30 @@ export default {
     VvForm,
   },
   data: () => ({
-    email: '',
-    password: '',
+    valid: true,
+    model: {
+      email: '',
+      password: '',
+    },
+    rules: {
+      email: [
+        v => !!v || 'E-mail is required',
+        v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid',
+      ],
+      password: [
+        v => !!v || 'Password is required',
+      ],
+    },
   }),
   methods: {
     submitStep() {
-      this.setProfileInfo({
-        email: this.email,
-        password: this.password,
-      });
-      this.$router.push('/auth/onboarding/3');
+      if (this.$refs.form.validate()) {
+        this.setProfileInfo({
+          email: this.email,
+          password: this.password,
+        });
+        this.$router.push('/auth/onboarding/3');
+      }
     },
     ...mapMutations('public', {
       setProfileInfo: UPDATE_ONBOARDING_INFO,

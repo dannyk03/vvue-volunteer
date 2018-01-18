@@ -23,6 +23,11 @@
   font-family: Stay;
 }
 
+.heading {
+  font-family: 'Gothic';
+  text-transform: uppercase;
+}
+
 @mixin calloutFont {
 	font-size: 12px;
 	font-weight: bold;

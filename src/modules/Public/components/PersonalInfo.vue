@@ -19,8 +19,8 @@
       <span class="fieldTitle">gender</span>
 
       <v-radio-group v-model="model.gender" row>
-        <v-radio label="Male" value="radio-1" color="primary"></v-radio>
-        <v-radio label="Female" value="radio-2" color="primary"></v-radio>
+        <v-radio label="Male" value="male" color="primary"></v-radio>
+        <v-radio label="Female" value="female" color="primary"></v-radio>
       </v-radio-group>
     </div>
 
@@ -91,9 +91,7 @@ export default {
   @import "~@/styles/fonts";
 
   .personal-info-form {
-    display: grid;
-
-    width: 340px;
+    width: 360px;
     .line {
       display: flex;
       justify-content: space-between;

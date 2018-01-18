@@ -11,13 +11,14 @@
       <router-view />
     </div>
 
-    <div class="progress-indicator">progress</div>
+    <vv-progress-dots class="progress-indicator" :current="step" :total="5" />
   </div>
 </template>
 
 <script>
   import VvLogo from '@/shared/components/Logo';
   import VvBackButton from '@/shared/components/BackButton';
+  import VvProgressDots from '@/shared/components/ProgressDots';
   import VvOnboardingCode from '../components/OnboardingCode';
 
   export default {
@@ -26,6 +27,20 @@
       VvOnboardingCode,
       VvLogo,
       VvBackButton,
+      VvProgressDots,
+    },
+    data() {
+      return {
+        step: 1,
+      };
+    },
+    watch: {
+      $route(to) {
+        this.step = to.path.match(/onboarding\/(\d)/)[1];
+      },
+    },
+    mounted() {
+      this.step = this.$route.path.match(/onboarding\/(\d)/)[1];
     },
   };
 </script>

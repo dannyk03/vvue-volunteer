@@ -18,8 +18,8 @@ export default {
     label: String,
     items: Array,
     value: {
-      type: Array,
-      default: [],
+      type: String,
+      default: '',
     },
   },
   data: () => ({

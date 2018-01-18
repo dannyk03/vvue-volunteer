@@ -15,7 +15,7 @@
       <h1 class="heading display-1 mb-4">Your first step to <span class="underlined">become</span> <span class="accented">a mentor</span></h1>
       <p class="subheading">To join Volunteer Vision you need a registration code provided by you company or your partner. Please enter it here</p>
 
-      <vv-base-text-input class="input mb-4" v-model="code" label="Code" />
+      <vv-base-text-input class="input mb-4" v-model="code" label="Code" @keypress.native.enter="submitStep" />
 
       <div class="submit">
         <vv-base-button

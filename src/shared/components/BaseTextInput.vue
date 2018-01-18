@@ -17,7 +17,7 @@ export default {
     type: String,
     label: String,
     value: String,
-    validation: Object,
+    validation: Array,
     required: Boolean,
     mask: String,
   },

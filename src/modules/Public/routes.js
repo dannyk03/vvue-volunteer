@@ -41,11 +41,11 @@ export default {
     },
     {
       path: 'onboarding',
-      name: 'onboarding',
       component: OnboardingContainer,
       children: [
         {
           path: '1',
+          name: 'onboarding',
           component: OnboardingCode,
         },
         {
@@ -81,6 +81,7 @@ export default {
         },
         {
           path: '5',
+          name: 'onboardFinal',
           component: OnboardingFinal,
         },
         { path: '', redirect: '1' },

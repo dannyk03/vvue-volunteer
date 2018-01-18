@@ -5,6 +5,8 @@
     :disabled="disabled"
     :color="color"
     :outline="outline"
+    :type="type"
+    :to="to"
     depressed
     round
   >
@@ -28,6 +30,11 @@ export default {
       type: Boolean,
       default: false,
     },
+    type: {
+      type: String,
+      default: 'button',
+    },
+    to: [String, Object],
   },
   methods: {
     getClasses() {

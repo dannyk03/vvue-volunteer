@@ -68,7 +68,7 @@ export default {
         gender: this.gender,
         location: this.location,
       });
-      this.$router.push('4');
+      this.$router.push({ name: 'onboardFinal' });
     },
     ...mapMutations('public', {
       setNameInfo: UPDATE_ONBOARDING_INFO,
