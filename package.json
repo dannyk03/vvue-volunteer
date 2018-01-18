@@ -25,7 +25,7 @@
     "sass-loader": "^6.0.6",
     "snake-case": "^2.1.0",
     "snakecase-keys": "^1.1.0",
-    "vee-validate": "^2.0.0-rc.25",
+    "vee-validate": "2.0.3",
     "vue": "^2.5.2",
     "vue-axios": "^2.0.2",
     "vue-i18n": "^7.3.2",

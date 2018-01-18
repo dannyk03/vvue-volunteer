@@ -33,7 +33,7 @@ import VvForm from '@/shared/components/BaseForm';
 import { UPDATE_ONBOARDING_INFO } from '../mutationTypes';
 
 export default {
-  name: 'OnboardingCode',
+  name: 'OnboardingProfile',
   components: {
     VvBaseTextInput,
     VvBaseButton,
