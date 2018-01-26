@@ -1,7 +1,7 @@
 <template>
   <div class="onboarding-personal-info">
     <h1 class="display-1 mb-4"><span class="accented">Tell us a bit more</span> about yourself</h1>
-    <vv-progress-simple :current="step" :total="4" />
+    <vv-progress-simple :current="step" :total="3" />
     <router-view />
   </div>
 </template>
@@ -34,7 +34,8 @@ export default {
   @import "~@/styles/fonts";
 
   .onboarding-personal-info {
-    display: grid;
-    width: 480px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 </style>

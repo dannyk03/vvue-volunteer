@@ -25,8 +25,12 @@ export default {
     model: null,
   }),
   watch: {
-    model(value) {
+    model(value, oldValue) {
+      if (oldValue === null && value === '') return;
       this.$emit('input', value);
+    },
+    value(val) {
+      this.model = val;
     },
   },
   created() {

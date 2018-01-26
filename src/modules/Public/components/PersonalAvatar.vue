@@ -1,5 +1,5 @@
 <template>
-  <div class="personal-avatar-form">
+  <div class="personal-avatar-form mt-3">
 
     <div class="mt-4">
       <vv-webcam-picker class="avatar-wrapper" @pick="showAvatarFromWebcam" v-if="takeFromWebcam" />
@@ -36,14 +36,19 @@
       </div>
     </div>
 
-    <vv-base-button
-      v-if="!takeFromWebcam"
-      class="mt-5"
-      @click.native="submitStep"
-      color="accent"
-      >
-        Next >
-      </vv-base-button>
+    <div class="helper" />
+
+    <div class="bottom">
+      <vv-back-button />
+      <vv-base-button
+        v-if="!takeFromWebcam"
+        class="mt-5"
+        @click.native="submitStep"
+        color="accent"
+        >
+          Next >
+        </vv-base-button>
+    </div>
   </div>
 </template>
 
@@ -51,6 +56,7 @@
 import { mapMutations } from 'vuex';
 import VvBaseTextInput from '@/shared/components/BaseTextInput';
 import VvBaseButton from '@/shared/components/BaseButton';
+import VvBackButton from '@/shared/components/BackButton';
 import VvIcon from '@/shared/components/BaseIcon';
 import VvFilePicker from '@/shared/components/FilePicker';
 import VvWebcamPicker from '@/shared/components/WebcamPicker';
@@ -63,6 +69,7 @@ export default {
   components: {
     VvBaseTextInput,
     VvBaseButton,
+    VvBackButton,
     VvIcon,
     VvFilePicker,
     VvWebcamPicker,
@@ -107,7 +114,9 @@ export default {
   @import "~@/styles/fonts";
 
   .personal-avatar-form {
-    display: grid;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 
     .avatar-wrapper {
       display: flex;
@@ -140,8 +149,15 @@ export default {
 
     }
 
-    .btn {
-      width: 150px;
+    .helper {
+      flex-grow: 2;
+    }
+
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 26px;
     }
   }
 

@@ -11,18 +11,23 @@ const OnboardingName = () => import(/* webpackChunkName: "onboarding" */'./compo
 const OnboardingPersonalInfo = () => import(/* webpackChunkName: "onboarding" */'./components/OnboardingPersonalInfo');
 const PersonalLocation = () => import(/* webpackChunkName: "onboarding" */'./components/PersonalLocation');
 const PersonalInfo = () => import(/* webpackChunkName: "onboarding" */'./components/PersonalInfo');
-const PersonalJob = () => import(/* webpackChunkName: "onboarding" */'./components/PersonalJob');
 const PersonalAvatar = () => import(/* webpackChunkName: "onboarding" */'./components/PersonalAvatar');
 
 const OnboardingFinal = () => import(/* webpackChunkName: "onboarding" */'./components/OnboardingFinal');
+
+const waitUser = async (to, from, next) => {
+  try {
+    await store.dispatch('global/auth/checkAuthentication');
+    next();
+  } catch (e) {
+    next('/auth/login');
+  }
+};
 
 export default {
   path: '/auth',
   component: AuthLayout,
   beforeEnter(to, from, next) { // eslint-disable-line
-    if (store.getters['global/auth/isAuthenticated']) {
-      return next('/home');
-    }
     store.registerModule('public', storeModule);
     store.commit('REFRESH_STORE');
 
@@ -33,11 +38,23 @@ export default {
       path: 'login',
       name: 'login',
       component: LoginContainer,
+      beforeEnter(to, from, next) {
+        if (store.getters['global/auth/isAuthenticated']) {
+          return next('/home');
+        }
+        return next();
+      },
     },
     {
       path: 'forgot',
       name: 'forgot',
       component: ForgotPasswordContainer,
+      beforeEnter(to, from, next) {
+        if (store.getters['global/auth/isAuthenticated']) {
+          return next('/home');
+        }
+        return next();
+      },
     },
     {
       path: 'onboarding',
@@ -50,15 +67,18 @@ export default {
         },
         {
           path: '2',
+          name: 'onboardingProfile',
           component: OnboardingProfile,
         },
         {
           path: '3',
           component: OnboardingName,
+          beforeEnter: waitUser,
         },
         {
           path: '4',
           component: OnboardingPersonalInfo,
+          beforeEnter: waitUser,
           children: [
             {
               path: '1',
@@ -70,10 +90,6 @@ export default {
             },
             {
               path: '3',
-              component: PersonalJob,
-            },
-            {
-              path: '4',
               component: PersonalAvatar,
             },
             { path: '', redirect: '1' },

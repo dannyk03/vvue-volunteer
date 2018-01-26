@@ -4,6 +4,7 @@
     :items="items"
     :label="label"
     v-model="model"
+    :autocomplete="autocomplete"
 
     dense
     multiple
@@ -20,14 +21,16 @@ export default {
     items: Array,
     value: {
       type: Array,
-      default: [],
+      default: () => [],
     },
+    autocomplete: Boolean,
   },
   data: () => ({
     model: null,
   }),
   watch: {
-    model(value) {
+    model(value, oldValue) {
+      if (oldValue === null && value === '') return;
       this.$emit('input', value);
     },
   },

@@ -3,21 +3,21 @@
     <div class="main-image" />
 
     <div class="top">
-      <vv-logo color="grey" class="mb-4" />
-      <vv-back-button />
+      <div>
+        <vv-logo color="grey" />
+        <vv-progress-dots class="progress-indicator" :current="step" :total="5" />
+      </div>
     </div>
 
     <div class="step">
       <router-view />
     </div>
-
-    <vv-progress-dots class="progress-indicator" :current="step" :total="5" />
   </div>
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
   import VvLogo from '@/shared/components/Logo';
-  import VvBackButton from '@/shared/components/BackButton';
   import VvProgressDots from '@/shared/components/ProgressDots';
   import VvOnboardingCode from '../components/OnboardingCode';
 
@@ -26,13 +26,23 @@
     components: {
       VvOnboardingCode,
       VvLogo,
-      VvBackButton,
       VvProgressDots,
     },
     data() {
       return {
         step: 1,
       };
+    },
+    computed: {
+      showBack() {
+        const disabledStepBack = [3];
+        return !disabledStepBack.includes(parseInt(this.step, 10));
+      },
+    },
+    methods: {
+      ...mapActions('global/auth', [
+        'checkAuthentication',
+      ]),
     },
     watch: {
       $route(to) {
@@ -41,6 +51,7 @@
     },
     mounted() {
       this.step = this.$route.path.match(/onboarding\/(\d)/)[1];
+      this.checkAuthentication();
     },
   };
 </script>
@@ -50,11 +61,10 @@
     display: grid;
 
     grid-template-areas:
-      "image  top"
-      "image  step"
-      "image  progress";
+      "image  top  "
+      "image  step ";
     grid-template-columns: 520px 1fr;
-    grid-template-rows: 150px 1fr 100px;
+    grid-template-rows: 130px 1fr;
     height: 100vh;
 
     .main-image {
@@ -65,20 +75,22 @@
 
     .top {
       grid-area: top;
-      margin-top: 30px;
-      margin-left: 80px;
+      margin: 30px 80px 30px 80px;
+
+      & > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
     }
 
     .step {
       grid-area: step;
-      margin-left: 80px;
+      margin: 0 80px 21px 80px;
     }
 
-    .progress-indicator {
-      grid-area: progress;
-      justify-self: end;
-      align-self: end;
-      padding: 0 50px 50px 0;
+    .top, .step {
+      max-width: 700px;
     }
   }
 </style>

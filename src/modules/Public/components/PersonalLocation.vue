@@ -1,58 +1,89 @@
 <template>
-  <div class="personal-location-form">
-    <vv-base-text-input class="mr-2" label="Location" v-model="model.location" />
-    <vv-base-text-input label="Country of origin" v-model="model.countryOfOrigin" />
+  <v-form class="personal-location-form" v-model="valid" ref="form" @submit.prevent="submitStep">
+    <div class="fieldsWrapper">
+      <vv-base-select
+        label="Location"
+        v-model="model.country"
+        :items="countries"
+        :validation="rules.country"
+        autocomplete
+      />
 
-    <vv-base-button
-      class="mt-3"
-      @click.native="submitStep"
-      color="accent"
-      >
-        Next >
-      </vv-base-button>
-  </div>
+      <vv-base-select
+        label="Country of origin"
+        v-model="model.countryOfOrigin"
+        :items="countries"
+        :validation="rules.countryOfOrigin"
+        autocomplete
+      />
+    </div>
+
+    <div class="helper" />
+
+    <div class="bottom">
+      <vv-back-button />
+      <vv-base-button
+        class="mt-3"
+        color="accent"
+        type="submit"
+        >
+          Next >
+        </vv-base-button>
+    </div>
+  </v-form>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
+import pick from 'lodash/pick';
 import VvBaseTextInput from '@/shared/components/BaseTextInput';
+import VvBaseSelect from '@/shared/components/select/BaseSelect';
 import VvBaseButton from '@/shared/components/BaseButton';
-import { UPDATE_ONBOARDING_INFO } from '../mutationTypes';
+import VvBackButton from '@/shared/components/BackButton';
+import countries from '@/shared/data/countries';
 
 export default {
   name: 'PersonalInfo',
   components: {
     VvBaseTextInput,
     VvBaseButton,
+    VvBackButton,
+    VvBaseSelect,
   },
   data: () => ({
+    valid: true,
     model: {
-      location: '',
+      country: '',
       countryOfOrigin: '',
     },
-    languagesList: [
-      'English',
-      'German',
-      'Ukrainian',
-      'Arabic',
-    ],
+    rules: {
+      country: [
+        v => !!v || 'Country is required',
+      ],
+      countryOfOrigin: [
+        v => !!v || 'Country of origin is required',
+      ],
+    },
+    countries,
   }),
   methods: {
-    submitStep() {
-      this.setNameInfo({
-        birthday: this.birthday,
-        gender: this.gender,
-        location: this.location,
-      });
-      this.$router.push('3');
+    async submitStep() {
+      if (this.$refs.form.validate()) {
+        await Promise.all([
+          this.updateProfile(this.model),
+        ]);
+
+        this.$router.push('3');
+      }
     },
-    ...mapMutations('public', {
-      setNameInfo: UPDATE_ONBOARDING_INFO,
-    }),
+    ...mapActions('global/user', [
+      'updateProfile',
+    ]),
   },
   mounted() {
-    const data = this.$store.getters['public/getPersonalInfo'];
-    Object.assign(this, data);
+    const user = this.$store.getters['global/user/getUser'];
+    const change = pick(user, ['country', 'countryOfOrigin']);
+    Object.assign(this.model, change);
   },
 };
 </script>
@@ -61,12 +92,23 @@ export default {
   @import "~@/styles/fonts";
 
   .personal-location-form {
-    display: grid;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 
-    width: 340px;
+    .fieldsWrapper {
+      width: 340px;
+    }
 
-    .btn {
-      width: 150px;
+    .helper {
+      flex-grow: 2;
+    }
+
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 26px;
     }
   }
 

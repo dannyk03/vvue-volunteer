@@ -1,24 +1,24 @@
 <template>
-  <div class="personal-job-form">
+  <v-form class="personal-job-form" v-model="valid" ref="form" @submit.prevent="submitStep">
+
     <vv-base-text-input class="mr-2" label="Current Job or desired job" v-model="model.currentJob" />
     <vv-base-text-input label="Position" v-model="model.position" />
     <vv-base-text-input label="Education background" v-model="model.education" />
 
     <vv-base-button
       class="mt-3"
-      @click.native="submitStep"
       color="accent"
+      type="submit"
       >
         Next >
       </vv-base-button>
-  </div>
+  </v-form>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 import VvBaseTextInput from '@/shared/components/BaseTextInput';
 import VvBaseButton from '@/shared/components/BaseButton';
-import { UPDATE_ONBOARDING_INFO } from '../mutationTypes';
 
 export default {
   name: 'PersonalJob',
@@ -27,6 +27,7 @@ export default {
     VvBaseButton,
   },
   data: () => ({
+    valid: true,
     model: {
       currentJob: '',
       position: '',
@@ -34,21 +35,22 @@ export default {
     },
   }),
   methods: {
-    submitStep() {
-      this.setNameInfo({
-        birthday: this.birthday,
-        gender: this.gender,
-        location: this.location,
-      });
-      this.$router.push('4');
+    async submitStep() {
+      if (this.$refs.form.validate()) {
+        await this.updateProfileFields(this.model);
+
+        this.$router.push('4');
+      }
     },
-    ...mapMutations('public', {
-      setNameInfo: UPDATE_ONBOARDING_INFO,
-    }),
+    ...mapActions('global/user', [
+      'updateProfileFields',
+    ]),
   },
   mounted() {
-    const data = this.$store.getters['public/getPersonalInfo'];
-    Object.assign(this, data);
+    const data = this.$store.getters['global/user/getProfile'];
+
+    debugger;
+    Object.assign(this.model, data);
   },
 };
 </script>

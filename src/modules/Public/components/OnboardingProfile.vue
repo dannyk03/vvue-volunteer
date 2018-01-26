@@ -3,45 +3,57 @@
     <h1 class="display-1 mb-4">Create your profile and password</h1>
 
     <v-form class="grid" v-model="valid" ref="form" lazy-validation @submit.prevent="submitStep">
-      <vv-base-text-input
-        label="Email"
-        name="email"
-        :validation="rules.email"
-        v-model="model.email"
-      />
+      <div class="fieldsWrapper">
+        <vv-base-text-input
+          label="Email"
+          name="email"
+          :validation="rules.email"
+          v-model="model.email"
+        />
 
-      <vv-base-text-input
-        label="Password"
-        autocomplete="new-password"
-        class="mt2"
-        type="password"
-        :validation="rules.password"
-        v-model="model.password"
-      />
+        <vv-base-text-input
+          label="Password"
+          autocomplete="new-password"
+          class="mt2"
+          type="password"
+          :validation="rules.password"
+          v-model="model.password"
+        />
+      </div>
 
-      <vv-base-button
-        class="mt-3 submit"
-        color="accent"
-        type="submit"
-      >
-        Sign up
-      </vv-base-button>
+      <div class="helper" />
+
+      <div class="bottom">
+        <vv-back-button />
+        <vv-base-button
+          class="submit"
+          color="accent"
+          type="submit"
+          :disabled="!valid"
+        >
+          Sign up
+        </vv-base-button>
+      </div>
+
     </v-form>
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 import VvBaseTextInput from '@/shared/components/BaseTextInput';
 import VvBaseButton from '@/shared/components/BaseButton';
+import VvBackButton from '@/shared/components/BackButton';
 import VvForm from '@/shared/components/BaseForm';
-import { UPDATE_ONBOARDING_INFO } from '../mutationTypes';
+import notificationMixin from '@/shared/mixins/notificationMixin';
 
 export default {
   name: 'OnboardingProfile',
+  mixins: [notificationMixin],
   components: {
     VvBaseTextInput,
     VvBaseButton,
+    VvBackButton,
     VvForm,
   },
   data: () => ({
@@ -57,43 +69,58 @@ export default {
       ],
       password: [
         v => !!v || 'Password is required',
+        v => v.length >= 5 || 'The password must be at least 5 characters',
       ],
     },
   }),
   methods: {
-    submitStep() {
+    async submitStep() {
       if (this.$refs.form.validate()) {
-        this.setProfileInfo({
-          email: this.email,
-          password: this.password,
-        });
-        this.$router.push('/auth/onboarding/3');
+        try {
+          await this.registerUser(this.model);
+          this.$router.push('3');
+        } catch (e) {
+          this.notifyError('This email already exists');
+        }
       }
     },
-    ...mapMutations('public', {
-      setProfileInfo: UPDATE_ONBOARDING_INFO,
-    }),
-  },
-  mounted() {
-    this.email = this.$store.getters['public/getEmail'];
+    ...mapActions('public', [
+      'registerUser',
+    ]),
   },
 };
 </script>
 
 <style lang="scss" scoped>
   .onboarding-profile {
-    display: grid;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 
-    form {
+    div.fieldsWrapper {
       width: 340px;
     }
 
-    .grid {
-      display: grid;
-    }
+    form {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
 
-    .submit {
-      width: 150px;
+      .helper {
+        flex-grow: 2;
+      }
+
+      .bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 26px;
+
+        .submit {
+          width: 150px;
+          align-self: flex-end;
+        }
+      }
     }
   }
 </style>

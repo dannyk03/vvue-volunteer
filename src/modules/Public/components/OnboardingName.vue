@@ -2,68 +2,89 @@
   <div class="onboarding-name">
     <h1 class="display-1 mb-4">Let’s know each and be friends. <span class="accented">Introduce yourself</span></h1>
 
-    <div class="form">
-      <div class="line">
-        <vv-base-text-input label="First name" class="mr-2" v-model="model.firstName" />
-        <vv-base-text-input label="Last name" v-model="model.lastName" />
+    <v-form class="form" v-model="valid" ref="form" lazy-validation @submit.prevent="submitStep">
+      <div class="fieldsWrapper">
+        <div class="line">
+          <vv-base-text-input
+            label="First name"
+            class="mr-2"
+            v-model="model.firstName"
+            :validation="rules.firstName"
+          />
+          <vv-base-text-input
+            label="Last name"
+            v-model="model.lastName"
+            :validation="rules.lastName"
+          />
+        </div>
+
+        <vv-base-text-input
+          label="Your phone number"
+          mask="phone"
+          class="mr-2"
+          placeholder="First Name"
+          v-model="model.phoneNumber"
+          :validation="rules.phoneNumber"
+        />
+
+        <vv-base-select
+          class="mr-2"
+          label="Is it your Whatsapp number?"
+          :items="whatsAppOptions"
+          v-model="isNumberWhatsApp"
+        />
+
+        <vv-base-text-input
+          v-if="isNumberWhatsApp === 'A'"
+          label="Your Whatsapp number"
+          mask="phone"
+          class="mr-2"
+          v-model="model.whatsappNumber"
+        />
       </div>
 
-      <vv-base-text-input
-        label="Your phone number"
-        mask="phone"
-        class="mr-2"
-        placeholder="First Name"
-        v-model="model.phone"
-      />
+      <div class="helper" />
 
-      <vv-base-select
-        class="mr-2"
-        label="Is it your Whatsapp number?"
-        :items="whatsAppOptions"
-        v-model="isNumberWhatsApp"
-      />
+      <div class="bottom">
+        <vv-back-button />
+        <vv-base-button
+          color="accent"
+          class="mt-3"
+          :disabled="!valid"
+          type="submit"
+        >
+          Next
 
-      <vv-base-text-input
-        v-if="isNumberWhatsApp === 'A'"
-        label="Your Whatsapp number"
-        mask="phone"
-        class="mr-2"
-        v-model="model.whatsAppNumber"
-      />
-
-      <vv-base-button
-        color="accent"
-        class="mt-3"
-        :disabled="!model.firstName || !model.lastName || !model.phone"
-        @click.native="submitStep"
-      >
-        Next >
-      </vv-base-button>
-    </div>
+        </vv-base-button>
+      </div>
+    </v-form>
 
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
+import pick from 'lodash/pick';
 import VvBaseTextInput from '@/shared/components/BaseTextInput';
 import VvBaseButton from '@/shared/components/BaseButton';
+import VvBackButton from '@/shared/components/BackButton';
 import VvBaseSelect from '@/shared/components/select/BaseSelect';
-import { UPDATE_ONBOARDING_INFO } from '../mutationTypes';
 
 export default {
   name: 'OnboardingName',
   components: {
     VvBaseTextInput,
     VvBaseButton,
+    VvBackButton,
     VvBaseSelect,
   },
   data: () => ({
+    valid: true,
     model: {
       firstName: '',
       lastName: '',
-      phone: '',
-      whatsAppNumber: '',
+      phoneNumber: '',
+      whatsappNumber: '',
     },
     isNumberWhatsApp: '',
     whatsAppOptions: [
@@ -71,30 +92,61 @@ export default {
       { value: 'A', text: 'No, I enter another' },
       { value: 'N', text: 'No, I don’t have Whatsapp' },
     ],
-  }),
-  methods: {
-    submitStep() {
-      this.setNameInfo(this.model);
-      this.$router.push('4');
+    rules: {
+      firstName: [v => !!v || 'First name is required'],
+      lastName: [v => !!v || 'Last name is required'],
+      phoneNumber: [v => !!v || 'Phone number is required'],
     },
-    ...mapMutations('public', {
-      setNameInfo: UPDATE_ONBOARDING_INFO,
-    }),
+  }),
+  watch: {
+    isNumberWhatsApp(value) {
+      this.model.whatsappNumber = value === 'Y' ? this.model.phoneNumber : '';
+    },
+  },
+  methods: {
+    async submitStep() {
+      if (this.$refs.form.validate()) {
+        await this.updateProfile(this.model);
+        this.$router.push('4');
+      }
+    },
+    ...mapActions('global/user', [
+      'updateProfile',
+    ]),
   },
   mounted() {
-    const data = this.$store.getters['public/getNameInfo'];
-    Object.assign(this.model, data);
+    const user = this.$store.getters['global/user/getUser'];
+    const change = pick(user, ['firstName', 'lastName', 'phoneNumber', 'whatsappNumber']);
+    Object.assign(this.model, change);
   },
 };
 </script>
 
 <style lang="scss" scoped>
   .onboarding-name {
-    display: grid;
-    width: 480px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 
     .form {
-      width: 340px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .fieldsWrapper {
+        width: 340px;
+      }
+
+      .helper {
+        flex-grow: 2;
+      }
+
+      .bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 26px;
+      }
     }
 
     .line {

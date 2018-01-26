@@ -32,7 +32,8 @@ export default {
     menu: false,
   }),
   watch: {
-    model(value) {
+    model(value, oldValue) {
+      if (oldValue === null && value === '') return;
       this.$emit('input', value);
     },
   },

@@ -3,6 +3,7 @@
     label="Month"
     :items="months"
     v-model="model"
+    :validation="validation"
   />
 </template>
 
@@ -17,31 +18,33 @@ export default {
   props: {
     label: String,
     items: Array,
-    value: {
-      type: String,
-      default: '',
-    },
+    value: String,
+    validation: Array,
   },
   data: () => ({
     model: null,
     months: [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
+      { value: '01', text: 'January' },
+      { value: '02', text: 'February' },
+      { value: '03', text: 'March' },
+      { value: '04', text: 'April' },
+      { value: '05', text: 'May' },
+      { value: '06', text: 'June' },
+      { value: '07', text: 'July' },
+      { value: '08', text: 'August' },
+      { value: '09', text: 'September' },
+      { value: '10', text: 'October' },
+      { value: '11', text: 'November' },
+      { value: '12', text: 'December' },
     ],
   }),
   watch: {
-    model(value) {
-      this.$emit('input', value);
+    model(value, oldValue) {
+      if (oldValue === null && !value) return;
+      this.$emit('input', this.model);
+    },
+    value(val) {
+      this.model = val;
     },
   },
   created() {

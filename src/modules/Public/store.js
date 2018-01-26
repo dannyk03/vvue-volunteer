@@ -1,38 +1,42 @@
 import { fromLocalStorage } from '@/shared/utils/localStorage';
+import {
+  checkInviteCode as checkInviteCodeAPI,
+} from '@/api';
 import * as types from './mutationTypes';
 
 const initialState = {
   onboarding: fromLocalStorage('onboarding') || {},
+  user: {},
+  invitationCode: fromLocalStorage('invitationCode') || null,
 };
 
 const getters = {
-  getInvitationCode: state => state.onboarding.code,
-  getEmail: state => state.onboarding.email,
-  getNameInfo: state => ({
-    firstName: state.onboarding.firstName,
-    lastName: state.onboarding.lastName,
-  }),
-  getPersonalInfo: state => ({
-    birthday: state.onboarding.birthday,
-    gender: state.onboarding.gender,
-    location: state.onboarding.location,
-  }),
+
 };
 
 const actions = {
+  checkInviteCode({ commit, state }, code) {
+    return checkInviteCodeAPI(code).then(() => {
+      commit(types.SET_INVITATION_CODE, code);
+      localStorage.setItem('invitationCode', code);
+    });
+  },
+  registerUser({ commit, dispatch, state }, credentials) {
+    const user = Object.assign({}, credentials, {
+      code: state.invitationCode,
+    });
 
+    return dispatch('global/auth/register', user, { root: true }).then(() => {
+      debugger;
+      localStorage.removeItem('invitationCode');
+    });
+  },
 };
 
 const mutations = {
-  // [types.SET_INVITATION_CODE](state, code) {
-  //   state.onboarding = Object.assign({}, state.onboarding, { code });
-  // },
-  // [types.SET_PROFILE](state, profile) {
-  //   state.onboarding = Object.assign({}, state.onboarding, profile);
-  // },
-  // [types.SET_NAME](state, names) {
-  //   state.onboarding = Object.assign({}, state.onboarding, profile);
-  // },
+  [types.SET_INVITATION_CODE](state, code) {
+    state.invitationCode = code;
+  },
   [types.UPDATE_ONBOARDING_INFO](state, data) {
     state.onboarding = Object.assign({}, state.onboarding, data);
     localStorage.setItem('onboarding', JSON.stringify(state.onboarding));

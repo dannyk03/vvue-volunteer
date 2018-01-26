@@ -1,18 +1,18 @@
 <template>
   <div class="back-button" @click="$router.go(-1)">
-    <vv-icon class="mr-1" name="back" width="16" height="16" color="#6c6c72" />
+    <vv-arrow-icon target="left" />
     <span>back</span>
   </div>
 </template>
 
 <script>
-import VvIcon from '@/shared/components/BaseIcon';
+import VvArrowIcon from '@/shared/components/ArrowIcon';
 import '@/../static/icons/compiled-svg/back';
 
 export default {
   name: 'BackButton',
   components: {
-    VvIcon,
+    VvArrowIcon,
   },
 };
 </script>
@@ -26,6 +26,7 @@ export default {
     align-items: center;
     user-select: none;
     cursor: pointer;
+    width: 80px;
 
     span {
       @include calloutFont;
