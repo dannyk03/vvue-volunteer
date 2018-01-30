@@ -1,18 +1,18 @@
 <template>
   <div class="onboarding-profile">
-    <h1 class="display-1 mb-4">Create your profile and password</h1>
+    <h1 class="display-1 mb-4" v-t="'onboarding.profile.title'" />
 
     <v-form class="grid" v-model="valid" ref="form" lazy-validation @submit.prevent="submitStep">
       <div class="fieldsWrapper">
         <vv-base-text-input
-          label="Email"
+          :label="$t('common.fields.email')"
           name="email"
           :validation="rules.email"
           v-model="model.email"
         />
 
         <vv-base-text-input
-          label="Password"
+          :label="$t('common.fields.password')"
           autocomplete="new-password"
           class="mt2"
           type="password"
@@ -31,7 +31,7 @@
           type="submit"
           :disabled="!valid"
         >
-          Sign up
+          {{ $t('common.labels.signUp') }}
         </vv-base-button>
       </div>
 
@@ -56,23 +56,25 @@ export default {
     VvBackButton,
     VvForm,
   },
-  data: () => ({
-    valid: true,
-    model: {
-      email: '',
-      password: '',
-    },
-    rules: {
-      email: [
-        v => !!v || 'E-mail is required',
-        v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid',
-      ],
-      password: [
-        v => !!v || 'Password is required',
-        v => v.length >= 5 || 'The password must be at least 5 characters',
-      ],
-    },
-  }),
+  data() {
+    return {
+      valid: true,
+      model: {
+        email: '',
+        password: '',
+      },
+      rules: {
+        email: [
+          v => !!v || this.$t('common.fields.validation.email.required'),
+          v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || this.$t('common.fields.validation.email.invalid'),
+        ],
+        password: [
+          v => !!v || this.$t('common.fields.validation.password.required'),
+          v => v.length >= 5 || this.$t('common.fields.validation.password.minLength', { length: 5 }),
+        ],
+      },
+    };
+  },
   methods: {
     async submitStep() {
       if (this.$refs.form.validate()) {
@@ -80,7 +82,7 @@ export default {
           await this.registerUser(this.model);
           this.$router.push('3');
         } catch (e) {
-          this.notifyError('This email already exists');
+          this.notifyError(this.$t('onboarding.profile.validation.emailAlreadyExists'));
         }
       }
     },

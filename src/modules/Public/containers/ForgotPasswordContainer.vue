@@ -33,9 +33,6 @@ export default {
     submit() {
       this.succeed = true;
     },
-    // ...mapActions('global/auth', [
-    //   'login',
-    // ]),
   },
 };
 </script>

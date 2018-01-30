@@ -2,17 +2,17 @@
   <div class="forgot-form-wrapper">
     <v-form v-model="valid" ref="form" lazy-validation>
       <div class="heading mb-4">
-        <h1 class="display-1 mb-2">Forgot password?</h1>
+        <h1 class="display-1 mb-2" v-t="'login.labels.forgotPassword'" />
         <div class="arrow-wrapper">
           <img src="/static/images/figures/arrow-black.png" class="arrow" />
         </div>
-        <div class="no-worries">No worries!</div>
+        <div class="no-worries" v-t="'forgotPassword.title.accent'" />
       </div>
 
-      <div class="subheading mb-4">Enter your email and we’ll help you</div>
+      <div class="subheading mb-4" v-t="'forgotPassword.subtitle'" />
 
       <vv-base-text-input
-        label="Email"
+        :label="$t('forgotPassword.fields.email')"
         class="input mb-4"
         v-model="credentials.email"
       />
@@ -22,7 +22,7 @@
         @click="submit"
         color="accent"
       >
-        Reset password
+        {{ $t('forgotPassword.labels.reset') }}
       </vv-base-button>
     </v-form>
 

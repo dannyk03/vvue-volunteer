@@ -9,7 +9,7 @@
           <img v-if="avatarPreview" :src="avatarPreview" />
           <div v-else>
             <vv-icon name="avatar" width="42" height="58" :fill="false" backgroundColor="#c1c1c1"  />
-            <div class="text mt-3">Awesome avatar here</div>
+            <div class="text mt-3" v-t="'onboarding.personalAvatar.avatarPlaceholder'" />
           </div>
         </div>
 
@@ -20,7 +20,7 @@
               color="accent"
               outline
             >
-              Upload
+              {{ $t('onboarding.personalAvatar.upload') }}
             </vv-base-button>
           </vv-file-picker>
 
@@ -29,7 +29,7 @@
             color="accent"
             outline
           >
-            Take from webcam
+          {{ $t('onboarding.personalAvatar.takeFromWebcam') }}
           </vv-base-button>
         </div>
 
@@ -42,11 +42,10 @@
       <vv-back-button />
       <vv-base-button
         v-if="!takeFromWebcam"
-        class="mt-5"
         @click.native="submitStep"
         color="accent"
         >
-          Next >
+          {{ $t('common.labels.next') }}
         </vv-base-button>
     </div>
   </div>

@@ -1,6 +1,8 @@
 <template>
   <div class="onboarding-personal-info">
-    <h1 class="display-1 mb-4"><span class="accented">Tell us a bit more</span> about yourself</h1>
+    <i18n path="onboarding.personalInfo.title" tag="h1" class="display-1 mb-4">
+      <span place="accent" class="accented" v-t="'onboarding.personalInfo.title.accent'" />
+    </i18n>
     <vv-progress-simple :current="step" :total="3" />
     <router-view />
   </div>

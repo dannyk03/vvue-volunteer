@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
-
+// temp
+import en from './locales/en.json';
+import de from './locales/de.json';
+//
 Vue.use(VueI18n);
 
 const i18n = new VueI18n({
@@ -14,12 +17,20 @@ const locales = [
   'de',
 ];
 
+// const links = {
+//   en: 'http://www.mocky.io/v2/5a33e96a300000de134b7554',
+//   de: 'http://www.mocky.io/v2/5a33e94e300000dd134b7552',
+// };
+
 const links = {
-  en: 'http://www.mocky.io/v2/5a33e96a300000de134b7554',
-  de: 'http://www.mocky.io/v2/5a33e94e300000dd134b7552',
+  en,
+  de,
 };
 
-const loadLanguage = lang => fetch(links[lang]).then(response => response.json());
+console.log('en', en);
+
+// const loadLanguage = lang => fetch(links[lang]).then(response => response.json());
+const loadLanguage = lang => Promise.resolve(links[lang]);
 
 const ensureLoadLanguage = (lang) => {
   if (!loadedLanguages.includes(lang)) {

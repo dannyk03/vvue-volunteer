@@ -2,7 +2,7 @@
   <!-- TODO: i18n -->
   <div class="login-container">
     <vv-logo class="logo" color="white" />
-    <div class="copyright">© Volunteer Vision GmbH 2017</div>
+    <div class="copyright" v-t="'common.labels.copyright'" />
 
     <div class="main-image" />
 
@@ -12,28 +12,28 @@
         outline
         :to="{name: 'onboarding'}"
       >
-        Registration
+        {{ $t('common.labels.registration') }}
       </vv-base-button>
     </div>
 
     <v-form v-model="valid" ref="form" lazy-validation>
-      <h1 class="display-1 mb-2">Welcome back</h1>
-      <div class="subheading mb-4">Nice to see you again</div>
+      <h1 class="display-1 mb-2" v-t="'login.title'" />
+      <div class="subheading mb-4" v-t="'login.subtitle'" />
 
       <vv-base-text-input
-        label="Email or Phone number"
+        :label="$t('login.fields.email.label')"
         v-model="credentials.username"
       />
 
       <vv-base-text-input
-        label="Password"
+        :label="$t('login.fields.password.label')"
         type="password"
         v-model="credentials.password"
         @keypress.enter.native="submit"
       />
 
       <div class="forgot-link mb-4">
-        <router-link :to="{ name: 'forgot' }">Forgot password?</router-link>
+        <router-link :to="{ name: 'forgot' }">{{ $t('login.labels.forgotPassword') }}</router-link>
       </div>
 
       <vv-base-button
@@ -42,7 +42,7 @@
         :disabled="!valid"
         color="accent"
       >
-        Sign In
+        {{ $t('login.labels.signIn') }}
       </vv-base-button>
     </v-form>
   </div>
@@ -55,9 +55,11 @@ import VvFormField from '@/shared/components/FormField';
 import VvBaseTextInput from '@/shared/components/BaseTextInput';
 import VvBaseButton from '@/shared/components/BaseButton';
 import VvLogo from '@/shared/components/Logo';
+import notificationMixin from '@/shared/mixins/notificationMixin';
 
 export default {
   name: 'LoginContainer',
+  mixins: [notificationMixin],
   components: {
     VvFormField,
     VvBaseTextInput,
@@ -73,12 +75,14 @@ export default {
     checkbox: false,
   }),
   methods: {
-    submit() {
-      // if (this.$refs.form.validate()) {
-      this.login(this.credentials)
-        .then(() => this.$router.push('/home'))
-        .catch(() => this.notifyError('Bad credentials')); // TODO: i18n
-      // }
+    async submit() {
+      try {
+        await this.login(this.credentials);
+        this.$router.push('/home');
+      } catch (e) {
+        debugger;
+        this.notifyError('Bad credentials');
+      }
     },
     ...mapActions('global/auth', [
       'login',

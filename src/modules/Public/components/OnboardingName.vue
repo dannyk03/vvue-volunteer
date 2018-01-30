@@ -1,42 +1,43 @@
 <template>
   <div class="onboarding-name">
-    <h1 class="display-1 mb-4">Let’s know each and be friends. <span class="accented">Introduce yourself</span></h1>
+    <i18n path="onboarding.name.title" tag="h1" class="display-1 mb-4">
+      <span place="accent" class="accented" v-t="'onboarding.name.title.accent'" />
+    </i18n>
 
     <v-form class="form" v-model="valid" ref="form" lazy-validation @submit.prevent="submitStep">
       <div class="fieldsWrapper">
         <div class="line">
           <vv-base-text-input
-            label="First name"
+            :label="$t('common.fields.firstName')"
             class="mr-2"
             v-model="model.firstName"
             :validation="rules.firstName"
           />
           <vv-base-text-input
-            label="Last name"
+            :label="$t('common.fields.lastName')"
             v-model="model.lastName"
             :validation="rules.lastName"
           />
         </div>
 
         <vv-base-text-input
-          label="Your phone number"
+          :label="$t('onboarding.name.fields.phoneNumber')"
           mask="phone"
           class="mr-2"
-          placeholder="First Name"
           v-model="model.phoneNumber"
           :validation="rules.phoneNumber"
         />
 
         <vv-base-select
           class="mr-2"
-          label="Is it your Whatsapp number?"
+          :label="$t('onboarding.name.fields.isWhatsApp')"
           :items="whatsAppOptions"
           v-model="isNumberWhatsApp"
         />
 
         <vv-base-text-input
           v-if="isNumberWhatsApp === 'A'"
-          label="Your Whatsapp number"
+          :label="$t('onboarding.name.fields.whatsappNumber')"
           mask="phone"
           class="mr-2"
           v-model="model.whatsappNumber"
@@ -46,14 +47,13 @@
       <div class="helper" />
 
       <div class="bottom">
-        <vv-back-button />
+        <div />
         <vv-base-button
           color="accent"
-          class="mt-3"
           :disabled="!valid"
           type="submit"
         >
-          Next
+          {{ $t('common.labels.next') }}
 
         </vv-base-button>
       </div>
@@ -78,26 +78,28 @@ export default {
     VvBackButton,
     VvBaseSelect,
   },
-  data: () => ({
-    valid: true,
-    model: {
-      firstName: '',
-      lastName: '',
-      phoneNumber: '',
-      whatsappNumber: '',
-    },
-    isNumberWhatsApp: '',
-    whatsAppOptions: [
-      { value: 'Y', text: 'Yes, it’s my Whatsapp number' },
-      { value: 'A', text: 'No, I enter another' },
-      { value: 'N', text: 'No, I don’t have Whatsapp' },
-    ],
-    rules: {
-      firstName: [v => !!v || 'First name is required'],
-      lastName: [v => !!v || 'Last name is required'],
-      phoneNumber: [v => !!v || 'Phone number is required'],
-    },
-  }),
+  data() {
+    return {
+      valid: true,
+      model: {
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        whatsappNumber: '',
+      },
+      isNumberWhatsApp: '',
+      whatsAppOptions: [
+        { value: 'Y', text: this.$t('onboarding.name.fields.isWhatsApp.options.yes') },
+        { value: 'A', text: this.$t('onboarding.name.fields.isWhatsApp.options.no') },
+        { value: 'N', text: this.$t('onboarding.name.fields.isWhatsApp.options.dontHave') },
+      ],
+      rules: {
+        firstName: [v => !!v || this.$t('common.fields.validation.firstName.required')],
+        lastName: [v => !!v || this.$t('common.fields.validation.lastName.required')],
+        phoneNumber: [v => !!v || this.$t('common.fields.validation.phoneNumber.required')],
+      },
+    };
+  },
   watch: {
     isNumberWhatsApp(value) {
       this.model.whatsappNumber = value === 'Y' ? this.model.phoneNumber : '';

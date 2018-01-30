@@ -2,15 +2,17 @@
   <div class="forgot-success-wrapper">
     <div>
       <div class="heading mb-4">
-        <h1 class="display-1 mb-2">We sent you an <span class="accented">email</span></h1>
+        <i18n path="forgotPassword.success.title" tag="h1" class="display-1 mb-2">
+          <span place="accent" class="accented" v-t="'forgotPassword.success.title.accent'" />
+        </i18n>
       </div>
-      <p class="subheading mb-5">Please check your inbox and follow the instruction</p>
+      <p class="subheading mb-5" v-t="'forgotPassword.success.subtitle'"/>
       <vv-base-button
         class="ma-0"
         color="accent"
         :to="{name: 'login'}"
       >
-        Ok, Got it
+        {{ $t('forgotPassword.success.buttonLabel') }}
       </vv-base-button>
     </div>
 

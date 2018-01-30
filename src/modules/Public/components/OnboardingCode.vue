@@ -1,7 +1,10 @@
 <template>
   <div class="onboarding-code">
     <div class="form-wrapper" v-if="codeValid">
-      <h1 class="welcomeHeading display-1 mb-4"><span class="accented">Welcome</span> to the program <span class="accented fontAccented">e</span>start</h1>
+      <i18n path="onboarding.code.success.title" tag="h1" class="welcomeHeading display-1 mb-4">
+        <span place="accent" class="accented" v-t="'onboarding.code.success.title.accent'" />
+        <span place="accentCharE" class="accented fontAccented" v-t="'onboarding.code.success.title.accentCharE'" />
+      </i18n>
       <div class="helper" />
       <vv-base-button
         :to="{ name: 'onboardingProfile' }"
@@ -9,13 +12,16 @@
         color="accent"
         class="get-started-btn"
       >
-        Get started
+        {{ $t('onboarding.code.success.button.label') }}
       </vv-base-button>
     </div>
 
     <div class="form-wrapper" v-else>
-      <h1 class="heading display-1 mb-4">Your first step to <span class="underlined">become</span> <span class="accented">a mentor</span></h1>
-      <p class="subheading">To join Volunteer Vision you need a registration code provided by you company or your partner. Please enter it here</p>
+      <i18n path="onboarding.code.title" tag="h1" class="heading display-1 mb-4">
+        <span place="underline" class="underlined" v-t="'onboarding.code.title.underline'" />
+        <span place="accent" class="accented" v-t="'onboarding.code.title.accent'" />
+      </i18n>
+      <p class="subheading" v-t="'onboarding.code.subtitle'" />
 
       <v-form class="form" v-model="valid" ref="form" lazy-validation @submit.prevent="validateCode">
         <div>
@@ -29,16 +35,21 @@
         <div class="helper" />
 
         <div class="bottom">
-          <div>LANGUAGE PICKER</div>
+          <div>
+            <span class="fieldTitle" v-t="'common.fields.language'" />
+            <vv-language-picker v-model="lang" class="mt-4" changeGlobal />
+          </div>
           <div class="submit">
             <vv-base-button
               :disabled="!code"
               color="accent"
               type="submit"
             >
-              Submit
+              {{ $t('common.labels.submit') }}
             </vv-base-button>
-            <router-link class="mt-2" :to="{ name: 'login' }">I have an account</router-link>
+            <router-link class="login-link mt-2" :to="{ name: 'login' }">
+              {{ $t('onboarding.code.alreadyHaveAccount') }}
+            </router-link>
           </div>
         </div>
 
@@ -53,6 +64,7 @@ import { mapMutations, mapActions } from 'vuex';
 import VvBaseTextInput from '@/shared/components/BaseTextInput';
 import VvBaseButton from '@/shared/components/BaseButton';
 import VvBackButton from '@/shared/components/BackButton';
+import VvLanguagePicker from '@/shared/components/select/LanguagePicker';
 import { UPDATE_ONBOARDING_INFO } from '../mutationTypes';
 
 export default {
@@ -61,8 +73,10 @@ export default {
     VvBaseTextInput,
     VvBaseButton,
     VvBackButton,
+    VvLanguagePicker,
   },
   data: () => ({
+    lang: localStorage.getItem('language'),
     valid: true,
     code: '',
     codeValid: null,
@@ -70,7 +84,7 @@ export default {
   computed: {
     validation() {
       return [
-        () => this.codeValid === false ? 'Invalid code' : true, // eslint-disable-line
+        () => this.codeValid === false ? this.$t('onboarding.code.validation.invalid') : true, // eslint-disable-line
       ];
     },
   },
@@ -100,6 +114,7 @@ export default {
 
 <style lang="scss" scoped>
   @import "~@/styles/colors";
+  @import "~@/styles/fonts";
 
   .onboarding-code {
     display: flex;
@@ -125,7 +140,25 @@ export default {
       .bottom {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-end;
+        margin-bottom: 26px;
+
+        .fieldTitle {
+          @include calloutFont;
+        }
+
+        .submit {
+          position: relative;
+
+          .login-link {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+          }
+        }
+
       }
     }
 

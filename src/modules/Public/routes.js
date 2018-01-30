@@ -24,6 +24,15 @@ const waitUser = async (to, from, next) => {
   }
 };
 
+const passRegisteredUser = async (to, from, next) => {
+  try {
+    await store.dispatch('global/auth/checkAuthentication');
+    next('/auth/onboarding/3');
+  } catch (e) {
+    next();
+  }
+};
+
 export default {
   path: '/auth',
   component: AuthLayout,
@@ -64,11 +73,13 @@ export default {
           path: '1',
           name: 'onboarding',
           component: OnboardingCode,
+          beforeEnter: passRegisteredUser,
         },
         {
           path: '2',
           name: 'onboardingProfile',
           component: OnboardingProfile,
+          beforeEnter: passRegisteredUser,
         },
         {
           path: '3',

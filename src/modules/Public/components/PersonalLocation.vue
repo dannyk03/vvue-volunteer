@@ -1,19 +1,30 @@
 <template>
   <v-form class="personal-location-form" v-model="valid" ref="form" @submit.prevent="submitStep">
     <div class="fieldsWrapper">
+      <vv-base-text-input
+        :label="$t('onboarding.personalLocation.fields.address')"
+        v-model="model.address"
+      />
+
+      <div class="line">
+        <vv-base-text-input
+          class="postcode mr-2"
+          :label="$t('onboarding.personalLocation.fields.postcode')"
+          v-model="model.postcode"
+        />
+
+        <vv-base-text-input
+          class="city"
+          :label="$t('onboarding.personalLocation.fields.city')"
+          v-model="model.city"
+        />
+      </div>
+
       <vv-base-select
-        label="Location"
+        :label="$t('onboarding.personalLocation.fields.country')"
         v-model="model.country"
         :items="countries"
         :validation="rules.country"
-        autocomplete
-      />
-
-      <vv-base-select
-        label="Country of origin"
-        v-model="model.countryOfOrigin"
-        :items="countries"
-        :validation="rules.countryOfOrigin"
         autocomplete
       />
     </div>
@@ -26,8 +37,9 @@
         class="mt-3"
         color="accent"
         type="submit"
+        :disabled="!valid"
         >
-          Next >
+          {{ $t('common.labels.next') }}
         </vv-base-button>
     </div>
   </v-form>
@@ -50,22 +62,23 @@ export default {
     VvBackButton,
     VvBaseSelect,
   },
-  data: () => ({
-    valid: true,
-    model: {
-      country: '',
-      countryOfOrigin: '',
-    },
-    rules: {
-      country: [
-        v => !!v || 'Country is required',
-      ],
-      countryOfOrigin: [
-        v => !!v || 'Country of origin is required',
-      ],
-    },
-    countries,
-  }),
+  data() {
+    return {
+      valid: true,
+      model: {
+        address: '',
+        postcode: '',
+        city: '',
+        country: '',
+      },
+      rules: {
+        country: [
+          v => !!v || this.$t('onboarding.personalLocation.fields.validation.country.required'),
+        ],
+      },
+      countries,
+    };
+  },
   methods: {
     async submitStep() {
       if (this.$refs.form.validate()) {
@@ -82,7 +95,7 @@ export default {
   },
   mounted() {
     const user = this.$store.getters['global/user/getUser'];
-    const change = pick(user, ['country', 'countryOfOrigin']);
+    const change = pick(user, ['country', 'address', 'postcode', 'city']);
     Object.assign(this.model, change);
   },
 };
@@ -95,6 +108,19 @@ export default {
     height: 100%;
     display: flex;
     flex-direction: column;
+
+    .line {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .postcode {
+      max-width: 100px;
+    }
+
+    .city {
+      flex-grow: 2;
+    }
 
     .fieldsWrapper {
       width: 340px;

@@ -1,27 +1,38 @@
 <template>
   <v-form class="personal-info-form" v-model="valid" ref="form" @submit.prevent="submitStep">
-    <div class="fieldsWrapper">
-      <span class="fieldTitle">date of birth</span>
-      <div class="line">
-        <vv-month-select class="mr-2" v-model="birthday.month" :validation="rules.required" />
-        <vv-base-text-input class="mr-2" label="Day" mask="##" v-model="birthday.day" :validation="rules.required" />
-        <vv-base-text-input label="Year" mask="####" v-model="birthday.year" :validation="rules.required" />
+    <div class="fieldsWrapper mt-4">
+      <span class="fieldTitle" v-t="'onboarding.personalInfo.fields.dob'" />
+      <div class="line mt-3">
+        <vv-month-select
+          class="mr-2"
+          v-model="birthday.month"
+          :validation="rules.required"
+        />
+        <vv-base-text-input
+          class="mr-2"
+          :label="$t('onboarding.personalInfo.fields.dob.day')"
+          mask="##"
+          v-model="birthday.day"
+          :validation="rules.required"
+        />
+        <vv-base-text-input
+          :label="$t('onboarding.personalInfo.fields.dob.year')"
+          mask="####"
+          v-model="birthday.year"
+          :validation="rules.required"
+        />
       </div>
 
       <vv-multi-select
-        label="Languages"
+        :label="$t('onboarding.personalInfo.fields.languages')"
         :items="languagesList"
         v-model="profileFields.languages"
         autocomplete
       />
 
       <div class="mt-4 gender">
-        <span class="fieldTitle">gender</span>
-
-        <v-radio-group v-model="gender" row>
-          <v-radio label="Male" value="male" color="primary"></v-radio>
-          <v-radio label="Female" value="female" color="primary"></v-radio>
-        </v-radio-group>
+        <span class="fieldTitle">{{ $t('onboarding.personalInfo.fields.gender') }}</span>
+        <vv-gender-picker class="mt-3" v-model="gender" />
       </div>
     </div>
 
@@ -30,12 +41,11 @@
     <div class="bottom">
       <vv-back-button />
       <vv-base-button
-        class="mt-3"
         @click.native="submitStep"
         color="accent"
         type="submit"
         >
-          Next >
+          {{ $t('common.labels.next') }}
         </vv-base-button>
     </div>
 
@@ -50,6 +60,7 @@ import VvBaseButton from '@/shared/components/BaseButton';
 import VvBackButton from '@/shared/components/BackButton';
 import VvMultiSelect from '@/shared/components/select/MultiSelect';
 import VvMonthSelect from '@/shared/components/select/MonthSelect';
+import VvGenderPicker from '@/shared/components/select/GenderPicker';
 import languagesList from '@/shared/data/langs';
 
 export default {
@@ -60,23 +71,26 @@ export default {
     VvBackButton,
     VvMultiSelect,
     VvMonthSelect,
+    VvGenderPicker,
   },
-  data: () => ({
-    valid: true,
-    birthday: {
-      month: '',
-      day: '',
-      year: '',
-    },
-    gender: '',
-    profileFields: {
-      languages: [],
-    },
-    languagesList,
-    rules: {
-      required: [v => !!v || 'Required'],
-    },
-  }),
+  data() {
+    return {
+      valid: true,
+      birthday: {
+        month: '',
+        day: '',
+        year: '',
+      },
+      gender: '',
+      profileFields: {
+        languages: [],
+      },
+      languagesList,
+      rules: {
+        required: [v => !!v || this.$t('common.labels.required')],
+      },
+    };
+  },
   computed: {
     model() {
       return {

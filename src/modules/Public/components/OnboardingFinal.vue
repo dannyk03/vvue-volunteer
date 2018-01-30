@@ -1,8 +1,17 @@
 <template>
   <div class="onboarding-final mt-5">
     <img src="/static/images/stamp.png" width="240" height="220" />
-    <h1 class="display-1 mt-5 mb-4">Yeah you registered <span class="accented">successfully!</span></h1>
-    <vv-base-button color="accent">Continue to Dashboard</vv-base-button>
+
+    <i18n path="onboarding.final.title" tag="h1" class="display-1 mb-4 mt-5">
+      <span place="accent" class="accented" v-t="'onboarding.final.title.accent'" />
+    </i18n>
+
+    <vv-base-button
+      color="accent"
+      :to="{ name: 'dashboard' }"
+    >
+      {{ $t('onboarding.final.action') }}
+    </vv-base-button>
   </div>
 </template>
 
