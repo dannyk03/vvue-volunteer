@@ -48,14 +48,7 @@
 
       <div class="bottom">
         <div />
-        <vv-base-button
-          color="accent"
-          :disabled="!valid"
-          type="submit"
-        >
-          {{ $t('common.labels.next') }}
-
-        </vv-base-button>
+        <vv-next-button :disabled="!valid" />
       </div>
     </v-form>
 
@@ -69,6 +62,7 @@ import VvBaseTextInput from '@/shared/components/BaseTextInput';
 import VvBaseButton from '@/shared/components/BaseButton';
 import VvBackButton from '@/shared/components/BackButton';
 import VvBaseSelect from '@/shared/components/select/BaseSelect';
+import VvNextButton from './NextButton';
 
 export default {
   name: 'OnboardingName',
@@ -77,6 +71,7 @@ export default {
     VvBaseButton,
     VvBackButton,
     VvBaseSelect,
+    VvNextButton,
   },
   data() {
     return {

@@ -3,6 +3,7 @@ import {
   fetchProfileFields as fetchProfileFieldsAPI,
   updateProfile as updateProfileAPI,
   updateProfileFields as updateProfileFieldsAPI,
+  uploadAvatar as uploadAvatarAPI,
 } from '@/api';
 import * as types from '../mutationTypes';
 
@@ -39,6 +40,15 @@ const actions = {
     try {
       const updated = await updateProfileFieldsAPI(profileFields);
       commit(types.PROFILE_FIELDS_UPDATED, updated);
+      return Promise.resolve();
+    } catch (e) {
+      return Promise.reject();
+    }
+  },
+  async updateAvatar({ commit }, avatar) {
+    try {
+      const updated = await uploadAvatarAPI(avatar);
+      commit(types.PROFILE_UPDATED, updated);
       return Promise.resolve();
     } catch (e) {
       return Promise.reject();

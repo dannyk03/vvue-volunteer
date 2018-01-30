@@ -1,5 +1,5 @@
 <template>
-  <vv-icon name="back" width="16" height="16" :fill="false" color="#6c6c72" />
+  <vv-icon :class="`vv-arrow-icon ${target}`" name="back" width="16" height="16" :fill="false" :color="color" />
 </template>
 
 <script>
@@ -12,8 +12,22 @@ export default {
     VvIcon,
   },
   props: {
-    target: String,
-    default: 'top',
+    target: {
+      type: String,
+      default: 'left',
+    },
+    color: {
+      type: String,
+      default: '#6c6c72',
+    }
   },
 };
 </script>
+
+<style lang="scss" scoped>
+  .vv-arrow-icon {
+    &.right {
+      transform: rotate(180deg);
+    }
+  }
+</style>

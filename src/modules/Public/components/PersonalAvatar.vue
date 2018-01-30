@@ -40,28 +40,26 @@
 
     <div class="bottom">
       <vv-back-button />
-      <vv-base-button
-        v-if="!takeFromWebcam"
-        @click.native="submitStep"
-        color="accent"
-        >
-          {{ $t('common.labels.next') }}
-        </vv-base-button>
+      <vv-next-button :disabled="!avatar" v-if="!takeFromWebcam" @click.native="submitStep" />
     </div>
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 import VvBaseTextInput from '@/shared/components/BaseTextInput';
 import VvBaseButton from '@/shared/components/BaseButton';
 import VvBackButton from '@/shared/components/BackButton';
 import VvIcon from '@/shared/components/BaseIcon';
 import VvFilePicker from '@/shared/components/FilePicker';
 import VvWebcamPicker from '@/shared/components/WebcamPicker';
+import VvNextButton from './NextButton';
+
 import '@/../static/icons/compiled-svg/avatar';
 
-import { UPDATE_ONBOARDING_INFO } from '../mutationTypes';
+const toFile = url => fetch(url)
+  .then(res => res.blob())
+  .then(blob => new File([blob], 'File name'));
 
 export default {
   name: 'PersonalAvatar',
@@ -72,39 +70,34 @@ export default {
     VvIcon,
     VvFilePicker,
     VvWebcamPicker,
+    VvNextButton,
   },
   data: () => ({
-    model: {
-      currentJob: '',
-      position: '',
-      education: '',
-    },
+    avatar: null,
     avatarPreview: null,
     takeFromWebcam: false,
   }),
   methods: {
     submitStep() {
-      this.setNameInfo({
-        birthday: this.birthday,
-        gender: this.gender,
-        location: this.location,
-      });
+      try {
+        this.updateAvatar(this.avatar);
+      } catch (e) {
+        this.notifyError('Error');
+      }
       this.$router.push({ name: 'onboardFinal' });
     },
-    ...mapMutations('public', {
-      setNameInfo: UPDATE_ONBOARDING_INFO,
-    }),
     showAvatar(file) {
+      this.avatar = file;
       this.avatarPreview = window.URL.createObjectURL(file);
     },
-    showAvatarFromWebcam(base64) {
+    async showAvatarFromWebcam(base64) {
       this.takeFromWebcam = false;
       this.avatarPreview = base64;
+      this.avatar = await toFile(base64);
     },
-  },
-  mounted() {
-    const data = this.$store.getters['public/getPersonalInfo'];
-    Object.assign(this, data);
+    ...mapActions('global/user', [
+      'updateAvatar',
+    ]),
   },
 };
 </script>

@@ -27,7 +27,6 @@ const actions = {
     });
 
     return dispatch('global/auth/register', user, { root: true }).then(() => {
-      debugger;
       localStorage.removeItem('invitationCode');
     });
   },

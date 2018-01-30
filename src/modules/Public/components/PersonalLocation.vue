@@ -33,14 +33,7 @@
 
     <div class="bottom">
       <vv-back-button />
-      <vv-base-button
-        class="mt-3"
-        color="accent"
-        type="submit"
-        :disabled="!valid"
-        >
-          {{ $t('common.labels.next') }}
-        </vv-base-button>
+      <vv-next-button class="mt-3" :disabled="!valid" />
     </div>
   </v-form>
 </template>
@@ -52,6 +45,8 @@ import VvBaseTextInput from '@/shared/components/BaseTextInput';
 import VvBaseSelect from '@/shared/components/select/BaseSelect';
 import VvBaseButton from '@/shared/components/BaseButton';
 import VvBackButton from '@/shared/components/BackButton';
+import VvNextButton from './NextButton';
+
 import countries from '@/shared/data/countries';
 
 export default {
@@ -61,6 +56,7 @@ export default {
     VvBaseButton,
     VvBackButton,
     VvBaseSelect,
+    VvNextButton,
   },
   data() {
     return {

@@ -3,11 +3,6 @@
     <div class="fieldsWrapper mt-4">
       <span class="fieldTitle" v-t="'onboarding.personalInfo.fields.dob'" />
       <div class="line mt-3">
-        <vv-month-select
-          class="mr-2"
-          v-model="birthday.month"
-          :validation="rules.required"
-        />
         <vv-base-text-input
           class="mr-2"
           :label="$t('onboarding.personalInfo.fields.dob.day')"
@@ -15,6 +10,13 @@
           v-model="birthday.day"
           :validation="rules.required"
         />
+
+        <vv-month-select
+          class="mr-2"
+          v-model="birthday.month"
+          :validation="rules.required"
+        />
+
         <vv-base-text-input
           :label="$t('onboarding.personalInfo.fields.dob.year')"
           mask="####"
@@ -40,13 +42,7 @@
 
     <div class="bottom">
       <vv-back-button />
-      <vv-base-button
-        @click.native="submitStep"
-        color="accent"
-        type="submit"
-        >
-          {{ $t('common.labels.next') }}
-        </vv-base-button>
+      <vv-next-button :disabled="!valid" />
     </div>
 
 
@@ -61,6 +57,7 @@ import VvBackButton from '@/shared/components/BackButton';
 import VvMultiSelect from '@/shared/components/select/MultiSelect';
 import VvMonthSelect from '@/shared/components/select/MonthSelect';
 import VvGenderPicker from '@/shared/components/select/GenderPicker';
+import VvNextButton from './NextButton';
 import languagesList from '@/shared/data/langs';
 
 export default {
@@ -72,6 +69,7 @@ export default {
     VvMultiSelect,
     VvMonthSelect,
     VvGenderPicker,
+    VvNextButton,
   },
   data() {
     return {
@@ -175,5 +173,4 @@ export default {
       width: 200px;
     }
   }
-
 </style>
