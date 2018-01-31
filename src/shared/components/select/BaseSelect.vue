@@ -1,9 +1,12 @@
 <template>
   <v-select
+    class="vv-select"
     :items="items"
     v-model="model"
     :label="label"
     bottom
+    :rules="validation"
+    :autocomplete="autocomplete"
   />
 </template>
 
@@ -14,13 +17,19 @@ export default {
     label: String,
     items: Array,
     value: [String, Number, Object],
+    validation: Array,
+    autocomplete: Boolean,
   },
   data: () => ({
     model: null,
   }),
   watch: {
-    model(value) {
+    model(value, oldValue) {
+      if (oldValue === null && value === '') return;
       this.$emit('input', value);
+    },
+    value(val) {
+      this.model = val;
     },
   },
   created() {
@@ -28,6 +37,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

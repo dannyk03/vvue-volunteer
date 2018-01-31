@@ -4,6 +4,8 @@
     :required="required"
     :rules="validation"
     :type="type"
+    :mask="mask"
+
     v-model="model"
   ></v-text-field>
 </template>
@@ -15,15 +17,20 @@ export default {
     type: String,
     label: String,
     value: String,
-    validation: Object,
+    validation: Array,
     required: Boolean,
+    mask: String,
   },
   data: () => ({
     model: null,
   }),
   watch: {
-    model(value) {
+    model(value, oldValue) {
+      if (oldValue === null && value === '') return;
       this.$emit('input', value);
+    },
+    value(val) {
+      this.model = val;
     },
   },
   created() {
@@ -33,4 +40,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .base-input {
+    text-align: left;
+    display: grid;
+
+    .error {
+      color: red;
+    }
+  }
 </style>

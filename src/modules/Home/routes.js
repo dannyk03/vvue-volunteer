@@ -5,8 +5,6 @@ import loggedInGuard from '@/shared/utils/loggedInGuard';
 import storeModule from './store';
 
 const HomePage = () => import(/* webpackChunkName: "home" */'./containers/HomePage');
-const HomeContainer = () => import(/* webpackChunkName: "home" */'./containers/HomeContainer');
-const HomeContainerSecond = () => import(/* webpackChunkName: "home" */'./containers/HomeContainerSecond');
 /* eslint-disable */
 export default {
   path: '/home',
@@ -21,25 +19,9 @@ export default {
   },
   children: [
     {
-      path: '',
+      path: '/dashboard',
+      name: 'dashboard',
       component: HomePage,
-      children: [
-        {
-          path: 'one',
-          name: 'home-one',
-          component: HomeContainer,
-        },
-        {
-          path: 'second',
-          name: 'home-second',
-          component: HomeContainerSecond,
-        },
-        {
-          path: '',
-          name: 'home',
-          redirect: 'one',
-        },
-      ],
     },
   ],
 };

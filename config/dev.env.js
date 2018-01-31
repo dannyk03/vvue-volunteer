@@ -5,7 +5,7 @@ const createEnvVariable = require('../build/utils').createEnvVariable;
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  API_ROOT: createEnvVariable('API_ROOT', 'http://api2.staging.volunteer-vision.com'),
-  CLIENT_SECRET: createEnvVariable('CLIENT_SECRET', 'non-secret'),
+  API_ROOT: createEnvVariable('API_ROOT', 'https://vvapiv2.wird.sehrgute.software'),
+  CLIENT_SECRET: createEnvVariable('CLIENT_SECRET', 'D7DejqrJ0YyfzF79mSSne6C4TGe0NZue9lIdh4w2'),
   CLIENT_ID: createEnvVariable('CLIENT_ID', '1')
 });

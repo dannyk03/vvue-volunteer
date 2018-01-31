@@ -2,75 +2,75 @@
 import {
   login as loginAPI,
   registerUser as registerUserAPI,
-  fetchProfile as fetchProfileAPI,
 } from '@/api';
 import { setAuthHeader } from '@/shared/utils/http';
 import * as types from '../mutationTypes';
 
 // Initial state
 const initialState = {
-  user: null,
   isAuthenticated: false,
   token: null,
 };
 
 const getters = {
-  getUser: state => state.user,
   isAuthenticated: state => state.isAuthenticated,
 };
 
 const actions = {
-  login({ commit, dispatch }, credentials) {
-    return loginAPI(credentials).then(
-      ({ accessToken: token }) => {
-        localStorage.setItem('token', token);
-        setAuthHeader(token);
-        commit(types.USER_LOGGED_IN, { token });
-        dispatch('checkAuthentication');
-      },
-    );
-  },
-  register({ commit }, credentials) {
-    return new Promise((resolve, reject) => {
-      registerUserAPI(credentials).then(
-        ({ user, authenticationToken: token }) => {
-          localStorage.setItem('token', token);
-          localStorage.setItem('id', user.id);
-          setAuthHeader(token);
-          commit(types.USER_LOGGED_IN, { user, token });
+  async login({ commit, dispatch }, credentials) {
+    const { accessToken: token } = await loginAPI(credentials);
+    localStorage.setItem('token', token);
+    setAuthHeader(token);
+    commit(types.USER_LOGGED_IN, { token });
 
-          resolve();
-        },
-        ({ errors }) => reject(errors),
-      );
-    });
+    return dispatch('checkAuthentication');
   },
-  checkAuthentication({ commit }) {
+  async register({ dispatch }, user) {
+    debugger
+    await registerUserAPI({ ...user });
+    const credentials = {
+      username: user.email,
+      password: user.password,
+    };
+
+    return await dispatch('login', credentials);
+  },
+  checkAuthentication({ commit, dispatch, rootGetters }) {
     const token = localStorage.getItem('token');
 
     if (token) {
       setAuthHeader(token);
       commit(types.USER_LOGGED_IN, { token });
-      fetchProfileAPI().then(user => commit(types.PROFILE_FETCHED, user));
 
-      return Promise.resolve();
+      if (rootGetters['global/user/getUser']) return Promise.resolve(true);
+
+      return Promise.all([
+        dispatch('global/user/fetchProfile', null, { root: true }),
+        dispatch('global/user/fetchProfileFields', null, { root: true }),
+      ]);
     }
 
     return Promise.reject();
   },
+  checkSimple({ commit }) {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      setAuthHeader(token);
+      commit(types.USER_LOGGED_IN, { token });
+      return Promise.resolve();
+    }
+
+    return Promise.reject();
+  }
 };
 
 const mutations = {
   [types.USER_LOGGED_IN](state, { user, token }) {
-    state.user = user;
     state.token = token;
     state.isAuthenticated = true;
   },
-  [types.PROFILE_FETCHED](state, user) {
-    state.user = user;
-  },
   [types.USER_LOGGED_OUT](state) {
-    state.user = null;
     state.token = null;
     state.isAuthenticated = false;
   },

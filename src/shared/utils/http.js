@@ -58,3 +58,19 @@ Vue.axios.interceptors.response.use(camelize, error => {
 
   return Promise.reject(error);
 });
+
+
+export const uploadFile = (url, file, mime) => fetch(`${API_PATH}/${url}`, { // Your POST endpoint
+    method: 'POST',
+    headers: {
+      "Content-Type": "image/jpeg",
+      "Authorization": Vue.axios.defaults.headers.common.Authorization,
+    },
+    body: file // This is the content of your file
+  }).then(
+    response => response.json() // if the response is a JSON object
+  ).then(
+    success => console.log(success) // Handle the success response object
+  ).catch(
+    error => console.log(error) // Handle the error response object
+  );

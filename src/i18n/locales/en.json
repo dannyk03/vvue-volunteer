@@ -3,6 +3,49 @@
     "en": "English",
     "de": "German"
   },
+
+  "common.labels.registration": "Registration",
+  "common.labels.copyright": "© Volunteer Vision GmbH 2017",
+  "common.labels.submit": "Submit",
+  "common.labels.signIn": "Sign In",
+  "common.labels.signUp": "Sign Up",
+  "common.labels.next": "Next",
+  "common.labels.required": "Required",
+  "common.labels.upload": "Upload",
+
+  "common.fields.email": "Email",
+  "common.fields.password": "Password",
+  "common.fields.language": "Language",
+  "common.fields.languages": "Languages",
+  "common.fields.firstName": "First name",
+  "common.fields.lastName": "Last name",
+  "common.fields.dob": "Date of birth",
+  "common.fields.gender": "Gender",
+
+  "common.fields.validation.email.required": "Email is required",
+  "common.fields.validation.email.invalid": "Email should be valid",
+  "common.fields.validation.password.required": "Password is required",
+  "common.fields.validation.password.minLength": "Password must be at least {length} characters",
+  "common.fields.validation.firstName.required": "First name is required",
+  "common.fields.validation.lastName.required": "Last name is required",
+  "common.fields.validation.phoneNumber.required": "Phone number is required",
+
+  "login.title": "Welcome back",
+  "login.subtitle": "Nice to see you again",
+  "login.fields.email.label": "@:common.fields.email",
+  "login.fields.password.label": "Password",
+  "login.labels.forgotPassword": "Forgot password?",
+  "login.labels.signIn": "@:common.labels.signIn",
+
+  "forgotPassword.title.accent": "No worries!",
+  "forgotPassword.subtitle": "Enter your email and we’ll help you",
+  "forgotPassword.success.title": "We sent you an {accent}",
+  "forgotPassword.success.title.accent": "email",
+  "forgotPassword.success.subtitle": "Please check your inbox and follow the instruction",
+  "forgotPassword.success.buttonLabel": "Ok, Got it",
+  "forgotPassword.fields.email": "@:common.fields.email",
+  "forgotPassword.labels.reset": "Reset password",
+
   "hello": "good afternoon",
   "user": {
     "fields": {
@@ -18,5 +61,51 @@
       "timezone": "Timezone",
       "language": "Language"
     }
-  }
+  },
+  "onboarding.code.title": "Your first step to {underline} {accent}",
+  "onboarding.code.title.underline": "become",
+  "onboarding.code.title.accent": "a mentor",
+  "onboarding.code.subtitle": "To join Volunteer Vision you need a registration code provided by you company or your partner. Please enter it here",
+  "onboarding.code.alreadyHaveAccount": "I have an account",
+  "onboarding.code.success.title": "{accent} to the program {accentCharE}start",
+  "onboarding.code.success.title.accent": "Welcome",
+  "onboarding.code.success.title.accentCharE": "E",
+  "onboarding.code.success.button.label": "Get Started",
+  "onboarding.code.validation.invalid": "Invalid code",
+
+  "onboarding.profile.title": "Create your profile and password",
+  "onboarding.profile.validation.emailAlreadyExists": "This email already exists",
+
+  "onboarding.name.title": "Let’s know each and be friends. {accent}",
+  "onboarding.name.title.accent" : "Introduce yourself",
+  "onboarding.name.fields.phoneNumber": "Your phone number",
+  "onboarding.name.fields.isWhatsApp": "Is it your Whatsapp number?",
+  "onboarding.name.fields.isWhatsApp.options.yes": "Yes, it’s my Whatsapp number",
+  "onboarding.name.fields.isWhatsApp.options.no": "No, I enter another",
+  "onboarding.name.fields.isWhatsApp.options.dontHave": "No, I don’t have Whatsapp",
+  "onboarding.name.fields.whatsappNumber": "Your Whatsapp number",
+
+  "onboarding.personalInfo.title": "Tell us a bit more {accent}",
+  "onboarding.personalInfo.title.accent": "about yourself",
+  "onboarding.personalInfo.fields.dob": "@:common.fields.dob",
+  "onboarding.personalInfo.fields.dob.month": "Month",
+  "onboarding.personalInfo.fields.dob.day": "Day",
+  "onboarding.personalInfo.fields.dob.year": "Year",
+  "onboarding.personalInfo.fields.languages": "@:common.fields.languages",
+  "onboarding.personalInfo.fields.gender": "@:common.fields.gender",
+
+  "onboarding.personalLocation.fields.location": "Location",
+  "onboarding.personalLocation.fields.address": "Address",
+  "onboarding.personalLocation.fields.postcode": "Postcode",
+  "onboarding.personalLocation.fields.city": "City",
+  "onboarding.personalLocation.fields.country": "Country",
+  "onboarding.personalLocation.fields.validation.country.required": "Country is required",
+
+  "onboarding.personalAvatar.avatarPlaceholder": "Awesome avatar here",
+  "onboarding.personalAvatar.upload": "@:common.labels.upload",
+  "onboarding.personalAvatar.takeFromWebcam": "Take from webcam",
+
+  "onboarding.final.title": "Yeah you registered {accent}",
+  "onboarding.final.title.accent": "successfully!",
+  "onboarding.final.action": "Continue to Dashboard"
 }
