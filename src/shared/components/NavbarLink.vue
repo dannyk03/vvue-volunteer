@@ -1,0 +1,39 @@
+<template>
+  <v-btn exact-active-class="active" color="white" class="vv-navbar-link" :ripple="false" flat :to="{ name: to }">
+    <menuitem>
+      <slot />
+    </menuitem>
+  </v-btn>
+</template>
+
+<script>
+  export default {
+    name: 'NavbarLink',
+    props: {
+      to: String,
+    },
+  };
+</script>
+
+<style lang="scss" scoped>
+  @import '~@/styles/colors';
+
+  .vv-navbar-link {
+    width: 120px;
+    border-radius: 0 !important;
+    background-color: white !important;
+
+    &.active {
+      border-bottom: solid 3px $primaryGrey;
+      menuitem {
+        margin-top: 3px;
+        color: $primaryGrey;
+      }
+    }
+
+    menuitem {
+      font-weight: 600;
+      color: $secondaryGrey;
+    }
+  }
+</style>

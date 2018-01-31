@@ -107,5 +107,10 @@
 
   "onboarding.final.title": "Yeah you registered {accent}",
   "onboarding.final.title.accent": "successfully!",
-  "onboarding.final.action": "Continue to Dashboard"
+  "onboarding.final.action": "Continue to Dashboard",
+
+  "navbar.menu.items.dashboard": "Dashboard",
+  "navbar.menu.items.mentoring": "Mentoring",
+  "navbar.menu.items.community": "Community",
+  "navbar.menu.items.supervisor": "Supervisor"
 }

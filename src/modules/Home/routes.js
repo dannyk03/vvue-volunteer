@@ -23,5 +23,10 @@ export default {
       name: 'dashboard',
       component: HomePage,
     },
+    {
+      path: '/mentoring',
+      name: 'mentoring',
+      component: HomePage,
+    },
   ],
 };

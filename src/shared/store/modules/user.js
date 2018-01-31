@@ -16,6 +16,10 @@ const getters = {
   getUser: state => state.profile,
   getLanguages: state => state.profileFields.languages,
   getProfile: state => state.profileFields,
+  getUserMenu: state => ({
+    avatar: state.profile.avatar && state.profile.avatar.small,
+    name: `${state.profile.firstName} ${state.profile.lastName}`,
+  }),
 };
 
 const actions = {
