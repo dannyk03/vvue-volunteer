@@ -22,7 +22,7 @@
 
         <vv-base-text-input
           :label="$t('onboarding.name.fields.phoneNumber')"
-          mask="phone"
+          mask="+ ### ## ### ## ##"
           class="mr-2"
           v-model="model.phoneNumber"
           :validation="rules.phoneNumber"
@@ -38,7 +38,7 @@
         <vv-base-text-input
           v-if="isNumberWhatsApp === 'A'"
           :label="$t('onboarding.name.fields.whatsappNumber')"
-          mask="phone"
+          mask="+ ### ## ### ## ##"
           class="mr-2"
           v-model="model.whatsappNumber"
         />
