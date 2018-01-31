@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: "Avatar",
+    name: 'Avatar',
     props: {
       src: String,
       size: [String, Number],

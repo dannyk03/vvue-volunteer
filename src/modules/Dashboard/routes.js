@@ -4,14 +4,14 @@ import loggedInGuard from '@/shared/utils/loggedInGuard';
 
 import storeModule from './store';
 
-const HomePage = () => import(/* webpackChunkName: "home" */'./containers/HomePage');
+const DashboardPage = () => import(/* webpackChunkName: "dashboard" */'./containers/DashboardPage');
 /* eslint-disable */
 export default {
   path: '/home',
   component: MainLayout,
   beforeEnter(to, from, next) {
     if (!store.state.home) {
-      store.registerModule('home', storeModule);
+      store.registerModule('dashboard', storeModule);
       store.commit('REFRESH_STORE');
     }
 
@@ -19,9 +19,9 @@ export default {
   },
   children: [
     {
-      path: '/mentoring',
-      name: 'mentoring',
-      component: HomePage,
+      path: '/dashboard',
+      name: 'dashboard',
+      component: DashboardPage,
     },
   ],
 };

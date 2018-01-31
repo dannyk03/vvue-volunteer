@@ -17,7 +17,7 @@
       user: {
         name: String,
         avatar: String,
-      }
+      },
     },
   };
 </script>

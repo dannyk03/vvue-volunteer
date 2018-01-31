@@ -112,5 +112,8 @@
   "navbar.menu.items.dashboard": "Dashboard",
   "navbar.menu.items.mentoring": "Mentoring",
   "navbar.menu.items.community": "Community",
-  "navbar.menu.items.supervisor": "Supervisor"
+  "navbar.menu.items.supervisor": "Supervisor",
+
+  "dashboard.welcome.title": "Welcome, {accent}",
+  "dashboard.welcome.actions.reviewMatch": "Review match"
 }
