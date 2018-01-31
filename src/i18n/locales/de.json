@@ -115,5 +115,10 @@
   "navbar.menu.items.supervisor": "Supervisor",
 
   "dashboard.welcome.title": "Welcome, {accent}",
-  "dashboard.welcome.actions.reviewMatch": "Review match"
+  "dashboard.welcome.actions.reviewMatch": "Review match",
+
+  "dashboard.ranking.title": "Ranking",
+  "dashboard.rankins.stats.participations": "Participations",
+  "dashboard.rankins.stats.mentoringSessions": "Mentoring sessions",
+  "dashboard.rankins.stats.invitedColleagues": "Invited colleagues" 
 }

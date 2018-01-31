@@ -1,5 +1,7 @@
 <template>
   <div class="vv-simple-card">
+    <slot name="header"/>
+    <slot name="content"/>    
     <slot />
   </div>
 </template>

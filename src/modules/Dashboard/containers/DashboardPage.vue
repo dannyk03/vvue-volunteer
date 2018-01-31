@@ -1,7 +1,7 @@
 <template>
   <div class='vv-dashboard-page'>
     <vv-welcome :user="user" :match="match" class="welcome">Welcome</vv-welcome>
-    <vv-simple-card class="ranking">Ranking</vv-simple-card>
+    <vv-ranking class="ranking" :rankingStats="ranking" />
     <vv-simple-card class="tips">Tips and Tricks</vv-simple-card>
     <vv-simple-card class="activity">Activity</vv-simple-card>
   </div>
@@ -11,12 +11,14 @@
   import { mapGetters } from 'vuex';
   import VvSimpleCard from '@/shared/components/SimpleCard';
   import VvWelcome from '../components/Welcome';
+  import VvRanking from '../components/Ranking';
 
   export default {
     name: 'DashboardPage',
     components: {
       VvSimpleCard,
       VvWelcome,
+      VvRanking,
     },
     data() {
       return {
@@ -24,6 +26,15 @@
         match: {
           firstName: 'Hulk',
           avatar: 'http://pastimesinc.com/wp-content/uploads/2013/03/hulk1-790x1024.jpg',
+        },
+        ranking: {
+          rating: 3,
+          level: 'Beginner',
+          activities: {
+            participations: 2,
+            mentoringSessions: 2,
+            invitedColleagues: 0,
+          },
         },
       };
     },

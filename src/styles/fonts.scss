@@ -35,10 +35,15 @@
 @mixin calloutFont {
 	font-size: 12px;
 	font-weight: bold;
-	text-align: left;
-	color: #6c6c72;
-	color: $primaryGrey;
+  text-align: left;
+  color: $primaryGrey;
   text-transform: uppercase;
+}
+
+@mixin boldBodyFont {
+  color: $primaryDark;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 @mixin placeholderFont {

@@ -21,7 +21,7 @@
 <script>
   import VvBaseButton from '@/shared/components/BaseButton';
   import VvSimpleCard from '@/shared/components/SimpleCard';
-  import VvArrowIcon from '@/shared/components/ArrowIcon';  
+  import VvArrowIcon from '@/shared/components/ArrowIcon';
   import VvMatch from '../components/Match';
 
   export default {
