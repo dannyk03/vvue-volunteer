@@ -19,7 +19,7 @@ export default {
     color: {
       type: String,
       default: '#6c6c72',
-    }
+    },
   },
 };
 </script>

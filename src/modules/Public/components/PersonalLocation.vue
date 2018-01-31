@@ -45,9 +45,10 @@ import VvBaseTextInput from '@/shared/components/BaseTextInput';
 import VvBaseSelect from '@/shared/components/select/BaseSelect';
 import VvBaseButton from '@/shared/components/BaseButton';
 import VvBackButton from '@/shared/components/BackButton';
+import countries from '@/shared/data/countries';
+
 import VvNextButton from './NextButton';
 
-import countries from '@/shared/data/countries';
 
 export default {
   name: 'PersonalInfo',

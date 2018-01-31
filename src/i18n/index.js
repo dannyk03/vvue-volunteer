@@ -27,7 +27,6 @@ const links = {
   de,
 };
 
-console.log('en', en);
 
 // const loadLanguage = lang => fetch(links[lang]).then(response => response.json());
 const loadLanguage = lang => Promise.resolve(links[lang]);

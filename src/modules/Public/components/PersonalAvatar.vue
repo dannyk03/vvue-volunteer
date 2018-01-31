@@ -53,9 +53,10 @@ import VvBackButton from '@/shared/components/BackButton';
 import VvIcon from '@/shared/components/BaseIcon';
 import VvFilePicker from '@/shared/components/FilePicker';
 import VvWebcamPicker from '@/shared/components/WebcamPicker';
+import '@/../static/icons/compiled-svg/avatar';
+
 import VvNextButton from './NextButton';
 
-import '@/../static/icons/compiled-svg/avatar';
 
 const toFile = url => fetch(url)
   .then(res => res.blob())

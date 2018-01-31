@@ -26,8 +26,8 @@
     computed: {
       color() {
         return this.disabled ? '#c1c1c1' : 'white';
-      }
-    }
+      },
+    },
   };
 </script>
 
@@ -42,4 +42,3 @@
     }
   }
 </style>
-

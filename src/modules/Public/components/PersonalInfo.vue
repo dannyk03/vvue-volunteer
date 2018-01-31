@@ -57,8 +57,9 @@ import VvBackButton from '@/shared/components/BackButton';
 import VvMultiSelect from '@/shared/components/select/MultiSelect';
 import VvMonthSelect from '@/shared/components/select/MonthSelect';
 import VvGenderPicker from '@/shared/components/select/GenderPicker';
-import VvNextButton from './NextButton';
 import languagesList from '@/shared/data/langs';
+
+import VvNextButton from './NextButton';
 
 export default {
   name: 'PersonalInfo',
