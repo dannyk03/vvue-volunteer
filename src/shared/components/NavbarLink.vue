@@ -1,5 +1,5 @@
 <template>
-  <v-btn exact-active-class="active" color="white" class="vv-navbar-link" :ripple="false" flat :to="{ name: to }">
+  <v-btn color="white" class="vv-navbar-link" :ripple="false" flat :to="{ name: to }">
     <menuitem>
       <slot />
     </menuitem>
@@ -23,7 +23,7 @@
     border-radius: 0 !important;
     background-color: white !important;
 
-    &.active {
+    &.btn--active {
       border-bottom: solid 3px $primaryGrey;
       menuitem {
         margin-top: 3px;

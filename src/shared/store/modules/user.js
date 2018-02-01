@@ -17,7 +17,7 @@ const getters = {
   getLanguages: state => state.profileFields.languages,
   getProfile: state => state.profileFields,
   getUserMenu: state => ({
-    avatar: state.profile.avatar && state.profile.avatar.small,
+    avatar: state.profile && state.profile.avatar && state.profile.avatar.small,
     name: `${state.profile.firstName} ${state.profile.lastName}`,
   }),
 };

@@ -2,8 +2,8 @@
   <div class='vv-dashboard-page'>
     <vv-welcome :user="user" :match="match" class="welcome">Welcome</vv-welcome>
     <vv-ranking class="ranking" :rankingStats="ranking" />
-    <vv-simple-card class="tips">Tips and Tricks</vv-simple-card>
-    <vv-simple-card class="activity">Activity</vv-simple-card>
+    <vv-tips class="tips" />    
+    <vv-activity-stream class="activity" :activities="activities" />
   </div>
 </template>
 
@@ -12,6 +12,8 @@
   import VvSimpleCard from '@/shared/components/SimpleCard';
   import VvWelcome from '../components/Welcome';
   import VvRanking from '../components/Ranking';
+  import VvActivityStream from '../components/ActivityStream';
+  import VvTips from '../components/Tips';
 
   export default {
     name: 'DashboardPage',
@@ -19,6 +21,8 @@
       VvSimpleCard,
       VvWelcome,
       VvRanking,
+      VvActivityStream,
+      VvTips,
     },
     data() {
       return {
@@ -36,6 +40,43 @@
             invitedColleagues: 0,
           },
         },
+        activities: [
+          {
+            type: 'user',
+            user: {
+              avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVUPtECfQ8dtJGSx3m3g89gMvYRKtwUtDIJVjisRQ7YJhKF30d',
+              firstName: 'Iron',
+              lastName: 'Man',
+              country: 'USA',
+            },
+            date: '1h ago',
+            activity: 'We found a mentee for you',
+          },
+          {
+            type: 'system',
+            status: 'success',
+            user: {
+              avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVUPtECfQ8dtJGSx3m3g89gMvYRKtwUtDIJVjisRQ7YJhKF30d',
+              firstName: 'Iron',
+              lastName: 'Man',
+              country: 'USA',
+            },
+            date: '1h ago',
+            activity: 'You was accepted by a mentee',
+          },
+          {
+            type: 'system',
+            status: 'fail',
+            user: {
+              avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVUPtECfQ8dtJGSx3m3g89gMvYRKtwUtDIJVjisRQ7YJhKF30d',
+              firstName: 'Iron',
+              lastName: 'Man',
+              country: 'USA',
+            },
+            date: '1h ago',
+            activity: 'You was declined by a mentee',
+          },
+        ],
       };
     },
     computed: {

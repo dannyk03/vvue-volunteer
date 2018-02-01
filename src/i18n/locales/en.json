@@ -120,5 +120,16 @@
   "dashboard.ranking.title": "Ranking",
   "dashboard.rankins.stats.participations": "Participations",
   "dashboard.rankins.stats.mentoringSessions": "Mentoring sessions",
-  "dashboard.rankins.stats.invitedColleagues": "Invited colleagues" 
+  "dashboard.rankins.stats.invitedColleagues": "Invited colleagues",
+
+  "dashboard.activityStream.title": "Activity stream",
+
+  "dashboard.tips.title": "Tips and Tricks",
+
+  "dashboard.colleagues.title": "Colleagues",
+  "dashboard.colleagues.invites.title": "Invited",
+
+  "dashboard.colleagues.downloadsList.title": "Download materials",
+
+  "dashboard.colleagues.inviteForm.title": "Invite people"
 }

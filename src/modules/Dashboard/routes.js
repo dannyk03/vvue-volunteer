@@ -4,7 +4,9 @@ import loggedInGuard from '@/shared/utils/loggedInGuard';
 
 import storeModule from './store';
 
+const DashboardLayout = () => import(/* webpackChunkName: "dashboard" */'./containers/DashboardLayout');
 const DashboardPage = () => import(/* webpackChunkName: "dashboard" */'./containers/DashboardPage');
+const ColleaguesPage = () => import(/* webpackChunkName: "dashboard" */'./containers/ColleaguesPage');
 /* eslint-disable */
 export default {
   path: '/home',
@@ -20,8 +22,19 @@ export default {
   children: [
     {
       path: '/dashboard',
-      name: 'dashboard',
-      component: DashboardPage,
+      component: DashboardLayout,
+      children: [
+        {
+          path: '',
+          name: 'dashboard',
+          component: DashboardPage,
+        },
+        {
+          path: 'colleagues',
+          name: 'colleagues',
+          component: ColleaguesPage,
+        },
+      ],
     },
   ],
 };
