@@ -6,6 +6,7 @@ import { routes as Dashboard } from '@/modules/Dashboard';
 import { routes as Home } from '@/modules/Home';
 import { routes as Mentoring } from '@/modules/Mentoring';
 import { routes as Management } from '@/modules/Management';
+import { routes as Community } from '@/modules/Community';
 
 Vue.use(Router);
 
@@ -25,6 +26,7 @@ router.addRoutes([
   Home,
   Mentoring,
   Management,
+  Community,
 ]);
 
 export default router;

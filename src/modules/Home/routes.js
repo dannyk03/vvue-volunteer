@@ -19,8 +19,7 @@ export default {
   },
   children: [
     {
-      path: '/mentoring',
-      name: 'mentoring',
+      path: '',
       component: HomePage,
     },
   ],

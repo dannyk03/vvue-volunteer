@@ -4,14 +4,14 @@ import store from '@/shared/store';
 
 import storeModule from './store';
 
-const MentoringPage = () => import(/* webpackChunkName: "mentoring" */'./containers/MentoringPage');
+const CommunityPage = () => import(/* webpackChunkName: "community" */'./containers/CommunityPage');
 
 export default {
-  path: '/mentoring',
+  path: '/community',
   component: MainLayout,
   beforeEnter(to, from, next) {
     if (!store.state.home) {
-      store.registerModule('mentoring', storeModule);
+      store.registerModule('community', storeModule);
       store.commit('REFRESH_STORE');
     }
 
@@ -20,8 +20,8 @@ export default {
   children: [
     {
       path: '',
-      name: 'mentoring',
-      component: MentoringPage,
+      name: 'community',
+      component: CommunityPage,
     },
   ],
 };
