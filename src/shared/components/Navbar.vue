@@ -6,7 +6,7 @@
         <vv-navbar-link to="dashboard">{{ $t('navbar.menu.items.dashboard') }}</vv-navbar-link>
         <vv-navbar-link to="mentoring">{{ $t('navbar.menu.items.mentoring') }}</vv-navbar-link>
         <vv-navbar-link to="community">{{ $t('navbar.menu.items.community') }}</vv-navbar-link>
-        <vv-navbar-link to="about-one">{{ $t('navbar.menu.items.supervisor') }}</vv-navbar-link>
+        <vv-navbar-link to="supervisor">{{ $t('navbar.menu.items.supervisor') }}</vv-navbar-link>
       </v-toolbar-items>
       <vv-navbar-user-menu :user="user" />
     </div>
