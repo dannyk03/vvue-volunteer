@@ -19,9 +19,37 @@ export default {
   },
   children: [
     {
+      path: 'match',
+      component: MentoringPage,
+      props: {
+        tab: 'match',
+      },
+    },
+    {
+      path: 'chat',
+      component: MentoringPage,
+      props: {
+        tab: 'chat',
+      },
+    },
+    {
+      path: 'preparation',
+      component: MentoringPage,
+      props: {
+        tab: 'preparation',
+      },
+    },
+    {
+      path: 'schedule',
+      component: MentoringPage,
+      props: {
+        tab: 'schedule',
+      },
+    },
+    {
       path: '',
       name: 'mentoring',
-      component: MentoringPage,
+      redirect: 'match',
     },
   ],
 };

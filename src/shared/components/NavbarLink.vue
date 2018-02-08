@@ -1,5 +1,5 @@
 <template>
-  <v-btn color="white" class="vv-navbar-link" :ripple="false" flat :to="{ name: to }">
+  <v-btn color="white" class="vv-navbar-link" :ripple="false" flat :to="{ name: to, params: params }" :exact="exact">
     <menuitem>
       <slot />
     </menuitem>
@@ -11,6 +11,11 @@
     name: 'NavbarLink',
     props: {
       to: String,
+      params: Object,
+      exact: {
+        type: Boolean,
+        default: true,
+      },
     },
   };
 </script>
