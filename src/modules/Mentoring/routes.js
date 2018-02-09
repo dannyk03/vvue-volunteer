@@ -5,6 +5,7 @@ import store from '@/shared/store';
 import storeModule from './store';
 
 const MentoringPage = () => import(/* webpackChunkName: "mentoring" */'./containers/MentoringPage');
+const AvailableProgramsPage = () => import(/* webpackChunkName: "mentoring" */'./containers/AvailableProgramsPage');
 
 export default {
   path: '/mentoring',
@@ -45,6 +46,10 @@ export default {
       props: {
         tab: 'schedule',
       },
+    },
+    {
+      path: 'programs',
+      component: AvailableProgramsPage,
     },
     {
       path: '',

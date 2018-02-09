@@ -131,5 +131,9 @@
 
   "dashboard.colleagues.downloadsList.title": "Download materials",
 
-  "dashboard.colleagues.inviteForm.title": "Invite people"
+  "dashboard.colleagues.inviteForm.title": "Invite people",
+
+  "mentoring.availablePrograms.title": "Choose the {accent}",
+  "mentoring.availablePrograms.title.accent": "program",
+  "mentoring.availablePrograms.subtitle": "The following programs are available for you."
 }

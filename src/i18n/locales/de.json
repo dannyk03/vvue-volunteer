@@ -127,9 +127,13 @@
   "dashboard.tips.title": "Tips and Tricks",
 
   "dashboard.colleagues.title": "Colleagues",
-  "dashboard.colleagues.invites.title": "Invites",
+  "dashboard.colleagues.invites.title": "Invited",
 
-  "dashboard.colleagues.downloadsList.title": "Downloads",
+  "dashboard.colleagues.downloadsList.title": "Download materials",
 
-  "dashboard.colleagues.inviteForm.title": "InviteForm"
+  "dashboard.colleagues.inviteForm.title": "Invite people",
+
+  "mentoring.availablePrograms.title": "Choose the {accent}",
+  "mentoring.availablePrograms.title.accent": "program",
+  "mentoring.availablePrograms.subtitle": "The following programs are available for you."
 }
