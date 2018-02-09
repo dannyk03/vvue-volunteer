@@ -4,21 +4,22 @@
       <span v-t="'dashboard.activityStream.title'" />
     </div>
     <div slot="content" class="content mt-4">
-      <ul>
-        <li class="activity" v-for="activity in activities">
-          <div class="activity-avatar">
-            <vv-avatar :src="activity.user.avatar" size="32" />
-          </div>
-          <div class="main ml-3">
-            <div class="activity-text">{{ activity.activity }}</div>
+      <vv-linked-list :list="activities">
+        <vv-avatar slot="icon" slot-scope="{ item }" :src="item.user.avatar" size="30" />
+
+        <div class="main ml-3" slot="body" slot-scope="{ item: { activity, date, user }}">
+          <div>
+            <div class="activity-text">{{ activity }}</div>
             <div class="subtext">
-              <span>{{ activity.user.firstName }} {{ activity.user.lastName }} •</span>
-              <span>{{ activity.user.country }}</span>
+              <span>{{ user.firstName }} {{ user.lastName }} •</span>
+              <span>{{ user.country }}</span>
             </div>
           </div>
-          <div class="date">{{ activity.date }}</div>
-        </li>
-      </ul>
+
+          <div class="date">{{ date }}</div>
+        </div>
+
+      </vv-linked-list>
     </div>
   </vv-simple-card>
 </template>
@@ -26,12 +27,14 @@
 <script>
   import VvSimpleCard from '@/shared/components/SimpleCard';
   import VvAvatar from '@/shared/components/Avatar';
+  import VvLinkedList from '@/shared/components/LinkedList';
 
   export default {
     name: 'ActivityStream',
     components: {
       VvSimpleCard,
       VvAvatar,
+      VvLinkedList,
     },
     props: {
       activities: Array,
@@ -39,7 +42,7 @@
   };
 </script>
 
-<style lang="scss" scoped>
+<style type="text/scss" lang="scss" scoped>
   @import '~@/styles/colors';
   @import '~@/styles/fonts';
 
@@ -48,48 +51,24 @@
       @include calloutFont;
     }
 
-    .content {
-      ul {
-        width: 100%;
-        list-style: none;
-        .activity {
-          display: flex;
-          align-items: center;
-          margin-bottom: 40px;
+    .main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-grow: 2;
+      line-height: 17px;
 
-          &:not(:last-child) {
-            .activity-avatar {
-              position: relative;
-              &::after {
-                content: '';
-                position: absolute;
-                height: 30px;
-                width: 1px;
-                background-color: #E0E0E0;
-                bottom: -90%;
-                left: 50%;
-              }
-            }
-          }
-
-          .main {
-            flex-grow: 2;
-            line-height: 17px;
-
-            .activity-text {
-              @include boldBodyFont;
-            }
-
-            .subtext {
-              @include captionFont;
-            }
-          }
-
-          .date {
-            @include captionLight;
-          }
-        }
+      .activity-text {
+        @include boldBodyFont;
       }
+
+      .subtext {
+        @include captionFont;
+      }
+    }
+
+    .date {
+      @include captionLight;
     }
   }
 </style>
