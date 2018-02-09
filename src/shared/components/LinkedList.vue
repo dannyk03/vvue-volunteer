@@ -10,9 +10,6 @@
 </template>
 
 <script>
-  import VvSimpleCard from '@/shared/components/SimpleCard';
-  import VvAvatar from '@/shared/components/Avatar';
-
   export default {
     name: 'LinkedList',
     components: {

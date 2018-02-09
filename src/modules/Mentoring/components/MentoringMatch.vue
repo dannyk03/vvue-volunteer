@@ -43,8 +43,8 @@
         {
           icon: 'airplane',
           text: 'Read or download preparation materials in preparation tab',
-        }
-      ]
+        },
+      ],
     }),
   };
 </script>
