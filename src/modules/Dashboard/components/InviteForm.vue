@@ -49,7 +49,7 @@
   };
 </script>
 
-<style lang="scss" scoped>
+<style type="text/scss" lang="scss" scoped>
   @import '~@/styles/colors';
   @import '~@/styles/fonts';
 
@@ -58,25 +58,30 @@
       @include calloutFont;
     }
 
-    .form {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      .input {
-        margin-right: 20px;
-      }
-      .send-btn {
-        transform: translateY(-3px);
-        min-width: 120px;
-        width: 120px;
-      }
-    }
+    .content {
+      flex-direction: column;
 
-    a {
-      @include calloutFont;
-      color: $primary;
-      letter-spacing: 0.5px;
-      text-decoration: none;
+      .form {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        .input {
+          margin-right: 20px;
+        }
+        .send-btn {
+          transform: translateY(-3px);
+          min-width: 120px;
+          width: 120px;
+        }
+      }
+
+      a {
+        @include calloutFont;
+        color: $primary;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+      }
+
     }
   }
 </style>

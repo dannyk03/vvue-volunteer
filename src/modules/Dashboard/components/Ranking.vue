@@ -51,6 +51,7 @@
 
     .content {
       ul {
+        width: 100%;
         list-style: none;
 
         .stat {

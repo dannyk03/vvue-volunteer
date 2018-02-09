@@ -38,6 +38,8 @@
       @include calloutFont;
     }
 
-
+    ul {
+      width: 100%;
+    }
   }
 </style>

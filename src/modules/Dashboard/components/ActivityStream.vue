@@ -50,12 +50,13 @@
 
     .content {
       ul {
+        width: 100%;
         list-style: none;
         .activity {
           display: flex;
           align-items: center;
           margin-bottom: 40px;
-            
+
           &:not(:last-child) {
             .activity-avatar {
               position: relative;
@@ -70,7 +71,7 @@
               }
             }
           }
-          
+
           .main {
             flex-grow: 2;
             line-height: 17px;

@@ -40,6 +40,11 @@
   text-transform: uppercase;
 }
 
+@mixin calloutSubheaderFont {
+  @include calloutFont;
+  font-size: 14px;
+}
+
 @mixin boldBodyFont {
   color: $primaryDark;
   font-size: 14px;
