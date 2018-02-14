@@ -1,0 +1,107 @@
+<template>
+  <vv-simple-card class="vv-mentoring-tabs">
+    <div slot="content" class="content">
+      <v-tabs
+        class="vv-tabs"
+        v-model="active"
+        light
+        slider-color="primary"
+      >
+        <v-tab key="match" :ripple="false"  @click.native="changeTab('match')">
+          Match
+        </v-tab>
+        <v-tab key="chat" :ripple="false" @click.native="changeTab('chat')">
+          Chat
+        </v-tab>
+        <v-tab key="preparation" :ripple="false" @click.native="changeTab('preparation')">
+          Preparation
+        </v-tab>
+        <v-tab key="schedule" :ripple="false" @click.native="changeTab('schedule')">
+          Schedule
+        </v-tab>
+
+        <v-tab-item key="match">
+          <vv-mentoring-match :match="selectedUser" />
+        </v-tab-item>
+        <v-tab-item key="chat">
+          Chat
+        </v-tab-item>
+        <v-tab-item key="preparation">
+          Preparation
+        </v-tab-item>
+        <v-tab-item key="schedule">
+          Schedule
+        </v-tab-item>
+      </v-tabs>
+
+    </div>
+  </vv-simple-card>
+</template>
+
+<script>
+import VvSimpleCard from '@/shared/components/SimpleCard';
+import VvMentoringMatch from '../components/MentoringMatch';
+
+export default {
+  name: 'MentoringTabs',
+  components: {
+    VvSimpleCard,
+    VvMentoringMatch,
+  },
+  props: {
+    tab: String,
+    selectedUser: Object,
+  },
+  data() {
+    return {
+      active: null,
+      tabs: {
+        match: 0,
+        chat: 1,
+        preparation: 2,
+        schedule: 3,
+      },
+    };
+  },
+  methods: {
+    changeTab(tab) {
+      this.$router.push(tab);
+    },
+  },
+  mounted() {
+    this.active = this.tabs[this.tab];
+  },
+};
+</script>
+
+<style lang="scss">
+@import '~@/styles/colors';
+
+  .vv-mentoring-tabs {
+    padding: 0 !important;
+
+    .vv-tabs {
+      width: 100%;
+
+      .tabs__div {
+        width: 120px;
+        text-transform: none;
+        color: $secondaryGrey !important;
+
+        .tabs__item {
+          transition: none;
+        }
+
+        .tabs__item--active {
+          font-weight: 600;
+          color: $primary !important;
+        }
+      }
+
+      .tabs__content {
+        transition: none;
+        padding: 20px;
+      }
+    }
+  }
+</style>

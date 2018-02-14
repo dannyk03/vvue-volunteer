@@ -1,17 +1,17 @@
-import store from '@/shared/store';
 import MainLayout from '@/layouts/MainLayout';
 import loggedInGuard from '@/shared/utils/loggedInGuard';
+import store from '@/shared/store';
 
 import storeModule from './store';
 
-const HomePage = () => import(/* webpackChunkName: "home" */'./containers/HomePage');
-/* eslint-disable */
+const CommunityPage = () => import(/* webpackChunkName: "community" */'./containers/CommunityPage');
+
 export default {
-  path: '/home',
+  path: '/community',
   component: MainLayout,
   beforeEnter(to, from, next) {
     if (!store.state.home) {
-      store.registerModule('home', storeModule);
+      store.registerModule('community', storeModule);
       store.commit('REFRESH_STORE');
     }
 
@@ -20,7 +20,8 @@ export default {
   children: [
     {
       path: '',
-      component: HomePage,
+      name: 'community',
+      component: CommunityPage,
     },
   ],
 };

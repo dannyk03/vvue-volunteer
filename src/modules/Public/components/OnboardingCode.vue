@@ -41,7 +41,7 @@
           </div>
           <div class="submit">
             <vv-base-button
-              :disabled="!code"
+              :disabled="!valid"
               color="accent"
               type="submit"
             >
