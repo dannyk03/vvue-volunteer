@@ -4,7 +4,7 @@
       <p class="card-title">{{program.title}}</p>
       <img :src="program.image" alt="" height="300" width="250" />
       <div class="bottom">
-        <p class="name fontAccented accented mb-1">{{program.name}}</p>
+        <p class="name fontAccented accented mb-1">{{program.code}}</p>
         <p class="description">{{program.description}}</p>
       </div>
     </div>

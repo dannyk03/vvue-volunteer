@@ -1,7 +1,3 @@
-export default (store, next, config) => {
-  const type = config && config.simple ? 'global/auth/checkSimple' : 'global/auth/checkAuthentication';
-
-  return store.dispatch(type)
-    .then(next)
-    .catch(() => next('/auth/login'));
-};
+export default (store, next) => store.dispatch('global/auth/checkAuthentication')
+  .then(next)
+  .catch(() => next('/auth/login'));

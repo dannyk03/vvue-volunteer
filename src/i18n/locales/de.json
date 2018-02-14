@@ -135,5 +135,8 @@
 
   "mentoring.availablePrograms.title": "Choose the {accent}",
   "mentoring.availablePrograms.title.accent": "program",
-  "mentoring.availablePrograms.subtitle": "The following programs are available for you."
+  "mentoring.availablePrograms.subtitle": "The following programs are available for you.",
+
+  "mentoring.availableProgram.title": "Let me tell you a {accent}",
+  "mentoring.availableProgram.title.accent": "story first"
 }

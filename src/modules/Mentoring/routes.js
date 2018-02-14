@@ -6,12 +6,13 @@ import storeModule from './store';
 
 const MentoringPage = () => import(/* webpackChunkName: "mentoring" */'./containers/MentoringPage');
 const AvailableProgramsPage = () => import(/* webpackChunkName: "mentoring" */'./containers/AvailableProgramsPage');
+const AvailableProgramPage = () => import(/* webpackChunkName: "mentoring" */'./containers/AvailableProgramPage');
 
 export default {
   path: '/mentoring',
   component: MainLayout,
   beforeEnter(to, from, next) {
-    if (!store.state.home) {
+    if (!store.state.mentoring) {
       store.registerModule('mentoring', storeModule);
       store.commit('REFRESH_STORE');
     }
@@ -50,6 +51,12 @@ export default {
     {
       path: 'programs',
       component: AvailableProgramsPage,
+    },
+    {
+      path: 'programs/:id',
+      name: 'programDetails',
+      props: true,
+      component: AvailableProgramPage,
     },
     {
       path: '',

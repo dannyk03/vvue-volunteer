@@ -42,7 +42,6 @@ export default {
 <style lang="scss" scoped>
   .base-input {
     text-align: left;
-    // display: grid;
 
     .error {
       color: red;

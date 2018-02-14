@@ -18,3 +18,6 @@ export const fetchUsers = () => get('api/v2/users');
 export const fetchUser = id => get(`api/v2/users/${id}`);
 export const updateUser = user => patch(`api/v2/users/${user.id}`, user);
 export const uploadAvatar = avatar => uploadFile('api/v2/users/me/avatar', avatar);
+
+export const fetchPrograms = () => get('api/v2/programs');
+export const fetchProgram = id => get(`api/v2/programs/${id}`);
