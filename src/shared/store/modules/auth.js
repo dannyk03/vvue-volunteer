@@ -26,7 +26,6 @@ const actions = {
     return dispatch('checkAuthentication');
   },
   async register({ dispatch }, user) {
-    debugger
     await registerUserAPI({ ...user });
     const credentials = {
       username: user.email,
@@ -52,17 +51,6 @@ const actions = {
 
     return Promise.reject();
   },
-  checkSimple({ commit }) {
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      setAuthHeader(token);
-      commit(types.USER_LOGGED_IN, { token });
-      return Promise.resolve();
-    }
-
-    return Promise.reject();
-  }
 };
 
 const mutations = {

@@ -23,17 +23,20 @@
   font-family: Stay;
 }
 
+.accented {
+  color: $primary;
+}
+
 .heading {
   font-family: 'Gothic';
   text-transform: uppercase;
 }
 
 @mixin calloutFont {
-	font-size: 12px;
-	font-weight: bold;
-	text-align: left;
-	color: #6c6c72;
-	color: $primaryGrey;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: left;
+  color: $primaryGrey;
   text-transform: uppercase;
 }
 
@@ -57,3 +60,19 @@
 	font-size: 16px;
 	color: $secondaryGrey;
 }
+
+@mixin pageSubtitleFont {
+  font-size: 18px;
+  color: $primaryGrey;
+}
+
+@mixin captionFont {
+  font-size: 12px;
+  color: $primaryGrey;
+}
+
+@mixin captionLight {
+  @include captionFont;
+  color: $secondaryGrey;
+}
+

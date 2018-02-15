@@ -107,5 +107,36 @@
 
   "onboarding.final.title": "Yeah you registered {accent}",
   "onboarding.final.title.accent": "successfully!",
-  "onboarding.final.action": "Continue to Dashboard"
+  "onboarding.final.action": "Continue to Dashboard",
+
+  "navbar.menu.items.dashboard": "Dashboard",
+  "navbar.menu.items.mentoring": "Mentoring",
+  "navbar.menu.items.community": "Community",
+  "navbar.menu.items.supervisor": "Supervisor",
+
+  "dashboard.welcome.title": "Welcome, {accent}",
+  "dashboard.welcome.actions.reviewMatch": "Review match",
+
+  "dashboard.ranking.title": "Ranking",
+  "dashboard.rankins.stats.participations": "Participations",
+  "dashboard.rankins.stats.mentoringSessions": "Mentoring sessions",
+  "dashboard.rankins.stats.invitedColleagues": "Invited colleagues",
+
+  "dashboard.activityStream.title": "Activity stream",
+
+  "dashboard.tips.title": "Tips and Tricks",
+
+  "dashboard.colleagues.title": "Colleagues",
+  "dashboard.colleagues.invites.title": "Invited",
+
+  "dashboard.colleagues.downloadsList.title": "Download materials",
+
+  "dashboard.colleagues.inviteForm.title": "Invite people",
+
+  "mentoring.availablePrograms.title": "Choose the {accent}",
+  "mentoring.availablePrograms.title.accent": "program",
+  "mentoring.availablePrograms.subtitle": "The following programs are available for you.",
+
+  "mentoring.availableProgram.title": "Let me tell you a {accent}",
+  "mentoring.availableProgram.title.accent": "story first"
 }

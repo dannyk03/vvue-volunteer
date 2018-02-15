@@ -20,7 +20,8 @@ export default {
 
 <style lang="scss" scoped>
   .content-wrapper {
-    height: calc(100vh - 64px);
+    height: calc(100vh - 80px);
+    padding: 30px 100px;
     overflow-y: auto;
   }
 </style>
