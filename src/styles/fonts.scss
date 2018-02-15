@@ -37,6 +37,22 @@
   text-transform: uppercase;
 }
 
+@mixin calloutSubheaderFont {
+  @include calloutFont;
+  font-size: 14px;
+}
+
+@mixin boldBodyFont {
+  color: $primaryDark;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@mixin greyBodyFont {
+  color: $primaryGrey;
+  font-size: 14px;
+}
+
 @mixin placeholderFont {
 	font-size: 16px;
 	color: $secondaryGrey;
