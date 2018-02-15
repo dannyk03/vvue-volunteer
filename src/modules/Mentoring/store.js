@@ -1,5 +1,5 @@
 import { createModule, AVAILABLE_NAMESPACES as T } from '@/shared/utils/vuex';
-import { fetchPrograms, fetchProgram } from "@/api";
+import { fetchPrograms, fetchProgram } from '@/api';
 
 const initialState = {
   selectedUser: {
