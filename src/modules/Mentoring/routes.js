@@ -33,6 +33,7 @@ export default {
         {
           path: 'start',
           component: Start,
+          name: 'start',
         },
         {
           path: 'typical-day',
@@ -41,6 +42,7 @@ export default {
         {
           path: 'availability',
           component: Availability,
+          name: 'availability',
         },
         {
           path: 'webinar',
@@ -48,45 +50,8 @@ export default {
         },
       ],
     },
-    //   path: 'match',
-    //   component: MentoringPage,
-    //   props: {
-    //     tab: 'match',
-    //   },
-    // },
-    // {
-    //   path: 'chat',
-    //   component: MentoringPage,
-    //   props: {
-    //     tab: 'chat',
-    //   },
-    // },
-    // {
-    //   path: 'preparation',
-    //   component: MentoringPage,
-    //   props: {
-    //     tab: 'preparation',
-    //   },
-    // },
-    // {
-    //   path: 'schedule',
-    //   component: MentoringPage,
-    //   props: {
-    //     tab: 'schedule',
-    //   },
-    // },
-    // {
-    //   path: 'programs',
-    //   component: AvailableProgramsPage,
-    // },
-/*    {
-      path: 'programs/:id',
-      name: 'programDetails',
-      props: true,
-      component: AvailableProgramPage,
-    }, */
     {
-      path: '',
+      path: '*',
       name: 'mentoring',
       redirect: 'start',
     },
