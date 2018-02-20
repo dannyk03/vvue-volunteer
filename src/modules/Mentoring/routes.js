@@ -5,8 +5,14 @@ import store from '@/shared/store';
 import storeModule from './store';
 
 const MentoringPage = () => import(/* webpackChunkName: "mentoring" */'./containers/MentoringPage');
-const AvailableProgramsPage = () => import(/* webpackChunkName: "mentoring" */'./containers/AvailableProgramsPage');
+// const AvailableProgramsPage = () => import(/* webpackChunkName: "mentoring" */'./containers/AvailableProgramsPage');
 // const AvailableProgramPage = () => import(/* webpackChunkName: "mentoring" */'./containers/AvailableProgramPage');
+
+const Start = () => import('./components/Start');
+const TypicalDay = () => import('./components/TypicalDay');
+const Availability = () => import('./components/Availability');
+const Webinar = () => import('./components/Webinar');
+
 
 export default {
   path: '/mentoring',
@@ -21,37 +27,58 @@ export default {
   },
   children: [
     {
-      path: 'match',
+      path: '',
       component: MentoringPage,
-      props: {
-        tab: 'match',
-      },
+      children: [
+        {
+          path: 'start',
+          component: Start,
+        },
+        {
+          path: 'typical-day',
+          component: TypicalDay,
+        },
+        {
+          path: 'availability',
+          component: Availability,
+        },
+        {
+          path: 'webinar',
+          component: Webinar,
+        },
+      ],
     },
-    {
-      path: 'chat',
-      component: MentoringPage,
-      props: {
-        tab: 'chat',
-      },
-    },
-    {
-      path: 'preparation',
-      component: MentoringPage,
-      props: {
-        tab: 'preparation',
-      },
-    },
-    {
-      path: 'schedule',
-      component: MentoringPage,
-      props: {
-        tab: 'schedule',
-      },
-    },
-    {
-      path: 'programs',
-      component: AvailableProgramsPage,
-    },
+    //   path: 'match',
+    //   component: MentoringPage,
+    //   props: {
+    //     tab: 'match',
+    //   },
+    // },
+    // {
+    //   path: 'chat',
+    //   component: MentoringPage,
+    //   props: {
+    //     tab: 'chat',
+    //   },
+    // },
+    // {
+    //   path: 'preparation',
+    //   component: MentoringPage,
+    //   props: {
+    //     tab: 'preparation',
+    //   },
+    // },
+    // {
+    //   path: 'schedule',
+    //   component: MentoringPage,
+    //   props: {
+    //     tab: 'schedule',
+    //   },
+    // },
+    // {
+    //   path: 'programs',
+    //   component: AvailableProgramsPage,
+    // },
 /*    {
       path: 'programs/:id',
       name: 'programDetails',
@@ -61,7 +88,7 @@ export default {
     {
       path: '',
       name: 'mentoring',
-      redirect: 'match',
+      redirect: 'start',
     },
   ],
 };
