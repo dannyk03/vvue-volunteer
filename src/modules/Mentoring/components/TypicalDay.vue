@@ -49,74 +49,76 @@
 
 
     <!-- Steps content -->
-    <form>
-      
-      <!-- Step 1 -->
-      <div class='step step-1 is-active'>
-        <div class='step-title'>
-          First things first!
-          <br>
-          This is how it all starts in the morning.
-        </div>
-        <vv-radio-choose name='example_1'></vv-radio-choose>
+    <!-- Step 1 -->
+    <div class='step is-active'>
+      <div class='step-title'>
+        First things first!
+        <br>
+        This is how it all starts in the morning.
       </div>
+      <div v-for='(radio, index) in step_one' :key='"step_1" + index'>
+        <vv-picture-answers :data='radio'></vv-picture-answers>
+      </div>
+    </div>
 
-       <!-- Step 2 -->
-      <div class='step step-2'>
-        <div class='step-title'>Starting the day</div>
-        <div class='step-fields-wrap'>
-          <v-select
-            :items="items"
-            label="Having an educationl background in"
-            single-line
-            bottom
-          ></v-select>
-          <v-text-field
-            name="input-1"
-            label="And a professional background in"
-          ></v-text-field>
-          <v-text-field
-            name="input-2"
-            label="I arrive at"
-          ></v-text-field>
-        </div>
+    <!-- Step 2 -->
+    <div class='step'>
+      <div class='step-title'>Starting the day</div>
+      <div class='step-fields-wrap'>
+        <v-select
+          :items="items"
+          label="Having an educationl background in"
+          single-line
+          bottom
+        ></v-select>
+        <v-text-field
+          name="input-1"
+          label="And a professional background in"
+        ></v-text-field>
+        <v-text-field
+          name="input-2"
+          label="I arrive at"
+        ></v-text-field>
       </div>
+    </div>
 
-      <!-- Step 3 -->
-      <div class='step step-3'>
-        <div class='step-title'>Time to hand in your assignment</div>
-        <vv-radio-choose name='example_3'></vv-radio-choose>
-        <vv-radio-choose name='example_4'></vv-radio-choose>
+    <!-- Step 3 -->
+    <div class='step'>
+      <div class='step-title'>Time to hand in your assignment</div>
+      <div v-for='(radio, index) in step_three' :key='"step_3" + index'>
+        <vv-picture-answers :data='radio'></vv-picture-answers>
       </div>
+    </div>
 
-      <!-- Step 4 -->
-      <div class='step step-4'>
-        <div class='step-title'>Lunch time!</div>
-        <vv-radio-choose name='example_5'></vv-radio-choose>
-        <vv-radio-choose name='example_6'></vv-radio-choose>
+    <!-- Step 4 -->
+    <div class='step'>
+      <div class='step-title'>Lunch time!</div>
+      <div v-for='(radio, index) in step_four' :key='"step_4" + index'>
+        <vv-picture-answers :data='radio'></vv-picture-answers>
       </div>
+    </div>
 
-      <!-- Step 5 -->
-      <div class='step step-5'>
-        <div class='step-title'>Lunch time!</div>
-        <vv-radio-choose name='example_7'></vv-radio-choose>
+    <!-- Step 5 -->
+    <div class='step'>
+      <div class='step-title'>Lunch time!</div>
+      <div v-for='(radio, index) in step_five' :key='"step_5" + index'>
+        <vv-picture-answers :data='radio'></vv-picture-answers>
       </div>
+    </div>
 
-      <!-- Step 6 -->
-      <div class='step step-6'>
-        <div class='step-title'>Mentor time!</div>
-        <vv-radio-choose name='example_8'></vv-radio-choose>
-        <vv-radio-choose name='example_9'></vv-radio-choose>
-        <vv-radio-choose name='example_10'></vv-radio-choose>
-        <vv-radio-choose name='example_11'></vv-radio-choose>
+    <!-- Step 6 -->
+    <div class='step'>
+      <div class='step-title'>Mentor time!</div>
+      <div v-for='(radio, index) in step_six' :key='"step_6" + index'>
+        <vv-picture-answers :data='radio'></vv-picture-answers>
       </div>
+    </div>
 
-      <!-- Step 7 -->
-      <div class='step step-7'>
-        <div class='step-title'>Finally time for my hobbies!</div>
-        <h1>Step 7</h1>
-      </div>
-    </form>
+    <!-- Step 7 -->
+    <div class='step'>
+      <div class='step-title'>Finally time for my hobbies!</div>
+        <vv-picture-answer-hobbies :hobbies='hobbies'></vv-picture-answer-hobbies>
+    </div>
 
 
     <div class='mentoring-nav'>
@@ -133,12 +135,19 @@
   </div>
 </template>
 <script>
-  import VvRadioChoose from '../components/RadioChoose';
+  import VvCheckbox from '../components/Checkbox';
+  import VvPictureAnswers from '../components/PictureAnswers';
+  import VvPictureAnswerHobbies from '../components/PictureAnswerHobbies';
+
+  // Data for steps
+  import mentoringSteps from '../../../shared/data/mentoring-steps.json';
 
 
   export default {
     components: {
-      VvRadioChoose,
+      VvCheckbox,
+      VvPictureAnswers,
+      VvPictureAnswerHobbies,
     },
     data() {
       return {
@@ -148,19 +157,24 @@
           { text: 'State 3' },
         ],
         stepsCount: 0,
-      }
+        step_one: null,
+        step_three: null,
+        step_five: null,
+        step_six: null,
+        hobbies: null,
+      };
     },
     methods: {
       goToPrevious() {
         const icons = this.$el.querySelectorAll('.typical-steps-image');
         const content = this.$el.querySelectorAll('.step');
-      
+
         if (this.stepsCount === 0) {
-          this.$router.push({name: 'start'})
+          this.$router.push({ name: 'start' });
           return;
         }
 
-        this.stepsCount--;
+        this.stepsCount -= 1;
         icons[this.stepsCount + 1].classList.remove('is-active');
         icons[this.stepsCount].classList.add('is-active');
         content[this.stepsCount + 1].classList.remove('is-active');
@@ -171,18 +185,26 @@
         const content = this.$el.querySelectorAll('.step');
 
         if (this.stepsCount === 6) {
-          this.$router.push({name: 'availability'})
+          this.$router.push({ name: 'availability' });
           return;
         }
 
-        this.stepsCount++;
+        this.stepsCount += 1;
         icons[this.stepsCount - 1].classList.remove('is-active');
         icons[this.stepsCount].classList.add('is-active');
         content[this.stepsCount - 1].classList.remove('is-active');
         content[this.stepsCount].classList.add('is-active');
-      }
-    }
-  }
+      },
+    },
+    created() {
+      this.step_one = mentoringSteps.step_one;
+      this.step_three = mentoringSteps.step_three;
+      this.step_four = mentoringSteps.step_four;
+      this.step_five = mentoringSteps.step_five;
+      this.step_six = mentoringSteps.step_six;
+      this.hobbies = mentoringSteps.hobbies;
+    },
+  };
 </script>
 <style lang="scss" scoped>
   @import "~@/styles/index";

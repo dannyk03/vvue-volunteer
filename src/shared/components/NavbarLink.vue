@@ -1,5 +1,5 @@
 <template>
-  <v-btn color="white" class="vv-navbar-link" :ripple="false" flat :to="{ name: to, params: params }" :exact="exact">
+  <v-btn color="white" class="vv-navbar-link" :ripple="false" flat :to="{ name: to, params: params }">
     <menuitem>
       <slot />
     </menuitem>

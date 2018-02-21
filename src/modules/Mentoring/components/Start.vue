@@ -25,10 +25,10 @@
     </ul>
 
     <div class='mentoring-nav'>
-      <button class='mentoring-nav-back'>
+      <router-link :to='{name: "programs"}' tag='button' class='mentoring-nav-back'>
         <svg class='svg-icon' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"><defs><path id="a" d="M0 0h16v16H0z"/></defs><g fill="none" fill-rule="evenodd"><use fill="#417505" fill-opacity="0" xlink:href="#a"/><path stroke="#6C6C72" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.938 12L6 8l4-4"/></g></svg>
         <span>Back</span>
-      </button>
+      </router-link>
 
       <button class='mentoring-nav-next' @click='nextStep'>
         <span>Next</span>
@@ -50,8 +50,8 @@
           <li>Some other requirment</li>
         </ul>
         <div class="req-card-btn-wrap">
-          <router-link to='/mentoring/start' tag='button' class='btn-empty' @click.native="dialog = false">Cancel</router-link>
-          <router-link to="/mentoring/typical-day" tag='button' class='btn-fill' @click.native='dialog = false'>Proceed</router-link>
+          <router-link :to='{name: "start"}' tag='button' class='btn-empty' @click.native="dialog = false">Cancel</router-link>
+          <router-link to="enrollment/typical-day" tag='button' class='btn-fill' @click.native='dialog = false'>Proceed</router-link>
         </div>
           
       </div>
@@ -62,16 +62,15 @@
   export default {
     data() {
       return {
-        dialog: false
+        dialog: false,
       };
     },
     methods: {
       nextStep() {
         this.dialog = true;
-        // console.log(this.$route);
       },
     },
-  }
+  };
 </script>
 
 <style lang="scss" scoped>

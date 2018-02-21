@@ -4,7 +4,7 @@
       <span>ESTART</span>
     </div>
     <div slot="content" class="content mt-4">
-
+      fdsfsdfds
     </div>
   </vv-simple-card>
 </template>

@@ -4,8 +4,10 @@ import store from '@/shared/store';
 
 import storeModule from './store';
 
+const DefaultEnrollmentPage = () => import(/* webpackChunkName: "mentoring" */'./containers/DefaultEnrollmentPage');
 const MentoringPage = () => import(/* webpackChunkName: "mentoring" */'./containers/MentoringPage');
-// const AvailableProgramsPage = () => import(/* webpackChunkName: "mentoring" */'./containers/AvailableProgramsPage');
+const MentoringRegPage = () => import(/* webpackChunkName: "mentoring" */'./containers/MentoringRegPage');
+const AvailableProgramsPage = () => import(/* webpackChunkName: "mentoring" */'./containers/AvailableProgramsPage');
 // const AvailableProgramPage = () => import(/* webpackChunkName: "mentoring" */'./containers/AvailableProgramPage');
 
 const Start = () => import('./components/Start');
@@ -28,16 +30,50 @@ export default {
   children: [
     {
       path: '',
+      component: MentoringRegPage,
+      props: {
+        tab: 'match',
+      },
+    },
+    {
+      path: 'chat',
       component: MentoringPage,
+      props: {
+        tab: 'chat',
+      },
+    },
+    {
+      path: 'preparation',
+      component: MentoringPage,
+      props: {
+        tab: 'preparation',
+      },
+    },
+    {
+      path: 'schedule',
+      component: MentoringPage,
+      props: {
+        tab: 'schedule',
+      },
+    },
+    {
+      path: 'programs',
+      component: AvailableProgramsPage,
+      name: 'programs',
+    },
+    {
+      path: 'enrollment',
+      component: DefaultEnrollmentPage,
       children: [
         {
-          path: 'start',
+          path: '',
           component: Start,
           name: 'start',
         },
         {
           path: 'typical-day',
           component: TypicalDay,
+          name: 'typical-day',
         },
         {
           path: 'availability',
@@ -47,13 +83,16 @@ export default {
         {
           path: 'webinar',
           component: Webinar,
+          name: 'webinar',
         },
       ],
     },
     {
-      path: '*',
+      path: '',
       name: 'mentoring',
-      redirect: 'start',
+      redirect: '',
+      component: MentoringRegPage,
     },
   ],
+
 };
