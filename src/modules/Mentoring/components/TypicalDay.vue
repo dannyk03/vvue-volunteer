@@ -51,14 +51,9 @@
     <!-- Steps content -->
     <!-- Step 1 -->
     <div class='step is-active'>
-      <div class='step-title'>
-        First things first!
-        <br>
-        This is how it all starts in the morning.
-      </div>
-      <div v-for='(radio, index) in step_one' :key='"step_1" + index'>
-        <vv-picture-answers :data='radio'></vv-picture-answers>
-      </div>
+      <vv-picture-answer :hobbies='true' :url='"hobbies"'>
+        <div>First things first!<br>This is how it all starts in the morning.</div>
+      </vv-picture-answer>
     </div>
 
     <!-- Step 2 -->
@@ -84,41 +79,39 @@
 
     <!-- Step 3 -->
     <div class='step'>
-      <div class='step-title'>Time to hand in your assignment</div>
-      <div v-for='(radio, index) in step_three' :key='"step_3" + index'>
-        <vv-picture-answers :data='radio'></vv-picture-answers>
-      </div>
+      <vv-picture-answer :answers='true' :url='"step-two"'>
+        <div>Time to hand in your assignment</div>
+      </vv-picture-answer>
     </div>
 
     <!-- Step 4 -->
     <div class='step'>
-      <div class='step-title'>Lunch time!</div>
-      <div v-for='(radio, index) in step_four' :key='"step_4" + index'>
-        <vv-picture-answers :data='radio'></vv-picture-answers>
-      </div>
+      <vv-picture-answer :hobbies='true' :url='"hobbies"'>
+        <div>New step 4</div>
+      </vv-picture-answer>
     </div>
 
     <!-- Step 5 -->
     <div class='step'>
-      <div class='step-title'>Lunch time!</div>
-      <div v-for='(radio, index) in step_five' :key='"step_5" + index'>
-        <vv-picture-answers :data='radio'></vv-picture-answers>
-      </div>
+      <vv-picture-answer :answers='true' :url='"step-two"'>
+        <div>New step 5</div>
+      </vv-picture-answer>
     </div>
 
     <!-- Step 6 -->
     <div class='step'>
-      <div class='step-title'>Mentor time!</div>
-      <div v-for='(radio, index) in step_six' :key='"step_6" + index'>
-        <vv-picture-answers :data='radio'></vv-picture-answers>
-      </div>
+      <vv-picture-answer :answers='true' :url='"step-two"'>
+        <div>New step 6</div>
+      </vv-picture-answer>
     </div>
 
     <!-- Step 7 -->
     <div class='step'>
-      <div class='step-title'>Finally time for my hobbies!</div>
-        <vv-picture-answer-hobbies :hobbies='hobbies'></vv-picture-answer-hobbies>
+      <vv-picture-answer :answers='true' :url='"step-two"'>
+        <div>New step 7</div>
+      </vv-picture-answer>
     </div>
+
 
 
     <div class='mentoring-nav'>
@@ -135,9 +128,13 @@
   </div>
 </template>
 <script>
+  import VvPictureAnswer from '@/shared/components/PictureAnswer';
+
+
   import VvCheckbox from '../components/Checkbox';
   import VvPictureAnswers from '../components/PictureAnswers';
   import VvPictureAnswerHobbies from '../components/PictureAnswerHobbies';
+
 
   // Data for steps
   import mentoringSteps from '../../../shared/data/mentoring-steps.json';
@@ -148,6 +145,7 @@
       VvCheckbox,
       VvPictureAnswers,
       VvPictureAnswerHobbies,
+      VvPictureAnswer,
     },
     data() {
       return {

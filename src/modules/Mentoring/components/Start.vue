@@ -24,16 +24,14 @@
       </li>
     </ul>
 
-    <div class='mentoring-nav'>
-      <router-link :to='{name: "programs"}' tag='button' class='mentoring-nav-back'>
-        <svg class='svg-icon' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"><defs><path id="a" d="M0 0h16v16H0z"/></defs><g fill="none" fill-rule="evenodd"><use fill="#417505" fill-opacity="0" xlink:href="#a"/><path stroke="#6C6C72" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.938 12L6 8l4-4"/></g></svg>
-        <span>Back</span>
-      </router-link>
+    <div class="bottom">
+      <vv-back-button />
 
       <button class='mentoring-nav-next' @click='nextStep'>
         <span>Next</span>
         <svg class='svg-icon' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"><defs><path id="a" d="M0 0h16v16H0z"/></defs><g fill="none" fill-rule="evenodd"><use fill="#417505" fill-opacity="0" xlink:href="#a"/><path stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6.062 12L10 8 6 4"/></g></svg>
       </button>
+      <!-- <vv-next-button class="mt-3" @click='nextStep' /> -->
     </div>
 
 
@@ -59,7 +57,18 @@
   </div> 
 </template>
 <script>
+  import VvBaseButton from '@/shared/components/BaseButton';
+  import VvBackButton from '@/shared/components/BackButton';
+
+  import VvNextButton from './NextButton';
+
   export default {
+    name: 'Start',
+    components: {
+      VvBaseButton,
+      VvBackButton,
+      VvNextButton,
+    },
     data() {
       return {
         dialog: false,
@@ -188,6 +197,13 @@
         margin-left: 15px;
       }
     }
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 26px;
   }
 
   .btn {
