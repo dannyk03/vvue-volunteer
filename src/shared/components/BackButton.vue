@@ -1,5 +1,5 @@
 <template>
-  <div class="back-button" @click="$router.go(-1)">
+  <div class="back-button" @click="way === null ? $router.go(-1) : $router.push({name: way})">
     <vv-arrow-icon target="left" />
     <span>back</span>
   </div>
@@ -11,6 +11,9 @@ import '@/../static/icons/compiled-svg/back';
 
 export default {
   name: 'BackButton',
+  props: {
+    way: null,
+  },
   components: {
     VvArrowIcon,
   },

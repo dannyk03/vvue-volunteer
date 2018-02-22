@@ -112,9 +112,8 @@
       </vv-picture-answer>
     </div>
 
-
-
-    <div class='mentoring-nav'>
+    <!-- TODO: refactoring this -->
+    <div class='bottom'>
       <button class='mentoring-nav-back' @click='goToPrevious'>
         <svg class='svg-icon' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"><defs><path id="a" d="M0 0h16v16H0z"/></defs><g fill="none" fill-rule="evenodd"><use fill="#417505" fill-opacity="0" xlink:href="#a"/><path stroke="#6C6C72" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.938 12L6 8l4-4"/></g></svg>
         <span>Back</span>
@@ -125,27 +124,21 @@
         <svg class='svg-icon' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"><defs><path id="a" d="M0 0h16v16H0z"/></defs><g fill="none" fill-rule="evenodd"><use fill="#417505" fill-opacity="0" xlink:href="#a"/><path stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6.062 12L10 8 6 4"/></g></svg>
       </button>
     </div>
+
   </div>
 </template>
 <script>
   import VvPictureAnswer from '@/shared/components/PictureAnswer';
-
-
-  import VvCheckbox from '../components/Checkbox';
-  import VvPictureAnswers from '../components/PictureAnswers';
-  import VvPictureAnswerHobbies from '../components/PictureAnswerHobbies';
-
-
-  // Data for steps
-  import mentoringSteps from '../../../shared/data/mentoring-steps.json';
-
+  import VvBaseButton from '@/shared/components/BaseButton';
+  import VvBackButton from '@/shared/components/BackButton';
+  import VvNextButton from './NextButton';
 
   export default {
     components: {
-      VvCheckbox,
-      VvPictureAnswers,
-      VvPictureAnswerHobbies,
       VvPictureAnswer,
+      VvBaseButton,
+      VvBackButton,
+      VvNextButton,
     },
     data() {
       return {
@@ -155,11 +148,6 @@
           { text: 'State 3' },
         ],
         stepsCount: 0,
-        step_one: null,
-        step_three: null,
-        step_five: null,
-        step_six: null,
-        hobbies: null,
       };
     },
     methods: {
@@ -169,6 +157,7 @@
 
         if (this.stepsCount === 0) {
           this.$router.push({ name: 'start' });
+          this.$store.commit(`mentoring/enrollmentStepsDecrement`);
           return;
         }
 
@@ -184,6 +173,7 @@
 
         if (this.stepsCount === 6) {
           this.$router.push({ name: 'availability' });
+          this.$store.commit(`mentoring/enrollmentStepsIncrement`);
           return;
         }
 
@@ -193,14 +183,6 @@
         content[this.stepsCount - 1].classList.remove('is-active');
         content[this.stepsCount].classList.add('is-active');
       },
-    },
-    created() {
-      this.step_one = mentoringSteps.step_one;
-      this.step_three = mentoringSteps.step_three;
-      this.step_four = mentoringSteps.step_four;
-      this.step_five = mentoringSteps.step_five;
-      this.step_six = mentoringSteps.step_six;
-      this.hobbies = mentoringSteps.hobbies;
     },
   };
 </script>
@@ -278,6 +260,13 @@
       max-width: 370px;
       margin: 0 auto;
     }
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 26px;
   }
 </style>
 

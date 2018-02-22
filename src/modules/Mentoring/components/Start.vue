@@ -25,16 +25,15 @@
     </ul>
 
     <div class="bottom">
-      <vv-back-button />
+      <vv-back-button way='programs' />
 
-      <button class='mentoring-nav-next' @click='nextStep'>
+      <button class='mentoring-nav-next' @click='showDialog'>
         <span>Next</span>
         <svg class='svg-icon' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"><defs><path id="a" d="M0 0h16v16H0z"/></defs><g fill="none" fill-rule="evenodd"><use fill="#417505" fill-opacity="0" xlink:href="#a"/><path stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6.062 12L10 8 6 4"/></g></svg>
       </button>
-      <!-- <vv-next-button class="mt-3" @click='nextStep' /> -->
     </div>
 
-
+    <!-- TODO: create new component for Modal -->
     <v-dialog v-model="dialog" max-width="442">
       <div class="req-card">
         <router-link to="/mentoring/start" tag='button' class='req-card-close' @click.native="dialog = false">
@@ -49,9 +48,8 @@
         </ul>
         <div class="req-card-btn-wrap">
           <router-link :to='{name: "start"}' tag='button' class='btn-empty' @click.native="dialog = false">Cancel</router-link>
-          <router-link to="enrollment/typical-day" tag='button' class='btn-fill' @click.native='dialog = false'>Proceed</router-link>
+          <router-link :to='{ name: "typical-day"}' tag='button' class='btn-fill' @click.native='nextStep'>Proceed</router-link>
         </div>
-          
       </div>
     </v-dialog>
   </div> 
@@ -59,7 +57,6 @@
 <script>
   import VvBaseButton from '@/shared/components/BaseButton';
   import VvBackButton from '@/shared/components/BackButton';
-
   import VvNextButton from './NextButton';
 
   export default {
@@ -75,10 +72,17 @@
       };
     },
     methods: {
-      nextStep() {
+      showDialog() {
         this.dialog = true;
       },
+      nextStep() {
+        this.dialog = false;
+        this.$store.commit(`mentoring/enrollmentStepsIncrement`);
+      }
     },
+    created() {
+      this.$store.commit(`mentoring/resetEnrollmentSteps`);
+    }
   };
 </script>
 

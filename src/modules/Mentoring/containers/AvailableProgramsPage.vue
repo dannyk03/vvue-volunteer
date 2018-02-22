@@ -20,21 +20,21 @@
       programs: [ // todo: Hardcode
         {
           id: 1,
-          image: 'https://photos-5.dropbox.com/t/2/AAA9l_9lgSAum9RnM3Zk5Hvd6JDUT5WaTQvpbf_rBUpltw/12/663441405/jpeg/32x32/3/1518202800/0/2/photo-1438761681033-6461ffad8d80.jpg/EP2Pv8wEGJ74HCAHKAc/iL-wWnxEJCN8zil-_BPhZFP-TXwe0if8QsMeqmbZxz0?dl=0&size=1280x960&size_mode=3',
+          image: 'https://i.pinimg.com/736x/0e/cc/1d/0ecc1d7e253ef79ef8df47f76a47c517.jpg',
           title: 'I need your help to learn German',
           name: 'eStart',
           description: 'Help a refugee learning German',
         },
         {
           id: 2,
-          image: 'https://photos-5.dropbox.com/t/2/AAA9l_9lgSAum9RnM3Zk5Hvd6JDUT5WaTQvpbf_rBUpltw/12/663441405/jpeg/32x32/3/1518202800/0/2/photo-1438761681033-6461ffad8d80.jpg/EP2Pv8wEGJ74HCAHKAc/iL-wWnxEJCN8zil-_BPhZFP-TXwe0if8QsMeqmbZxz0?dl=0&size=1280x960&size_mode=3',
+          image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&s=10f2e97699b156850d17285683b6ce81&dpr=1&auto=format&fit=crop&w=376&h=564&q=60&cs=tinysrgb',
           title: 'I want to start my career',
           name: 'eSister',
           description: 'Help a female student to improve her career',
         },
         {
           id: 3,
-          image: 'https://photos-5.dropbox.com/t/2/AAA9l_9lgSAum9RnM3Zk5Hvd6JDUT5WaTQvpbf_rBUpltw/12/663441405/jpeg/32x32/3/1518202800/0/2/photo-1438761681033-6461ffad8d80.jpg/EP2Pv8wEGJ74HCAHKAc/iL-wWnxEJCN8zil-_BPhZFP-TXwe0if8QsMeqmbZxz0?dl=0&size=1280x960&size_mode=3',
+          image: 'https://pixel.nymag.com/imgs/daily/vulture/2017/11/01/01-kevin-spacey-1.w710.h473.jpg',
           title: 'I want to start my career',
           name: 'eStudy',
           description: 'Help a male student to improve his career',
@@ -43,7 +43,7 @@
     }),
     methods: {
       chooseProgram(program) {
-        console.log('Choose program', program);
+        // console.log('Choose program', program);
       },
     },
   };

@@ -26,6 +26,11 @@
         return this.disabled ? '#c1c1c1' : 'white';
       },
     },
+    methods: {
+      test() {
+        console.log('test click');
+      },
+    },
   };
 </script>
 

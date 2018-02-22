@@ -1,12 +1,9 @@
 <template>
   <div class="vv-default-enrollment-page">
-    <ul class='mentoring-steps'>
-      <li class='is-active'></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
+    
+    <div class='enrollment-indicator'>
+      <vv-progress-dots class="progress-indicator" :current="enrollmentSteps" :total="4" />
+    </div>
 
     <router-view></router-view>
 
@@ -17,30 +14,31 @@
   import { mapGetters } from 'vuex';
 
   import VvSystemCheck from '@/shared/components/SystemCheck';
+  import VvProgressDots from '@/shared/components/ProgressDots';
   import VvEstartCard from '../components/EstartCard';
   import VvChatList from './ChatList';
   import VvMentoringTabs from './MentoringTabs';
 
 
   export default {
-    name: 'MentoringPage',
+    name: 'DefaultEnrollmentPage',
     components: {
       VvEstartCard,
       VvSystemCheck,
       VvChatList,
       VvMentoringTabs,
-
+      VvProgressDots,
     },
     data() {
       return {
+        step: 1,
       };
     },
     computed: {
       ...mapGetters('mentoring', {
         selectedUser: 'getSelectedUser',
+        enrollmentSteps: 'getEnrollmentSteps',
       }),
-    },
-    methods: {
     },
   };
 </script>
@@ -55,7 +53,6 @@
     position: relative;
   }
 
-
   .mentoring-title {
     font-size: 35px;
     color: $primaryDark;
@@ -68,29 +65,12 @@
     color: $primaryGrey;
   }
 
-  .mentoring-steps {
-    display: flex;
-    list-style-type: none;
+  .enrollment-indicator {
     position: absolute;
     top: 35px;
     right: 0;
     left: auto;
     bottom: auto;
-
-    li:first-child {
-      margin-right: 0;
-    }
-    li {
-      width: 11px;
-      height: 11px;
-      margin-left: 15px;
-      border-radius: 50%;
-      border: solid 1px $secondary;
-
-      &.is-active {
-        background-color: $secondary;
-      }
-    }
   }
 
   // nav

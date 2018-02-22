@@ -7,10 +7,12 @@ const initialState = {
     lastName: 'Stark',
     avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVUPtECfQ8dtJGSx3m3g89gMvYRKtwUtDIJVjisRQ7YJhKF30d',
   },
+  enrollmentSteps: 1,
 };
 
 const getters = {
   getSelectedUser: state => state.selectedUser,
+  getEnrollmentSteps: state => state.enrollmentSteps,
 };
 
 const actions = {
@@ -18,7 +20,15 @@ const actions = {
 };
 
 const mutations = {
-
+  enrollmentStepsIncrement: (state) => {
+    state.enrollmentSteps += 1;
+  },
+  enrollmentStepsDecrement: (state) => {
+    state.enrollmentSteps -= 1;
+  },
+  resetEnrollmentSteps: (state) => {
+    state.enrollmentSteps = 1;
+  },
 };
 
 const apis = {
