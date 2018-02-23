@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1 class='mentoring-title heading'>my <span class='accented'>availability</span></h1>
-    <p class='start-subtitle page-subtitle'>Please set appropriate weekdays and time for you to make appointments.</p>
-    <vv-availability-days></vv-availability-days>
+    <p class='start-subtitle page-subtitle'>Please set appropriate weekdays and time <br> for you to make appointments.</p>
+    <vv-availability-calendar></vv-availability-calendar>
 
     <!-- TODO: refactoring this -->
     <div class='bottom'>
@@ -18,12 +18,12 @@
 <script>
   import VvBaseButton from '@/shared/components/BaseButton';
   import VvBackButton from '@/shared/components/BackButton';
-  import VvAvailabilityDays from '../AvailabilityDays';
+  import VvAvailabilityCalendar from '../AvailabilityCalendar';
   import VvNextButton from '../NextButton';
 
   export default {
     components: {
-      VvAvailabilityDays,
+      VvAvailabilityCalendar,
       VvBaseButton,
       VvBackButton,
       VvNextButton,
@@ -37,6 +37,10 @@
   };
 </script>
 <style lang="scss" scoped>
+  .start-subtitle {
+    margin-bottom: 50px;
+  }
+
   .bottom {
     display: flex;
     justify-content: space-between;

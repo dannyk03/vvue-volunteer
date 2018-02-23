@@ -17,12 +17,10 @@
 <script>
   import VvBaseButton from '@/shared/components/BaseButton';
   import VvBackButton from '@/shared/components/BackButton';
-  import VvAvailabilityDays from '../AvailabilityDays';
   import VvNextButton from '../NextButton';
 
   export default {
     components: {
-      VvAvailabilityDays,
       VvBaseButton,
       VvBackButton,
       VvNextButton,

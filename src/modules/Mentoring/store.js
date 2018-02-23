@@ -8,11 +8,13 @@ const initialState = {
     avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVUPtECfQ8dtJGSx3m3g89gMvYRKtwUtDIJVjisRQ7YJhKF30d',
   },
   enrollmentSteps: 1,
+  showTimePicker: false,
 };
 
 const getters = {
   getSelectedUser: state => state.selectedUser,
   getEnrollmentSteps: state => state.enrollmentSteps,
+  getTimePicker: state => state.showTimePicker,
 };
 
 const actions = {
@@ -28,6 +30,9 @@ const mutations = {
   },
   resetEnrollmentSteps: (state) => {
     state.enrollmentSteps = 1;
+  },
+  toggleTimePicker: (state, payload) => {
+    state.showTimePicker = payload;
   },
 };
 
