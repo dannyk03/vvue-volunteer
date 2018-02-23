@@ -49,68 +49,32 @@
 
 
     <!-- Steps content -->
-    <!-- Step 1 -->
-    <div class='step is-active'>
-      <vv-picture-answer :hobbies='true' :url='"hobbies"'>
-        <div>First things first!<br>This is how it all starts in the morning.</div>
-      </vv-picture-answer>
+    <div class='step' :class='{"is-active": index === 0 ? true : false}' v-for='(step, index) in steps' :key="'test_step_' + index">
+      <!-- Step asnwer -->
+      <vv-picture-answer :type='step.type' :url='step.url'></vv-picture-answer>
+
+      <!-- Step form -->
+      <!-- <div class='step'>
+        <div class='step-title'>Starting the day</div>
+        <div class='step-fields-wrap'>
+          <v-select
+            :items="items"
+            label="Having an educationl background in"
+            single-line
+            bottom
+          ></v-select>
+          <v-text-field
+            name="input-1"
+            label="And a professional background in"
+          ></v-text-field>
+          <v-text-field
+            name="input-2"
+            label="I arrive at"
+          ></v-text-field>
+        </div>
+      </div> -->
     </div>
 
-    <!-- Step 2 -->
-    <div class='step'>
-      <div class='step-title'>Starting the day</div>
-      <div class='step-fields-wrap'>
-        <v-select
-          :items="items"
-          label="Having an educationl background in"
-          single-line
-          bottom
-        ></v-select>
-        <v-text-field
-          name="input-1"
-          label="And a professional background in"
-        ></v-text-field>
-        <v-text-field
-          name="input-2"
-          label="I arrive at"
-        ></v-text-field>
-      </div>
-    </div>
-
-    <!-- Step 3 -->
-    <div class='step'>
-      <vv-picture-answer :answers='true' :url='"step-two"'>
-        <div>Time to hand in your assignment</div>
-      </vv-picture-answer>
-    </div>
-
-    <!-- Step 4 -->
-    <div class='step'>
-      <vv-picture-answer :hobbies='true' :url='"hobbies"'>
-        <div>New step 4</div>
-      </vv-picture-answer>
-    </div>
-
-    <!-- Step 5 -->
-    <div class='step'>
-      <vv-picture-answer :answers='true' :url='"step-two"'>
-        <div>New step 5</div>
-      </vv-picture-answer>
-    </div>
-
-    <!-- Step 6 -->
-    <div class='step'>
-      <vv-picture-answer :answers='true' :url='"step-two"'>
-        <div>New step 6</div>
-      </vv-picture-answer>
-    </div>
-
-    <!-- Step 7 -->
-    <div class='step'>
-      <vv-picture-answer :answers='true' :url='"step-two"'>
-        <div>New step 7</div>
-      </vv-picture-answer>
-    </div>
 
     <!-- TODO: refactoring this -->
     <div class='bottom'>
@@ -131,7 +95,7 @@
   import VvPictureAnswer from '@/shared/components/PictureAnswer';
   import VvBaseButton from '@/shared/components/BaseButton';
   import VvBackButton from '@/shared/components/BackButton';
-  import VvNextButton from './NextButton';
+  import VvNextButton from '../NextButton';
 
   export default {
     components: {
@@ -148,6 +112,15 @@
           { text: 'State 3' },
         ],
         stepsCount: 0,
+        steps: [
+          { type: 'answers', url: 'step-one' },
+          { type: 'answers', url: 'step-two' },
+          { type: 'answers', url: 'step-one' },
+          { type: 'answers', url: 'step-two' },
+          { type: 'answers', url: 'step-one' },
+          { type: 'answers', url: 'step-two' },
+          { type: 'hobbies', url: 'hobbies' },
+        ],
       };
     },
     methods: {
@@ -156,8 +129,8 @@
         const content = this.$el.querySelectorAll('.step');
 
         if (this.stepsCount === 0) {
-          this.$router.push({ name: 'start' });
-          this.$store.commit(`mentoring/enrollmentStepsDecrement`);
+          this.$router.push({ name: 'startDefault' });
+          this.$store.commit('mentoring/enrollmentStepsDecrement');
           return;
         }
 
@@ -172,8 +145,8 @@
         const content = this.$el.querySelectorAll('.step');
 
         if (this.stepsCount === 6) {
-          this.$router.push({ name: 'availability' });
-          this.$store.commit(`mentoring/enrollmentStepsIncrement`);
+          this.$router.push({ name: 'availabilityDefault' });
+          this.$store.commit('mentoring/enrollmentStepsIncrement');
           return;
         }
 

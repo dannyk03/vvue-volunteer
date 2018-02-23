@@ -43,7 +43,7 @@
     }),
     methods: {
       chooseProgram(program) {
-        // console.log('Choose program', program);
+        console.log('Choose program', program);
       },
     },
   };

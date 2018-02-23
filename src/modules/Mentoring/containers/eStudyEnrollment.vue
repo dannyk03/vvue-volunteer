@@ -1,16 +1,12 @@
 <template>
   <div>
-    <h1>Days</h1>
+    <h1>eStudy Enrollment</h1>
   </div>
 </template>
 <script>
   export default {
-    data() {
-      return {
-        title: '',      
-      };
-    },
-  };
+    
+  }
 </script>
 <style lang="scss" scoped>
 

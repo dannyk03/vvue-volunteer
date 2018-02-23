@@ -4,16 +4,17 @@ import store from '@/shared/store';
 
 import storeModule from './store';
 
-const DefaultEnrollmentPage = () => import(/* webpackChunkName: "mentoring" */'./containers/DefaultEnrollmentPage');
+const DefaultEnrollment = () => import(/* webpackChunkName: "mentoring" */'./containers/DefaultEnrollment');
 const MentoringPage = () => import(/* webpackChunkName: "mentoring" */'./containers/MentoringPage');
 const MentoringRegPage = () => import(/* webpackChunkName: "mentoring" */'./containers/MentoringRegPage');
 const AvailableProgramsPage = () => import(/* webpackChunkName: "mentoring" */'./containers/AvailableProgramsPage');
 // const AvailableProgramPage = () => import(/* webpackChunkName: "mentoring" */'./containers/AvailableProgramPage');
 
-const Start = () => import('./components/Start');
-const TypicalDay = () => import('./components/TypicalDay');
-const Availability = () => import('./components/Availability');
-const Webinar = () => import('./components/Webinar');
+// for Default Entrollment
+const StartDefault = () => import('./components/defaultEnrollmentComponents/StartDefault');
+const TypicalDayDefault = () => import('./components/defaultEnrollmentComponents/TypicalDayDefault');
+const AvailabilityDefault = () => import('./components/defaultEnrollmentComponents/AvailabilityDefault');
+const WebinarDefault = () => import('./components/defaultEnrollmentComponents/WebinarDefault');
 
 
 export default {
@@ -62,28 +63,29 @@ export default {
       name: 'programs',
     },
     {
-      path: 'enrollment',
-      component: DefaultEnrollmentPage,
+      path: 'default-enrollment',
+      component: DefaultEnrollment,
+      name: 'defaultEnrollment',
       children: [
         {
-          path: '',
-          component: Start,
-          name: 'start',
+          path: 'start',
+          component: StartDefault,
+          name: 'startDefault',
         },
         {
-          path: 'typical-day',
-          component: TypicalDay,
-          name: 'typical-day',
+          path: 'typical',
+          component: TypicalDayDefault,
+          name: 'typicalDefault',
         },
         {
           path: 'availability',
-          component: Availability,
-          name: 'availability',
+          component: AvailabilityDefault,
+          name: 'availabilityDefault',
         },
         {
           path: 'webinar',
-          component: Webinar,
-          name: 'webinar',
+          component: WebinarDefault,
+          name: 'webinarDefault',
         },
       ],
     },
@@ -94,5 +96,4 @@ export default {
       component: MentoringRegPage,
     },
   ],
-
 };

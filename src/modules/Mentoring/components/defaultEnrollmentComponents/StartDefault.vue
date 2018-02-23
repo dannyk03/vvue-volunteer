@@ -47,8 +47,8 @@
           <li>Some other requirment</li>
         </ul>
         <div class="req-card-btn-wrap">
-          <router-link :to='{name: "start"}' tag='button' class='btn-empty' @click.native="dialog = false">Cancel</router-link>
-          <router-link :to='{ name: "typical-day"}' tag='button' class='btn-fill' @click.native='nextStep'>Proceed</router-link>
+          <router-link :to='{name: "startDefault"}' tag='button' class='btn-empty' @click.native="dialog = false">Cancel</router-link>
+          <router-link :to='{ name: "typicalDefault"}' tag='button' class='btn-fill' @click.native='nextStep'>Proceed</router-link>
         </div>
       </div>
     </v-dialog>
@@ -57,10 +57,10 @@
 <script>
   import VvBaseButton from '@/shared/components/BaseButton';
   import VvBackButton from '@/shared/components/BackButton';
-  import VvNextButton from './NextButton';
+  import VvNextButton from '../NextButton';
 
   export default {
-    name: 'Start',
+    name: 'StartDefault',
     components: {
       VvBaseButton,
       VvBackButton,
@@ -77,12 +77,12 @@
       },
       nextStep() {
         this.dialog = false;
-        this.$store.commit(`mentoring/enrollmentStepsIncrement`);
-      }
+        this.$store.commit('mentoring/enrollmentStepsIncrement');
+      },
     },
     created() {
-      this.$store.commit(`mentoring/resetEnrollmentSteps`);
-    }
+      this.$store.commit('mentoring/resetEnrollmentSteps');
+    },
   };
 </script>
 
