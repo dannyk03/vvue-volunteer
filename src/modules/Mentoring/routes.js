@@ -30,8 +30,8 @@ export default {
   },
   children: [
     {
-      path: '',
-      component: MentoringRegPage,
+      path: 'match',
+      component: MentoringPage,
       props: {
         tab: 'match',
       },
@@ -93,7 +93,7 @@ export default {
       path: '',
       name: 'mentoring',
       redirect: '',
-      component: MentoringRegPage,
+      component: MentoringPage,
     },
   ],
 };

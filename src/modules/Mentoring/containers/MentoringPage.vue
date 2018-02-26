@@ -46,6 +46,7 @@
     display: grid;
     height: 100%;
     grid-gap: 20px;
+    padding-bottom: 32px;
 
     grid-template-columns: 250px 1fr 200px;
     // grid-template-rows: 191px 186px 1fr;

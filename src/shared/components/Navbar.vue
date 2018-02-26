@@ -4,7 +4,7 @@
       <vv-logo color="grey" />
       <v-toolbar-items class="hidden-sm-and-down">
         <vv-navbar-link to="dashboard">{{ $t('navbar.menu.items.dashboard') }}</vv-navbar-link>
-        <vv-navbar-link to="mentoring">{{ $t('navbar.menu.items.mentoring') }}</vv-navbar-link>
+        <vv-navbar-link to="mentoring" :params="{ tab: 'match'}" :exact="false">{{ $t('navbar.menu.items.mentoring') }}</vv-navbar-link>
         <vv-navbar-link to="community">{{ $t('navbar.menu.items.community') }}</vv-navbar-link>
         <vv-navbar-link to="supervisor">{{ $t('navbar.menu.items.supervisor') }}</vv-navbar-link>
       </v-toolbar-items>
