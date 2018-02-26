@@ -1,60 +1,111 @@
 <template>
-  <v-dialog v-model="toggle" max-width="367" :persistent='true'>
+  <v-dialog v-model="timepicker.toggle" max-width="367" :persistent='true'>
     <v-card class='card'>
-      <div class='card-title'>{{ day }}</div>
-      <div class="card-subtitle">Please set the time you are available on {{ day }}.</div>
-      <div class="timepicker-time">8:00 - 23:30</div>
+      <div class='card-title'>{{ timepicker.data.day }}</div>
+      <div class="card-subtitle">Please set the time you are available on {{ timepicker.data.day }}.</div>
 
-      <!-- TODO: create a new component for timepicker -->
-      <ul class='timepicker'>
-        <li class='timepicker-item' 
-          v-for='(time, index) in 24' 
-          :key='index'
-          :data-time='index'
-          @click='toggleTime'>08:00</li>
-      </ul>
+      <v-carousel 
+        :hide-delimiters='true' 
+        :cycle='false' 
+        class='timepicker-carousel'>
+        <v-carousel-item v-for='(data, index) in timepickerTimes' :key='index'>
+          <div class="timepicker-time">{{ data.time_range}}</div>
+          <ul ref='timepicker' class='timepicker-list'>
+            <li class='timepicker-item'
+                v-for='(time, index) in data.times'
+                :key='index'
+                :data-time='time'
+                @click='selectTime'>
+                {{ time }}
+            </li>
+          </ul>
+        </v-carousel-item>
+      </v-carousel>
 
       <div class="card-hint">Hold shift to select multiple time slots.</div>
       <div class="card-actions">
-        <button>Clear All</button>
+        <button class='clear' @click='clearTime'>Clear All</button>
         <div>
-          <button class='btn' @click='cancel'>Cancel</button>
-          <button class='btn' @click='setTime'>Set</button>
+          <button class='button -empty' @click='cancel'>Cancel</button>
+          <button class='button -fill' @click='setTime'>Set</button>
         </div>
       </div>
     </v-card>
   </v-dialog>
 </template>
 <script>
+  import _ from 'lodash';
   import { mapGetters } from 'vuex';
 
   export default {
     data() {
       return {
-        day: '_DAY_',
+        timepickerTimes: [
+          {
+            time_range: '08:00 - 20:00',
+            times: ['08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30',],  
+          },
+          {
+            time_range: '20:00 - 23:30',
+            times: ['20:00', '20:30', '21:00', '21:30', '22:00', '22:30', '23:00', '23:30'],
+          },
+        ],
+        selectedTime: [],
       }
     },
     computed: {
       ...mapGetters('mentoring', {
-        toggle: 'getTimePicker',
+        timepicker: 'getTimePicker',
       }),
     },
     methods: {
       cancel() {
-        this.$store.commit('mentoring/toggleTimePicker', false);
+        this.$store.commit('mentoring/closeTimePicker', false);
       },
       setTime() {
-        this.$store.commit('mentoring/toggleTimePicker', false);
+        if (this.selectedTime.length === 0) {
+          return;
+        };
+
+        const data = {
+          year: this.timepicker.data.year,
+          month: this.timepicker.data.month,
+          days: [
+            {
+              day: this.timepicker.data.day,
+              times: this.selectedTime,
+            }
+          ]
+        };
+        
+        this.$store.commit('mentoring/setTimePickerData', data);
+        this.$store.commit('mentoring/closeTimePicker', false);
       },
-      toggleTime(event) {
+      selectTime(event) {
         const el = event.target;
 
         if (el.classList.contains('is-active')) {
           el.classList.remove('is-active');
         } else {
           el.classList.add('is-active');
-          console.log(el.dataset.time);
+          this.selectedTime.push(el.dataset.time);
         }
+      },
+      clearTime() {
+        // const times = document.querySelectorAll('.timepicker li');
+        const times = this.$refs.timepicker.querySelectorAll('li');
+
+        console.log(times);
+
+        // this.selectedTime = [];
+
+        // _.each(times, function(el) {
+        //   if (el.classList.contains('is-active')) {
+        //     el.classList.remove('is-active');
+        //   }
+        // });
+
+        // console.log(this.timepicker);
       },
     },
   };
@@ -74,7 +125,6 @@
       text-align: left;
       color: $primaryDark;
     }
-
     &-subtitle {
       margin-bottom: 35px;
       font-size: 17px;
@@ -96,9 +146,11 @@
   }
 
   .timepicker {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 15px;
+    &-carousel {
+      height: 214px;
+      margin-bottom: 15px;
+      box-shadow: none;
+    }
 
     &-time {
       margin-bottom: 22px;
@@ -107,6 +159,11 @@
       line-height: 1.5;
       text-align: center;
       color: $primaryDark;
+    }
+
+    &-list {
+      flex-wrap: wrap;
+      display: flex;
     }
 
     &-item {
@@ -130,6 +187,19 @@
         color: $white;
       }
     }
+  }
+
+  .clear {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    text-align: center;
+    color: $primaryGrey;
+    text-transform: uppercase;
+  }
+
+  .button.-fill {
+    margin-left: 15px;
   }
 
 </style>

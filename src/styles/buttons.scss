@@ -1,0 +1,22 @@
+.button {
+  width: 75px;
+  height: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.67;
+  border-radius: 15px;
+  text-align: center;
+  outline: none;
+
+  &.-fill {
+    color: $white;
+    background-color: $primary;
+    
+  }
+
+  &.-empty {
+    background-color: rgba(143, 206, 215, 0);
+    border: solid 2px $secondaryGrey;
+    color: $primaryGrey;
+  }
+}

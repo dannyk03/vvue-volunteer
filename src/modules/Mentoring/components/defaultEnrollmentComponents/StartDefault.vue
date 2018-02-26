@@ -47,8 +47,8 @@
           <li>Some other requirment</li>
         </ul>
         <div class="req-card-btn-wrap">
-          <router-link :to='{name: "startDefault"}' tag='button' class='btn-empty' @click.native="dialog = false">Cancel</router-link>
-          <router-link :to='{ name: "typicalDefault"}' tag='button' class='btn-fill' @click.native='nextStep'>Proceed</router-link>
+          <router-link :to='{name: "startDefault"}' tag='button' class='button -empty' @click.native="dialog = false">Cancel</router-link>
+          <router-link :to='{ name: "typicalDefault"}' tag='button' class='button -fill' @click.native='nextStep'>Proceed</router-link>
         </div>
       </div>
     </v-dialog>
@@ -210,33 +210,8 @@
     margin-bottom: 26px;
   }
 
-  .btn {
-
-    &-fill {
-      width: 75px;
-      height: 30px;
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 1.67;
-      text-align: center;
-      color: $white;
-      border-radius: 15px;
-      background-color: $primary;
-      outline: none;
-    }
-    &-empty {
-      width: 75px;
-      height: 30px;
-      border-radius: 15px;
-      background-color: rgba(143, 206, 215, 0);
-      border: solid 2px $secondaryGrey;
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 1.67;
-      text-align: center;
-      color: $primaryGrey;
-      outline: none;
-    }
+  .button.-fill {
+    margin-left: 15px;
   }
 </style>
 

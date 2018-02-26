@@ -23,6 +23,8 @@
   @import "~@/styles/index";
 
   .radio {
+    display: flex;
+    
     &-input {
       display: none;
       &:checked ~ .radio-check {

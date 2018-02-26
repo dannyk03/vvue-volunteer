@@ -1,5 +1,5 @@
 <template>
-  <router-link to="enrollment" tag='div'>
+  <router-link :to='{name: "startDefault"}' tag='div'>
     <vv-simple-card class="vv-simple-program-card">
       <div slot="content" class="content">
         <p class="card-title">{{program.title}}</p>

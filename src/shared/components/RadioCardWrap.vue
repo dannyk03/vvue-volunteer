@@ -1,9 +1,9 @@
 <template>
-  <div class='radio-wrap'>
+  <v-layout class='radio-wrap' justify-center="true">
     <vv-radio-card :data='data.radioOne' :name='data.radioName'></vv-radio-card>
     <div class='radio-text'>or</div>
     <vv-radio-card :data='data.radioTwo' :name='data.radioName'></vv-radio-card>
-  </div>
+  </v-layout>
 </template>
 <script>
   import VvRadioCard from '@/shared/components/RadioCard';
@@ -21,9 +21,6 @@
   .radio {
     &-wrap {
       margin-bottom: 50px;
-      display: flex;
-      justify-content: center;
-      // align-items: stretch;
     }
 
     &-text {

@@ -8,13 +8,18 @@ const initialState = {
     avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVUPtECfQ8dtJGSx3m3g89gMvYRKtwUtDIJVjisRQ7YJhKF30d',
   },
   enrollmentSteps: 1,
-  showTimePicker: false,
+  timepickerData: {
+    toggle: false,
+    data: {},
+  },
+  times: [],
 };
 
 const getters = {
   getSelectedUser: state => state.selectedUser,
   getEnrollmentSteps: state => state.enrollmentSteps,
-  getTimePicker: state => state.showTimePicker,
+  getTimePicker: state => state.timepickerData,
+  getTimes: state => state.times,
 };
 
 const actions = {
@@ -31,8 +36,15 @@ const mutations = {
   resetEnrollmentSteps: (state) => {
     state.enrollmentSteps = 1;
   },
-  toggleTimePicker: (state, payload) => {
-    state.showTimePicker = payload;
+  openTimePicker: (state, payload) => {
+    state.timepickerData.toggle = payload.toggle;
+    state.timepickerData.data = payload.data;
+  },
+  closeTimePicker: (state) => {
+    state.timepickerData.toggle = false;
+  },
+  setTimePickerData: (state, payload) => {
+    state.times.push(payload);
   },
 };
 

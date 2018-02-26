@@ -4,17 +4,16 @@
       :hide-delimiters='true' 
       :cycle='false' 
       class='calendar'>
-      <v-carousel-item v-for='(month, index) in months' :key='index'>
-        <div class='calendar-title'>{{ month }}</div>
+      <v-carousel-item v-for='(month, index) in calendar' :key='index'>
+        <div class='calendar-title'>{{ month.title }}</div>
         <ul class='days-list'>
           <li class='days-item' v-for='(day, index) in days' :key='index'>
             <div class='days-name'>{{ day }}</div>
-            <div class='days-circle' @click='chooseTime'>
+            <div class='days-circle' @click='chooseTime(day, month)'>
               <svg class='svg-icon' xmlns="http://www.w3.org/2000/svg" width='11' height='8' viewBox="0 0 11.7 9.1"><path d="M3.8 7L1.2 4.4l-.8.8 3.5 3.5 7.5-7.5-.9-.9L3.8 7z" fill="#fff" stroke="#fff" stroke-width=".5"/></svg>
             </div>
             <ul class='days-time-list'>
               <li class='days-time-item'>08:00</li>
-              <li class='days-time-item'>08:30</li>
             </ul>
           </li>
         </ul>
@@ -25,6 +24,8 @@
   </div>
 </template>
 <script>
+  import { mapGetters } from 'vuex';
+
   import VvTimePicker from '@/shared/components/TimePicker';
 
   export default {
@@ -35,18 +36,51 @@
       return {
         dialog: false,
         months: ["January", "February", "March", "April"," May", "June", "July", "August", "September", "October", "November", "December"],
-        days: ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays', 'Saturday'],
+        days: ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays', 'Saturdays'],
+        calendar: null,
       };
     },
+    computed: {
+      ...mapGetters('mentoring', {
+        times: 'getTimes',
+      }),
+    },
     methods: {
-      chooseTime() {
-        this.$store.commit('mentoring/toggleTimePicker', true);
-      }
+      chooseTime(day, data) {
+        data.day = day;
+        this.$store.commit('mentoring/openTimePicker', {data, toggle: true});
+
+        console.log(this.times);
+      },
+      setCalendar() {
+        let current_year_months = [];
+        let next_year_months = [];
+
+        const date = new Date();
+        const current_year = +date.getFullYear();
+        const current_month = date.getMonth();
+
+        for (let i = 0; i < 12; i++) {
+          if (i >= current_month) {
+            current_year_months.push({
+              title: `${this.months[i]} ${current_year}`, 
+              year: current_year, 
+              month: this.months[i],
+            });
+          } else {
+            next_year_months.push({
+              title: `${this.months[i]} ${current_year + 1}`,
+              year: current_year + 1,
+              month: this.months[i],
+          });
+          }
+        }
+
+        this.calendar = [...current_year_months, ...next_year_months];
+      },
     },
     created() {
-      const date = new Date();
-      const year = date.getFullYear();
-      const month = date.getMonth();
+      this.setCalendar();
     }
   };
 </script>
@@ -54,6 +88,8 @@
   @import "~@/styles/index";
 
   .calendar {
+    height: auto;
+    margin-bottom: 120px;
     box-shadow: none;
     
     &-title {
