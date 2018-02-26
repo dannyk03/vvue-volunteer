@@ -4,6 +4,8 @@ import store from '@/shared/store';
 
 import storeModule from './store';
 
+const MentoringPrograms = () => import(/* webpackChunkName: "mentoring" */'./containers/MentoringPrograms');
+
 const DefaultEnrollment = () => import(/* webpackChunkName: "mentoring" */'./containers/DefaultEnrollment');
 const MentoringPage = () => import(/* webpackChunkName: "mentoring" */'./containers/MentoringPage');
 const MentoringRegPage = () => import(/* webpackChunkName: "mentoring" */'./containers/MentoringRegPage');
@@ -29,6 +31,11 @@ export default {
     loggedInGuard(store, next);
   },
   children: [
+    {
+      path: '',
+      component: MentoringPrograms,
+      name: 'programs',
+    },
     {
       path: 'match',
       component: MentoringPage,
@@ -60,7 +67,7 @@ export default {
     {
       path: 'programs',
       component: AvailableProgramsPage,
-      name: 'programs',
+      name: 'programs-avalible',
     },
     {
       path: 'default-enrollment',
@@ -93,7 +100,7 @@ export default {
       path: '',
       name: 'mentoring',
       redirect: '',
-      component: MentoringPage,
+      component: MentoringPrograms,
     },
   ],
 };

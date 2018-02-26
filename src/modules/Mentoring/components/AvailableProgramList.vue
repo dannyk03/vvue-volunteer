@@ -1,6 +1,9 @@
 <template>
   <div class="vv-available-program-list">
-    <vv-simple-program-card :key="program.id" v-for="program in list" :program="program" @click.native="$emit('choose', program)"/>
+    <vv-simple-program-card 
+      :key="program.id" v-for="program in list" 
+      :program="program" 
+      @click.native="$emit('choose', program)"/>
   </div>
 </template>
 
