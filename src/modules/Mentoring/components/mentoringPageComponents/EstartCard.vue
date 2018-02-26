@@ -58,11 +58,7 @@
 </script>
 <style lang="scss" scoped>
   @import '~@/styles/index';
-
-  .vv-estart-card {
-
-  }
-
+  
   .header {
     display: flex;
     justify-content: space-between;

@@ -1,6 +1,6 @@
 <template>
   <ul class="vv-linked-list">
-    <li class="item" v-for="item in list">
+    <li class="item" v-for="(item, index) in list" :key='index'>
       <div class="item-image">
         <slot name="icon" :item="item" />
       </div>
@@ -25,9 +25,9 @@
   @import '~@/styles/fonts';
 
   .vv-linked-list {
-
     width: 100%;
     list-style: none;
+    
     .item {
       display: flex;
       align-items: center;

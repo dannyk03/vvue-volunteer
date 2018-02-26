@@ -8,7 +8,7 @@
         slider-color="primary"
       >
         <v-tab key="match" :ripple="false"  @click.native="changeTab('match')">
-          Match
+          Status
         </v-tab>
         <v-tab key="chat" :ripple="false" @click.native="changeTab('chat')">
           Chat
@@ -27,7 +27,7 @@
           Chat
         </v-tab-item>
         <v-tab-item key="preparation">
-          Preparation
+          <vv-preparation></vv-preparation>
         </v-tab-item>
         <v-tab-item key="schedule">
           Schedule
@@ -40,13 +40,15 @@
 
 <script>
 import VvSimpleCard from '@/shared/components/SimpleCard';
-import VvMentoringMatch from '../components/MentoringMatch';
+import VvMentoringMatch from '../components/mentoringPageComponents/MentoringMatch';
+import VvPreparation from '../components/mentoringPageComponents/Preparation';
 
 export default {
   name: 'MentoringTabs',
   components: {
     VvSimpleCard,
     VvMentoringMatch,
+    VvPreparation
   },
   props: {
     tab: String,
@@ -82,7 +84,17 @@ export default {
 
     .vv-tabs {
       width: 100%;
+      position: relative;
 
+      .tabs__bar {
+        &:after {
+          content: '';
+          display: block;
+          height: 1px;
+          width: 100%;
+          background: $tertiaryGrey;
+        }
+      }
       .tabs__div {
         width: 120px;
         text-transform: none;
