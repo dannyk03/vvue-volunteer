@@ -8,30 +8,55 @@
       <div class='header-description'>{{ program.description }}</div>
     </div>
     <div slot='content' class='content'>
-      <h1>Content</h1>
+      <div class='card-data'>
+        <v-menu bottom left class='card-data-menu'>
+          <v-btn icon slot="activator">
+            <v-icon class='icon'>more_vert</v-icon>
+          </v-btn>
+          <v-list>
+            <v-list-tile v-for="(item, i) in menu" :key="i">
+              <v-list-tile-title>{{ item }}</v-list-tile-title>
+            </v-list-tile>
+          </v-list>
+        </v-menu>
+
+        <vv-avatars :avatars='users' size='40' class='avatars'>
+          <div slot='data' class='data-left'>
+            <div class='names'>{{ users.userOne.name }} & {{ users.userTwo.name }}</div>
+            <div class='status'>{{ users.status }}</div>
+          </div>
+        </vv-avatars>
+
+        <v-layout align-center justify-space-between>
+          <vv-progress-dots-tooltips :current="currentSteps" :total="5" />
+          <vv-base-button-arrow color='#00b1a7'>
+            <span slot="name">see details</span>
+          </vv-base-button-arrow>
+        </v-layout>
+      </div>
+      <div class="card-links">
+        <a href="">settings</a>
+        <vv-base-button-arrow color='#6c6c72'>
+          <span slot="name">participate again</span>
+        </vv-base-button-arrow>
+      </div>
     </div>
-    <!-- <div slot="header" class="content">
-      <div class="header">
-        <img :src="program.image" alt="">
-      </div>
-      <p class="card-title">{{ program.title }}</p>
-      <img :src="program.image" alt="" height="300" width="250" />
-      <div class="bottom">
-        <p class="name fontAccented accented mb-1">{{ program.name }}</p>
-        <p class="description">{{ program.description }}</p>
-      </div>
-    </div> -->
-    
   </vv-simple-card>
 </template>
 
 <script>
   import VvSimpleCard from '@/shared/components/SimpleCard';
+  import VvAvatars from '@/shared/components/Avatars';
+  import VvProgressDotsTooltips from '@/shared/components/ProgressDotsTooltips';
+  import VvBaseButtonArrow from '@/shared/components/BaseButtonArrow';
 
   export default {
     name: 'CurrentProgramCard',
     components: {
       VvSimpleCard,
+      VvAvatars,
+      VvProgressDotsTooltips,
+      VvBaseButtonArrow,
     },
     props: {
       program: {
@@ -42,9 +67,23 @@
         description: String,
       },
     },
-    data: () => ({
-
-    }),
+    data() {
+      return {
+        menu: ['Some action', 'Invite collegue', 'Something else'],
+        currentSteps: 4,
+        users: {
+          status: 'Unconfirmed match',
+          userOne: {
+            avatar: 'http://pastimesinc.com/wp-content/uploads/2013/03/hulk1-790x1024.jpg',
+            name: 'Simon',
+          },
+          userTwo: {
+            avatar: 'https://vvapiv2.wird.sehrgute.software/storage/uploads/user/avatar/28/medium/c3d297ffad0a275de0d127dff3668c68.jpeg',
+            name: 'Max',
+          },
+        },
+      };
+    },
   };
 </script>
 
@@ -56,7 +95,6 @@
     height: 411px;
     border-radius: 6px !important;
     overflow: hidden;
-    cursor: pointer;
     padding: 0 !important;
   }
 
@@ -102,6 +140,44 @@
   }
 
   .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 20px;
+  }
+
+  .card-data {
+    width: 100%;
+    margin-bottom: 42px;
+    padding: 15px 11px 15px 15px;
+    border: 1px solid $cardGrey;
+    border-radius: 2px;
+    position: relative;
+
+    &-menu {
+      position: absolute;
+      top: 0;
+      right: -5px;
+
+      .icon {
+        color: $primaryDark;
+      }
+    }
+  }
+
+  .card-links {
+    text-align: right;
+  }
+
+  .avatars {
+    display: flex;
+    margin-left: -15px;
+    margin-bottom: 15px;
+  }
+
+  .btn-arrow {
+    .svg-icon {
+      fill: red;
+    }
   }
 </style>

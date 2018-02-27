@@ -11,7 +11,11 @@
     </div>
     <div slot="content" class="content mt-4">
       <v-layout class='content-avatars' justify-center="true">
-        <vv-avatars :avatars='users' size='60'></vv-avatars>
+        <vv-avatars :avatars='users' size='60'>
+          <div slot='data' class='data-bottom'>    
+            {{ users.userOne.name }} & {{ users.userTwo.name }}
+          </div>
+        </vv-avatars>
       </v-layout>
       <div class="content-date">
         <div class='content-time'>Wed 27 Jan • 10:00</div>

@@ -30,7 +30,7 @@
           <vv-preparation></vv-preparation>
         </v-tab-item>
         <v-tab-item key="schedule">
-          Schedule
+          <vv-schedule></vv-schedule>
         </v-tab-item>
       </v-tabs>
 
@@ -42,13 +42,15 @@
 import VvSimpleCard from '@/shared/components/SimpleCard';
 import VvMentoringMatch from '../components/mentoringPageComponents/MentoringMatch';
 import VvPreparation from '../components/mentoringPageComponents/Preparation';
+import VvSchedule from '../components/mentoringPageComponents/Schedule';
 
 export default {
   name: 'MentoringTabs',
   components: {
     VvSimpleCard,
     VvMentoringMatch,
-    VvPreparation
+    VvSchedule,
+    VvPreparation,
   },
   props: {
     tab: String,

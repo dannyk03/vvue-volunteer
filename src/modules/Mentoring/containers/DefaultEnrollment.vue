@@ -12,10 +12,6 @@
 
   import VvSystemCheck from '@/shared/components/SystemCheck';
   import VvProgressDots from '@/shared/components/ProgressDots';
-  import VvEstartCard from '../components/EstartCard';
-  import VvChatList from './ChatList';
-  import VvMentoringTabs from './MentoringTabs';
-
 
   export default {
     name: 'DefaultEnrollment',

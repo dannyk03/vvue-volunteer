@@ -1,6 +1,9 @@
 <template>
   <div class="progress-dots">
-    <div v-for="(n, index) in total" :key='index' :class="getClass(n)"></div>
+    <v-tooltip top  class='progress-dots-tooltip' v-for="(n, index) in total" :key='index'>
+      <div slot="activator" :class="getClass(n)"></div>
+      <span>{{ steps[index] }}</span>
+    </v-tooltip>
   </div>
 </template>
 
@@ -10,6 +13,11 @@ export default {
   props: {
     current: [String, Number],
     total: [String, Number],
+  },
+  data() {
+    return {
+      steps: ['Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5'],
+    };
   },
   methods: {
     getClass(n) {
@@ -26,18 +34,23 @@ export default {
     display: flex;
     justify-content: space-between;
 
+    &-tooltip {
+      margin-right: 10px;
+    }
+
     .dot {
       width: 10px;
       height: 10px;
       border-radius: 50%;
       border: 1px solid $secondary;
+      cursor: pointer;
 
       &.done {
         background-color: $secondary;
       }
 
       &:not(:last-child) {
-        margin-right: 15px;
+        margin-right: 10px;
       }
     }
   }
