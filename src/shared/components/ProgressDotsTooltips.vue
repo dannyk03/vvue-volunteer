@@ -1,6 +1,6 @@
 <template>
   <div class="progress-dots">
-    <v-tooltip top  class='progress-dots-tooltip' v-for="(n, index) in total" :key='index'>
+    <v-tooltip top content-class="customTooltip"  class='progress-dots-tooltip' v-for="(n, index) in total" :key='index'>
       <div slot="activator" :class="getClass(n)"></div>
       <span>{{ steps[index] }}</span>
     </v-tooltip>

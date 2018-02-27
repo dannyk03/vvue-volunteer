@@ -56,8 +56,8 @@
             name: 'Max',
           },
         },
-      }
-    }
+      };
+    },
   };
 </script>
 <style lang="scss" scoped>

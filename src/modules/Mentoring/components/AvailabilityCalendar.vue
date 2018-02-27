@@ -30,12 +30,12 @@
 
   export default {
     components: {
-      VvTimePicker
+      VvTimePicker,
     },
     data() {
       return {
         dialog: false,
-        months: ["January", "February", "March", "April"," May", "June", "July", "August", "September", "October", "November", "December"],
+        months: ['January', 'February', 'March', 'April', ' May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         days: ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays', 'Saturdays'],
         calendar: null,
       };
@@ -47,41 +47,42 @@
     },
     methods: {
       chooseTime(day, data) {
-        data.day = day;
-        this.$store.commit('mentoring/openTimePicker', {data, toggle: true});
+        const timeData = data;
+        timeData.day = day;
 
-        console.log(this.times);
+        this.$store.commit('mentoring/openTimePicker', { timeData, toggle: true });
+        console.log(timeData, this.times);
       },
       setCalendar() {
-        let current_year_months = [];
-        let next_year_months = [];
+        const currentYearMonths = [];
+        const nextYearMonths = [];
 
         const date = new Date();
-        const current_year = +date.getFullYear();
-        const current_month = date.getMonth();
+        const currentYear = +date.getFullYear();
+        const currentMonth = date.getMonth();
 
-        for (let i = 0; i < 12; i++) {
-          if (i >= current_month) {
-            current_year_months.push({
-              title: `${this.months[i]} ${current_year}`, 
-              year: current_year, 
+        for (let i = 0; i < 12; i += 1) {
+          if (i >= currentMonth) {
+            currentYearMonths.push({
+              title: `${this.months[i]} ${currentYear}`,
+              year: currentYear,
               month: this.months[i],
             });
           } else {
-            next_year_months.push({
-              title: `${this.months[i]} ${current_year + 1}`,
-              year: current_year + 1,
+            nextYearMonths.push({
+              title: `${this.months[i]} ${currentYear + 1}`,
+              year: currentYear + 1,
               month: this.months[i],
-          });
+            });
           }
         }
 
-        this.calendar = [...current_year_months, ...next_year_months];
+        this.calendar = [...currentYearMonths, ...nextYearMonths];
       },
     },
     created() {
       this.setCalendar();
-    }
+    },
   };
 </script>
 <style lang="scss" scoped>

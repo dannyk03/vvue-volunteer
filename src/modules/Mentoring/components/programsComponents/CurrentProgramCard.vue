@@ -14,7 +14,7 @@
             <v-icon class='icon'>more_vert</v-icon>
           </v-btn>
           <v-list>
-            <v-list-tile v-for="(item, i) in menu" :key="i">
+            <v-list-tile v-for="(item, i) in menu" :key="i" class="simple-program-card-custom-list-item" @click="">
               <v-list-tile-title>{{ item }}</v-list-tile-title>
             </v-list-tile>
           </v-list>

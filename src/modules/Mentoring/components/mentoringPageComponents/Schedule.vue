@@ -39,7 +39,7 @@
     components: {
       VvLinkedList,
       VvBaseIcon,
-      VvBaseButton
+      VvBaseButton,
     },
     data() {
       return {

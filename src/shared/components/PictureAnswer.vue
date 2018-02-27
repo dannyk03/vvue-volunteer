@@ -41,7 +41,7 @@
       };
     },
     watch: {
-      '$route': 'fetchData',
+      $route: 'fetchData',
     },
     created() {
       this.fetchData();

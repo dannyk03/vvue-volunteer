@@ -55,3 +55,20 @@
     justify-content:  flex-end;
   }
 }
+
+.current-programs-menu {
+  max-width: 103px;
+
+  .list__tile--link {
+    font-size: 14px;
+    line-height: 1.57;
+    color: $primaryGrey;
+  }
+}
+
+// settings popup
+.simple-program-card-custom-list-item {
+  .list__tile {
+    height: 40px;
+  }
+}

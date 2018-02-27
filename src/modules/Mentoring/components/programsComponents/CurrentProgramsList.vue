@@ -16,7 +16,7 @@
     components: {
       VvCurrentProgramCard,
     },
-  }
+  };
 </script>
 <style lang="scss" scoped>
   @import "~@/styles/index";

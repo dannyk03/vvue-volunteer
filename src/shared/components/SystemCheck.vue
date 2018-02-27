@@ -26,7 +26,7 @@
     name: 'SystemCheck',
     components: {
       VvSimpleCard,
-      VvBaseButtonArrow
+      VvBaseButtonArrow,
     },
     data: () => ({
 

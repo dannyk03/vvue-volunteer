@@ -6,17 +6,16 @@ You can configure application via setting env variables before build project.
 ##### Supported:
 `NODE_ENV`. Could be 'development' or 'production'
  <br />
-`API_ROOT` - for development http://api2.staging.volunteer-vision.com
-<br />
-`CLIENT_SECRET`
-</br />
-`CLIENT_ID`
+ Check the current variables in `config/dev.env.js` <br/>
+ `Default user` - user@volunteer-vision.com <br/>
+ `Default password` - start123 <br/>
 
 
 ### Commands
 
 ``` bash
 # install dependencies
+npm i
 yarn
 
 # serve with hot reload at localhost:8080

@@ -6,6 +6,7 @@
         class='current-programs-select' 
         :items='selectOptions' 
         v-model="selected" 
+        content-class='current-programs-menu'
         bottom>
       </v-select>
     </v-layout>
@@ -25,14 +26,16 @@
 
     <vv-current-programs-list v-else :programs='programs'></vv-current-programs-list>
 
-    <v-fab-transition>
-      <v-btn class='btn-fab' color="primary" absolute right bottom fab>
-        <svg class='svg-icon' fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-          <path d="M0 0h24v24H0z" fill="none"/>
-        </svg>
-      </v-btn>
-    </v-fab-transition>
+    <router-link :to='{ name: "programs-avalible" }'>
+      <v-fab-transition>
+        <v-btn class='btn-fab' color="primary" absolute right bottom fab>
+          <svg class='svg-icon' fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            <path d="M0 0h24v24H0z" fill="none"/>
+          </svg>
+        </v-btn>
+      </v-fab-transition>
+    </router-link>
   </div>
 </template>
 <script>
@@ -49,28 +52,28 @@
         selectOptions: ['All', 'Active', 'Completed'],
 
         programs: [ // todo: Hardcode
-        {
-          id: 1,
-          image: 'https://i.pinimg.com/736x/0e/cc/1d/0ecc1d7e253ef79ef8df47f76a47c517.jpg',
-          title: 'I need your help to learn German',
-          name: 'eStart',
-          description: 'German language programm for middle-east refugees.',
-        },
-        {
-          id: 2,
-          image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&s=10f2e97699b156850d17285683b6ce81&dpr=1&auto=format&fit=crop&w=376&h=564&q=60&cs=tinysrgb',
-          title: 'I want to start my career',
-          name: 'eSister',
-          description: 'German language programm for middle-east refugees.',
-        },
-        {
-          id: 3,
-          image: 'https://pixel.nymag.com/imgs/daily/vulture/2017/11/01/01-kevin-spacey-1.w710.h473.jpg',
-          title: 'I want to start my career',
-          name: 'eStudy',
-          description: 'Help a male student to improve his career',
-        },
-      ],
+          {
+            id: 1,
+            image: 'https://i.pinimg.com/736x/0e/cc/1d/0ecc1d7e253ef79ef8df47f76a47c517.jpg',
+            title: 'I need your help to learn German',
+            name: 'eStart',
+            description: 'German language programm for middle-east refugees.',
+          },
+          {
+            id: 2,
+            image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&s=10f2e97699b156850d17285683b6ce81&dpr=1&auto=format&fit=crop&w=376&h=564&q=60&cs=tinysrgb',
+            title: 'I want to start my career',
+            name: 'eSister',
+            description: 'German language programm for middle-east refugees.',
+          },
+          {
+            id: 3,
+            image: 'https://pixel.nymag.com/imgs/daily/vulture/2017/11/01/01-kevin-spacey-1.w710.h473.jpg',
+            title: 'I want to start my career',
+            name: 'eStudy',
+            description: 'Help a male student to improve his career',
+          },
+        ],
       };
     },
   };
