@@ -8,7 +8,7 @@ const MentoringPrograms = () => import(/* webpackChunkName: "mentoring" */'./con
 
 const DefaultEnrollment = () => import(/* webpackChunkName: "mentoring" */'./containers/DefaultEnrollment');
 const MentoringPage = () => import(/* webpackChunkName: "mentoring" */'./containers/MentoringPage');
-const MentoringRegPage = () => import(/* webpackChunkName: "mentoring" */'./containers/MentoringRegPage');
+// const MentoringRegPage = () => import(/* webpackChunkName: "mentoring" */'./containers/MentoringRegPage');
 const AvailableProgramsPage = () => import(/* webpackChunkName: "mentoring" */'./containers/AvailableProgramsPage');
 // const AvailableProgramPage = () => import(/* webpackChunkName: "mentoring" */'./containers/AvailableProgramPage');
 
@@ -39,6 +39,7 @@ export default {
     {
       path: 'match',
       component: MentoringPage,
+      name: 'match',
       props: {
         tab: 'match',
       },

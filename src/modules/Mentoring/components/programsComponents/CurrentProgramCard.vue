@@ -29,16 +29,16 @@
 
         <v-layout align-center justify-space-between>
           <vv-progress-dots-tooltips :current="currentSteps" :total="5" />
-          <vv-base-button-arrow color='#00b1a7'>
-            <span slot="name">see details</span>
-          </vv-base-button-arrow>
+          <router-link :to="{ name: 'match' }" tag='span'>
+            <vv-base-button-arrow color='#00b1a7' name='see details' />
+          </router-link>
         </v-layout>
       </div>
       <div class="card-links">
-        <a href="">settings</a>
-        <vv-base-button-arrow color='#6c6c72'>
-          <span slot="name">participate again</span>
-        </vv-base-button-arrow>
+        <router-link :to="{ name: 'startDefault' }" class='btn-settings' tag='button'>
+          <span>settings</span>
+        </router-link>
+        <vv-base-button-arrow color='#6c6c72' name='participate again' />
       </div>
     </div>
   </vv-simple-card>
@@ -49,6 +49,7 @@
   import VvAvatars from '@/shared/components/Avatars';
   import VvProgressDotsTooltips from '@/shared/components/ProgressDotsTooltips';
   import VvBaseButtonArrow from '@/shared/components/BaseButtonArrow';
+  import VvBaseButton from '@/shared/components/BaseButton';
 
   export default {
     name: 'CurrentProgramCard',
@@ -57,6 +58,7 @@
       VvAvatars,
       VvProgressDotsTooltips,
       VvBaseButtonArrow,
+      VvBaseButton,
     },
     props: {
       program: {
@@ -175,9 +177,16 @@
     margin-bottom: 15px;
   }
 
-  .btn-arrow {
-    .svg-icon {
-      fill: red;
-    }
+  .btn-settings {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    text-align: center;
+    color: $primaryGrey;
+    text-transform: uppercase;
   }
 </style>

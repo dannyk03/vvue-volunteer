@@ -1,6 +1,6 @@
 <template>
   <button class='btn-arrow'>
-    <slot name='name'></slot>
+    <span class='name' :style='{ color: color }'>{{ name }}</span>
     <svg class='svg-icon' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"><defs><path id="a" d="M0 0h16v16H0z"/></defs><g fill="none" fill-rule="evenodd"><use fill="red" fill-opacity="0" xlink:href="#a"/><path :stroke="color" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6.062 12L10 8 6 4"/></g></svg>
   </button>
 </template>
@@ -10,6 +10,7 @@
       color: {
         default: '#000000',
       },
+      name: String,
     },
   };
 </script>
@@ -30,11 +31,6 @@
     .name {
       display: inline-flex;
       margin-right: 2px;
-    }
-
-    .svg-icon {
-      position: relative;
-      top: -1px;
     }
   }
 </style>

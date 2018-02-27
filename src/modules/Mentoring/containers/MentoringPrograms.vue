@@ -1,6 +1,14 @@
 <template>
   <div class='vv-mentoring-programs'>
-    <h1 class='display-1 heading'>Current <span class='accented'>Programs</span></h1>
+    <v-layout class='header' justify-space-between align-center>
+      <h1 class='display-1 heading'>Current <span class='accented'>Programs</span></h1>
+      <v-select 
+        class='current-programs-select' 
+        :items='selectOptions' 
+        v-model="selected" 
+        bottom>
+      </v-select>
+    </v-layout>
     
     <div v-if='programs.length === 0'>
       <v-layout align-center="true" column="true" >
@@ -37,6 +45,9 @@
     },
     data() {
       return {
+        selected: 'All',
+        selectOptions: ['All', 'Active', 'Completed'],
+
         programs: [ // todo: Hardcode
         {
           id: 1,
@@ -72,7 +83,7 @@
     position: relative;
   }
 
-  .heading {
+  .header {
     margin-bottom: 70px;
   }
 

@@ -37,3 +37,21 @@
     }
   }
 }
+
+.current-programs-select {
+  max-width: 116px;
+
+  .input-group__details {
+    &:before,
+    &:after, {
+      display: none !important;
+    }
+  }
+
+  .input-group__selections__comma {
+    @include calloutFont;
+    width: 100%;
+    display: inline-flex;
+    justify-content:  flex-end;
+  }
+}

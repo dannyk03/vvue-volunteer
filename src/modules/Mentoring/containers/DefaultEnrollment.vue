@@ -9,17 +9,12 @@
 
 <script>
   import { mapGetters } from 'vuex';
-
-  import VvSystemCheck from '@/shared/components/SystemCheck';
+  
   import VvProgressDots from '@/shared/components/ProgressDots';
 
   export default {
     name: 'DefaultEnrollment',
     components: {
-      VvEstartCard,
-      VvSystemCheck,
-      VvChatList,
-      VvMentoringTabs,
       VvProgressDots,
     },
     data() {
