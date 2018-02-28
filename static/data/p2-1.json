@@ -1,0 +1,38 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "language": "de",
+      "code": "eStart",
+      "title": "German language programm for middle-east refugees.",
+      "image": "http://fillmurray.com/600/800",
+      "users": [
+        { 
+          "name": "Simon",
+          "avatar": "http://fillmurray.com/300/300"
+        },
+        { 
+          "name": "Max",
+          "avatar": "http://fillmurray.com/300/320"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "language": "de",
+      "code": "eSister",
+      "title": "German language programm for middle-east refugees.",
+      "image": "http://fillmurray.com/550/700",
+      "users": [
+        { 
+          "name": "Eric",
+          "avatar": "http://fillmurray.com/310/320"
+        },
+        { 
+          "name": "Tom",
+          "avatar": "http://fillmurray.com/330/320"
+        }
+      ]
+    }
+  ]
+}

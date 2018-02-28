@@ -45,6 +45,7 @@
   </div>
 </template>
 <script>
+  import axios from 'axios';
   import { fetchPrograms } from '@/api';
 
   import VvCurrentProgramsList from '../components/currentPrograms/CurrentProgramsList';
@@ -64,19 +65,30 @@
       };
     },
     created() {
-      fetchPrograms()
+      axios.get('http://localhost:8080/static/data/p2-1.json')
         .then((response) => {
-          this.programs = response;
-
+          this.programs = response.data.data;
+      
           if (this.programs.length === 0) {
             this.programsEmpty = true;
           }
           this.loadData = false;
-          console.log(this.programs);
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => console.log(error));
+
+      // fetchPrograms()
+      //   .then((response) => {
+      //     this.programs = response;
+
+      //     if (this.programs.length === 0) {
+      //       this.programsEmpty = true;
+      //     }
+      //     this.loadData = false;
+      //     console.log(this.programs);
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
     },
   };
 </script>

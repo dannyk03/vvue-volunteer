@@ -1,8 +1,8 @@
 <template>
   <div class="avatars-wrap">
     <div class="avatars">
-      <vv-avatar class="avatar" :src="avatars.userOne.avatar" :size="size" />
-      <vv-avatar class="avatar me" :src="avatars.userTwo.avatar" :size="size" />          
+      <vv-avatar class="avatar" :src="avatars[0].avatar" :size="size" />
+      <vv-avatar class="avatar me" :src="avatars[1].avatar" :size="size" />          
     </div>
     <slot name='data' />
   </div>

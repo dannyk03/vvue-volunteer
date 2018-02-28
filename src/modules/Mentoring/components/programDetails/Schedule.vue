@@ -17,19 +17,24 @@
     </v-layout>
     <div class="content">
       <div class='content-title'>activity</div>
-      <vv-linked-list class="steps" :list="steps">
+      <vv-linked-list class="steps" :list="activitySteps">
         <div class="icon" slot="icon" slot-scope="{ item: { icon } }">
           <vv-base-icon :name="icon" width="12" height="12"  backgroundColor="white" />
         </div>
-        <div class="text ml-3" slot="body" slot-scope="{ item }">
-          <div class='content-date'>{{ item.date }}</div>
-          <div class='content-state'>{{ item.state }}</div>
-        </div>
+          <div class="text ml-3" slot="body" slot-scope="{ item }">
+            <div>
+              <div class='content-date'>Wed 27 Jan 2018 • 10:00</div>
+              <div class='content-state'>Appointment cancelled</div>
+            </div>
+            <div class='content-passed'>1h ago</div>
+          </div>
       </vv-linked-list>
     </div>
   </div>
 </template>
 <script>
+  import axios from 'axios';
+
   import VvLinkedList from '@/shared/components/LinkedList';
   import VvBaseIcon from '@/shared/components/BaseIcon';
   import VvBaseButton from '@/shared/components/BaseButton';
@@ -44,25 +49,17 @@
     },
     data() {
       return {
-        steps: [
-          {
-            icon: 'airplane',
-            date: 'Wed 27 Jan 2018 • 10:00',
-            state: 'Scheduled',
-          },
-          {
-            icon: 'airplane',
-            date: 'Wed 27 Jan 2018 • 10:00',
-            state: 'Apointment set to hangup',
-          },
-          {
-            icon: 'airplane',
-            date: 'Wed 27 Jan 2018 • 10:00',
-            state: 'Done',
-          },
-        ],
+        activitySteps: [],
       };
     },
+    created() {
+      axios.get('http://localhost:8080/static/data/program-schedule.json')
+        .then((response) => {
+          this.activitySteps = response.data;
+          console.log(response.data);
+        })
+        .catch((error) => console.log(error));
+    }
   };
 </script>
 <style lang="scss" scoped>
@@ -115,6 +112,18 @@
     &-state {
       @include captionFont;
     }
+
+    &-passed {
+      font-size: 12px;
+      color: $secondaryGrey;
+    }
+  }
+
+  .text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
   }
 </style>
 

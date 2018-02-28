@@ -14,22 +14,22 @@
             <v-icon class='icon'>more_vert</v-icon>
           </v-btn>
           <v-list>
-            <v-list-tile v-for="(item, i) in menu" :key="i" class="simple-program-card-custom-list-item" @click="">
+            <v-list-tile v-for="(item, i) in menu" :key="i" class="simple-program-card-custom-list-item">
               <v-list-tile-title>{{ item }}</v-list-tile-title>
             </v-list-tile>
           </v-list>
         </v-menu>
 
-        <vv-avatars :avatars='users' size='40' class='avatars'>
+        <vv-avatars :avatars='program.users' size='40' class='avatars'>
           <div slot='data' class='data-left'>
-            <div class='names'>{{ users.userOne.name }} & {{ users.userTwo.name }}</div>
-            <div class='status'>{{ users.status }}</div>
+            <div class='names'>{{ program.users[0].name }} & {{ program.users[1].name }}</div>
+            <div class='status'>Unconfirmed match</div>
           </div>
         </vv-avatars>
 
         <v-layout align-center justify-space-between>
           <vv-progress-dots-tooltips :current="currentSteps" :total="5" />
-          <router-link :to="{ name: 'match' }" tag='span'>
+          <router-link :to="{ name: 'match', params: { program_id: program.id } }" tag='span'>
             <vv-base-button-arrow color='#00b1a7' colorHover="#6c6c72" name='see details' />
           </router-link>
         </v-layout>
@@ -65,7 +65,7 @@
         id: Number,
         image: String,
         title: String,
-        name: String,
+        names: Object,
         description: String,
       },
     },
@@ -73,17 +73,17 @@
       return {
         menu: ['Some action', 'Invite collegue', 'Something else'],
         currentSteps: 4,
-        users: {
-          status: 'Unconfirmed match',
-          userOne: {
-            avatar: 'http://pastimesinc.com/wp-content/uploads/2013/03/hulk1-790x1024.jpg',
-            name: 'Simon',
-          },
-          userTwo: {
-            avatar: 'https://vvapiv2.wird.sehrgute.software/storage/uploads/user/avatar/28/medium/c3d297ffad0a275de0d127dff3668c68.jpeg',
-            name: 'Max',
-          },
-        },
+        // users: {
+        //   status: 'Unconfirmed match',
+        //   userOne: {
+        //     avatar: 'http://pastimesinc.com/wp-content/uploads/2013/03/hulk1-790x1024.jpg',
+        //     name: 'Simon',
+        //   },
+        //   userTwo: {
+        //     avatar: 'https://vvapiv2.wird.sehrgute.software/storage/uploads/user/avatar/28/medium/c3d297ffad0a275de0d127dff3668c68.jpeg',
+        //     name: 'Max',
+        //   },
+        // },
       };
     },
   };

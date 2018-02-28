@@ -1,9 +1,9 @@
 <template>
-  <div class='test'>
+  <div class='vv-program-details-page-wrap'>
     <div class='content-wrapper'>
       <div class="vv-program-details-page">
         <div class='sidebar'>
-          <vv-estart-card class="estart-card" />
+          <vv-estart-card class="estart-card" :users='program.users' />
           <vv-system-check class="system-check" />
         </div>
         <vv-program-tabs class="body" :tab="tab" :selectedUser="selectedUser" />
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+  import axios from 'axios';
+  import _ from 'lodash';
   import { mapGetters } from 'vuex';
 
   import VvChatList from '@/shared/components/ChatList';
@@ -31,6 +33,7 @@
     },
     data() {
       return {
+        program: null,
       };
     },
     computed: {
@@ -40,18 +43,31 @@
     },
     methods: {
     },
+    created() {
+      const id = this.$route.params['program_id'];
+
+      axios.get('http://localhost:8080/static/data/p2-1.json')
+        .then((response) => {
+          this.program = _.find(response.data.data, (item) => {
+            return item.id === id;
+          });
+
+          console.log(this.program);
+        })
+        .catch((error) => console.log(error));
+    },
   };
 </script>
 
 <style type="text/scss" lang="scss">
   @import "~@/styles/index";
 
-  .test {
-    position: relative;
-  }
-
   .vv-program-details-page {
     display: flex;
+
+    &-wrap {
+      position: relative;
+    }
     
     .sidebar {
       margin-right: 20px;

@@ -13,7 +13,7 @@
       <v-layout class='content-avatars' justify-center="true">
         <vv-avatars :avatars='users' size='60'>
           <div slot='data' class='data-bottom'>    
-            {{ users.userOne.name }} & {{ users.userTwo.name }}
+            {{ users[0].name }} & {{ users[1].name }}
           </div>
         </vv-avatars>
       </v-layout>
@@ -43,6 +43,7 @@
       VvSimpleCard,
       VvAvatars,
     },
+    props: ['users'],
     data() {
       return {
         barWidth: 30,
