@@ -4,19 +4,20 @@ import store from '@/shared/store';
 
 import storeModule from './store';
 
-const MentoringPrograms = () => import(/* webpackChunkName: "mentoring" */'./containers/MentoringPrograms');
-
-const DefaultEnrollment = () => import(/* webpackChunkName: "mentoring" */'./containers/DefaultEnrollment');
-const MentoringPage = () => import(/* webpackChunkName: "mentoring" */'./containers/MentoringPage');
-const MentoringRegPage = () => import(/* webpackChunkName: "mentoring" */'./containers/MentoringRegPage');
+// Pages
+const CurrentProgramsPage = () => import(/* webpackChunkName: "mentoring" */'./containers/CurrentProgramsPage');
+const ProgramRegPage = () => import(/* webpackChunkName: "mentoring" */'./containers/ProgramRegPage');
 const AvailableProgramsPage = () => import(/* webpackChunkName: "mentoring" */'./containers/AvailableProgramsPage');
-// const AvailableProgramPage = () => import(/* webpackChunkName: "mentoring" */'./containers/AvailableProgramPage');
+const ProgramDetailsPage = () => import(/* webpackChunkName: "mentoring" */'./containers/ProgramDetailsPage');
+
+// Layouts
+const DefaultEnrollmentLayout = () => import(/* webpackChunkName: "mentoring" */'./containers/DefaultEnrollmentLayout');
 
 // for Default Entrollment
-const StartDefault = () => import('./components/defaultEnrollmentComponents/StartDefault');
-const TypicalDayDefault = () => import('./components/defaultEnrollmentComponents/TypicalDayDefault');
-const AvailabilityDefault = () => import('./components/defaultEnrollmentComponents/AvailabilityDefault');
-const WebinarDefault = () => import('./components/defaultEnrollmentComponents/WebinarDefault');
+const StartDefault = () => import('./components/defaultEnrollment/Start');
+const TypicalDayDefault = () => import('./components/defaultEnrollment/TypicalDay');
+const AvailabilityDefault = () => import('./components/defaultEnrollment/Availability');
+const WebinarDefault = () => import('./components/defaultEnrollment/Webinar');
 
 
 export default {
@@ -33,12 +34,12 @@ export default {
   children: [
     {
       path: '',
-      component: MentoringPrograms,
+      component: CurrentProgramsPage,
       name: 'programs',
     },
     {
       path: 'match',
-      component: MentoringPage,
+      component: ProgramDetailsPage,
       name: 'match',
       props: {
         tab: 'match',
@@ -46,21 +47,21 @@ export default {
     },
     {
       path: 'chat',
-      component: MentoringPage,
+      component: ProgramDetailsPage,
       props: {
         tab: 'chat',
       },
     },
     {
       path: 'preparation',
-      component: MentoringPage,
+      component: ProgramDetailsPage,
       props: {
         tab: 'preparation',
       },
     },
     {
       path: 'schedule',
-      component: MentoringPage,
+      component: ProgramDetailsPage,
       props: {
         tab: 'schedule',
       },
@@ -72,12 +73,12 @@ export default {
     },
     {
       path: 'program',
-      component: MentoringRegPage,
+      component: ProgramRegPage,
       name: 'program',
     },
     {
       path: 'default-enrollment',
-      component: DefaultEnrollment,
+      component: DefaultEnrollmentLayout,
       name: 'defaultEnrollment',
       children: [
         {
@@ -106,7 +107,7 @@ export default {
       path: '',
       name: 'mentoring',
       redirect: '',
-      component: MentoringPrograms,
+      component: CurrentProgramsPage,
     },
   ],
 };

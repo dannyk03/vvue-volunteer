@@ -18,15 +18,14 @@
 <script>
   import VvBaseButton from '@/shared/components/BaseButton';
   import VvBackButton from '@/shared/components/BackButton';
-  import VvAvailabilityCalendar from '../AvailabilityCalendar';
-  import VvNextButton from '../NextButton';
+  import VvAvailabilityCalendar from './AvailabilityCalendar';
 
   export default {
+    name: 'AvailabilityCalendar',
     components: {
       VvAvailabilityCalendar,
       VvBaseButton,
       VvBackButton,
-      VvNextButton,
     },
     methods: {
       goToNext() {

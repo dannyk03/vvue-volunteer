@@ -1,7 +1,7 @@
 <template>
   <div>
     <vv-navbar />
-    <div class="content-wrapper">
+    <div>
       <router-view />
     </div>
   </div>
@@ -19,9 +19,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .content-wrapper {
-    height: calc(100vh - 80px);
-    padding: 30px 100px;
-    overflow-y: auto;
-  }
+
 </style>

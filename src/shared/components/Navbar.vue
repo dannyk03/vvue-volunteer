@@ -46,6 +46,8 @@ export default {
   .toolbar {
     background-color: white;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,0.05);
+    position: relative;
+    z-index: 5;
 
     .toolbar-wrapper {
       width: 100%;

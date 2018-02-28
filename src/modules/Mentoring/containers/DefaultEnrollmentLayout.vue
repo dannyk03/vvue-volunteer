@@ -1,9 +1,11 @@
 <template>
-  <div class="vv-default-enrollment-page">
-    <div class='enrollment-indicator'>
-      <vv-progress-dots class="progress-indicator" :current="enrollmentSteps" :total="4" />
+  <div class='content-wrapper'>
+    <div class="vv-default-enrollment-page">
+      <div class='enrollment-indicator'>
+        <vv-progress-dots class="progress-indicator" :current="enrollmentSteps" :total="4" />
+      </div>
+      <router-view></router-view>
     </div>
-    <router-view></router-view>
   </div>
 </template>
 

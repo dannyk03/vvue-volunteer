@@ -21,7 +21,7 @@
         </v-tab>
 
         <v-tab-item key="match">
-          <vv-mentoring-match :match="selectedUser" />
+          <vv-match :match="selectedUser" />
         </v-tab-item>
         <v-tab-item key="chat">
           Chat
@@ -40,15 +40,15 @@
 
 <script>
 import VvSimpleCard from '@/shared/components/SimpleCard';
-import VvMentoringMatch from '../components/mentoringPageComponents/MentoringMatch';
-import VvPreparation from '../components/mentoringPageComponents/Preparation';
-import VvSchedule from '../components/mentoringPageComponents/Schedule';
+import VvMatch from './Match';
+import VvPreparation from './Preparation';
+import VvSchedule from './Schedule';
 
 export default {
-  name: 'MentoringTabs',
+  name: 'ProgramTabs',
   components: {
     VvSimpleCard,
-    VvMentoringMatch,
+    VvMatch,
     VvSchedule,
     VvPreparation,
   },

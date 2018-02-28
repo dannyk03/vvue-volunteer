@@ -1,6 +1,6 @@
 <template>
   <div class="vv-available-program-list">
-    <vv-simple-program-card 
+    <vv-available-card 
       v-for="program in list" 
       :key="program.id"
       :program="program" 
@@ -9,12 +9,12 @@
 </template>
 
 <script>
-  import VvSimpleProgramCard from './SimpleProgramCard';
+  import VvAvailableCard from './AvailableCard';
 
   export default {
     name: 'AvailableProgramList',
     components: {
-      VvSimpleProgramCard,
+      VvAvailableCard,
     },
     props: {
       list: Array,
@@ -26,6 +26,7 @@
 </script>
 
 <style lang="scss" scoped>
+
   .vv-available-program-list {
     display: grid;
     grid-gap: 30px;

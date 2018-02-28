@@ -1,6 +1,6 @@
 <template>
   <router-link :to='{name: "program"}' tag='div'>
-    <vv-simple-card class="vv-simple-program-card">
+    <vv-simple-card class="vv-available-card">
       <div slot="content" class="content">
         <p class="card-title">{{program.title}}</p>
         <img :src="program.image" alt="" height="300" width="250" />
@@ -17,7 +17,7 @@
   import VvSimpleCard from '@/shared/components/SimpleCard';
 
   export default {
-    name: 'EstartCard',
+    name: 'AvailableCard',
     components: {
       VvSimpleCard,
     },
@@ -39,7 +39,7 @@
 <style type="text/scss" lang="scss" scoped>
   @import '~@/styles/colors';
 
-  .vv-simple-program-card {
+  .vv-available-card {
     width: 250px;
     height: 421px;
     border-radius: 6px !important;

@@ -95,14 +95,13 @@
   import VvPictureAnswer from '@/shared/components/PictureAnswer';
   import VvBaseButton from '@/shared/components/BaseButton';
   import VvBackButton from '@/shared/components/BackButton';
-  import VvNextButton from '../NextButton';
 
   export default {
+    name: 'TypicalDay',
     components: {
       VvPictureAnswer,
       VvBaseButton,
       VvBackButton,
-      VvNextButton,
     },
     data() {
       return {

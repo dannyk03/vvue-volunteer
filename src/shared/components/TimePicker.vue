@@ -37,6 +37,7 @@
   import { mapGetters } from 'vuex';
 
   export default {
+    name: 'TimePicker',
     data() {
       return {
         timepickerTimes: [

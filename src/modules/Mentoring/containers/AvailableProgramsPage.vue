@@ -1,15 +1,17 @@
 <template>
-  <div class="vv-available-programs mt-4">
-    <i18n path="mentoring.availablePrograms.title" tag="h1" class="display-1 heading">
-      <span place="accent" class="accented" v-t="'mentoring.availablePrograms.title.accent'" />
-    </i18n>
-    <p class="page-subtitle mt-3 mb-5" v-t="'mentoring.availablePrograms.subtitle'" />
-    <vv-available-program-list :list="programs" @choose="chooseProgram" />
+  <div class='content-wrapper'>
+    <div class="vv-available-programs mt-4">
+      <i18n path="mentoring.availablePrograms.title" tag="h1" class="display-1 heading">
+        <span place="accent" class="accented" v-t="'mentoring.availablePrograms.title.accent'" />
+      </i18n>
+      <p class="page-subtitle mt-3 mb-5" v-t="'mentoring.availablePrograms.subtitle'" />
+      <vv-available-program-list :list="programs" @choose="chooseProgram" />
+    </div>
   </div>
 </template>
 
 <script>
-  import VvAvailableProgramList from '../components/AvailableProgramList';
+  import VvAvailableProgramList from '../components/availablePrograms/AvailableProgramList';
 
   export default {
     name: 'AvailablePrograms',
@@ -53,6 +55,7 @@
   @import '~@/styles/fonts';
 
   .vv-available-programs {
+    padding-top: 10px;
     .page-subtitle {
       @include pageSubtitleFont;
     }

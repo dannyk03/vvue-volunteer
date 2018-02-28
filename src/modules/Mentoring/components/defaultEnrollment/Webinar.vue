@@ -17,13 +17,12 @@
 <script>
   import VvBaseButton from '@/shared/components/BaseButton';
   import VvBackButton from '@/shared/components/BackButton';
-  import VvNextButton from '../NextButton';
 
   export default {
+    name: 'Webinar',
     components: {
       VvBaseButton,
       VvBackButton,
-      VvNextButton,
     },
     methods: {
       goToNext() {

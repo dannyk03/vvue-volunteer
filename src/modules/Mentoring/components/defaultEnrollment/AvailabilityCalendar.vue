@@ -29,6 +29,7 @@
   import VvTimePicker from '@/shared/components/TimePicker';
 
   export default {
+    name: 'AvailabilityCalendar',
     components: {
       VvTimePicker,
     },

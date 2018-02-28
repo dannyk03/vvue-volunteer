@@ -1,6 +1,6 @@
 <template>
-  <div class='vv-preparation'>
-    <v-layout justify-space-between="true" align-center="true" class='header'>
+  <div class='vv-schedule'>
+    <v-layout class='header' justify-space-between align-center >
       <div class='header-text'>
         Here you can schedule all of your eStart program appointments. Please postpone your sessions only in agreement with your mentee.
       </div>
@@ -36,6 +36,7 @@
   import '@/../static/icons/compiled-svg/airplane';
 
   export default {
+    name: 'Schedule',
     components: {
       VvLinkedList,
       VvBaseIcon,

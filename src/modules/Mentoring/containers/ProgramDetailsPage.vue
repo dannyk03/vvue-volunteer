@@ -1,31 +1,33 @@
 <template>
-  <div class="vv-mentoring-page">
-    <div class='sidebar'>
-      <vv-estart-card class="estart-card" />
-      <vv-system-check class="system-check" />
+  <div class='test'>
+    <div class='content-wrapper'>
+      <div class="vv-program-details-page">
+        <div class='sidebar'>
+          <vv-estart-card class="estart-card" />
+          <vv-system-check class="system-check" />
+        </div>
+        <vv-program-tabs class="body" :tab="tab" :selectedUser="selectedUser" />
+      </div>
     </div>
-    <vv-mentoring-tabs class="body" :tab="tab" :selectedUser="selectedUser" />
-    <!-- <vv-chat-list class="chat" /> -->
+    <vv-chat-list class="chat" />
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex';
 
-  import VvSystemCheck from '@/shared/components/SystemCheck';
-  import VvEstartCard from '../components/mentoringPageComponents/EstartCard';
-  import VvChatList from './ChatList';
-  import VvMentoringTabs from './MentoringTabs';
-
+  import VvChatList from '@/shared/components/ChatList';
+  import VvSystemCheck from '../components/programDetails/SystemCheck';
+  import VvEstartCard from '../components/programDetails/EstartCard';
+  import VvProgramTabs from '../components/programDetails/ProgramTabs';
 
   export default {
-    name: 'MentoringPage',
+    name: 'ProgramDetails',
     components: {
-      VvEstartCard,
       VvSystemCheck,
       VvChatList,
-      VvMentoringTabs,
-
+      VvEstartCard,
+      VvProgramTabs,
     },
     data() {
       return {
@@ -44,7 +46,11 @@
 <style type="text/scss" lang="scss">
   @import "~@/styles/index";
 
-  .vv-mentoring-page {
+  .test {
+    position: relative;
+  }
+
+  .vv-program-details-page {
     display: flex;
     
     .sidebar {
