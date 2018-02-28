@@ -51,28 +51,10 @@
     <!-- Steps content -->
     <div class='step' :class='{"is-active": index === 0 ? true : false}' v-for='(step, index) in steps' :key="'test_step_' + index">
       <!-- Step asnwer -->
-      <vv-picture-answer :type='step.type' :url='step.url'></vv-picture-answer>
-
+      <vv-picture-answer v-if='step.type !== "form"' :type='step.type' :url='step.url' />
+      
       <!-- Step form -->
-      <!-- <div class='step'>
-        <div class='step-title'>Starting the day</div>
-        <div class='step-fields-wrap'>
-          <v-select
-            :items="items"
-            label="Having an educationl background in"
-            single-line
-            bottom
-          ></v-select>
-          <v-text-field
-            name="input-1"
-            label="And a professional background in"
-          ></v-text-field>
-          <v-text-field
-            name="input-2"
-            label="I arrive at"
-          ></v-text-field>
-        </div>
-      </div> -->
+      <vv-typical-form v-else />
     </div>
 
 
@@ -95,6 +77,7 @@
   import VvPictureAnswer from '@/shared/components/PictureAnswer';
   import VvBaseButton from '@/shared/components/BaseButton';
   import VvBackButton from '@/shared/components/BackButton';
+  import VvTypicalForm from './TypicalForm';
 
   export default {
     name: 'TypicalDay',
@@ -102,18 +85,14 @@
       VvPictureAnswer,
       VvBaseButton,
       VvBackButton,
+      VvTypicalForm,
     },
     data() {
       return {
-        items: [
-          { text: 'State 1' },
-          { text: 'State 2' },
-          { text: 'State 3' },
-        ],
         stepsCount: 0,
         steps: [
           { type: 'answers', url: 'step-one' },
-          { type: 'answers', url: 'step-two' },
+          { type: 'form' },
           { type: 'answers', url: 'step-one' },
           { type: 'answers', url: 'step-two' },
           { type: 'answers', url: 'step-one' },
@@ -226,11 +205,6 @@
       line-height: 1.5;
       text-align: center;
       color: $primaryDark;
-    }
-
-    &-fields-wrap {
-      max-width: 370px;
-      margin: 0 auto;
     }
   }
 
