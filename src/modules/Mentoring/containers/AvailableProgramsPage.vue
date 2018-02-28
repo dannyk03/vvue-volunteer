@@ -17,7 +17,7 @@
       VvAvailableProgramList,
     },
     data: () => ({
-      programs: [ // todo: Hardcode
+      programs: [
         {
           id: 1,
           image: 'https://i.pinimg.com/736x/0e/cc/1d/0ecc1d7e253ef79ef8df47f76a47c517.jpg',

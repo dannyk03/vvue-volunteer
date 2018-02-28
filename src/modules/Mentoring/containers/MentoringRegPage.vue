@@ -28,6 +28,11 @@
     components: {
       VvBaseButton,
     },
+    data() {
+      return {
+        program: null,
+      };
+    },
   };
 </script>
 <style lang="scss" scoped>

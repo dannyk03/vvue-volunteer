@@ -3,6 +3,7 @@
     <v-layout class='header' justify-space-between align-center>
       <h1 class='display-1 heading'>Current <span class='accented'>Programs</span></h1>
       <v-select 
+        v-if='programs.length > 0'
         class='current-programs-select' 
         :items='selectOptions' 
         v-model="selected" 
@@ -39,6 +40,8 @@
   </div>
 </template>
 <script>
+  import { fetchPrograms } from '@/api';
+
   import VvCurrentProgramsList from '../components/programsComponents/CurrentProgramsList';
 
   export default {
@@ -50,31 +53,18 @@
       return {
         selected: 'All',
         selectOptions: ['All', 'Active', 'Completed'],
-
-        programs: [ // todo: Hardcode
-          {
-            id: 1,
-            image: 'https://i.pinimg.com/736x/0e/cc/1d/0ecc1d7e253ef79ef8df47f76a47c517.jpg',
-            title: 'I need your help to learn German',
-            name: 'eStart',
-            description: 'German language programm for middle-east refugees.',
-          },
-          {
-            id: 2,
-            image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&s=10f2e97699b156850d17285683b6ce81&dpr=1&auto=format&fit=crop&w=376&h=564&q=60&cs=tinysrgb',
-            title: 'I want to start my career',
-            name: 'eSister',
-            description: 'German language programm for middle-east refugees.',
-          },
-          {
-            id: 3,
-            image: 'https://pixel.nymag.com/imgs/daily/vulture/2017/11/01/01-kevin-spacey-1.w710.h473.jpg',
-            title: 'I want to start my career',
-            name: 'eStudy',
-            description: 'Help a male student to improve his career',
-          },
-        ],
+        programs: [],
       };
+    },
+    created() {
+      fetchPrograms()
+        .then((response) => {
+          this.programs = response;
+          console.log(this.programs);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   };
 </script>

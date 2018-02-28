@@ -2,10 +2,10 @@
   <vv-simple-card class="vv-simple-program-card">
     <div slot="header" class="header">
       <div class="header-bg">
-        <img :src="program.image" alt="">
+        <img :src="program.image !== undefined ? program.image : 'http://fillmurray.com/400/400'" alt="">
       </div>
-      <div class="header-title fontAccented">{{ program.name }}</div>
-      <div class='header-description'>{{ program.description }}</div>
+      <div class="header-title fontAccented">{{ program.code }}</div>
+      <div class='header-description'>{{ program.title }}</div>
     </div>
     <div slot='content' class='content'>
       <div class='card-data'>
@@ -30,7 +30,7 @@
         <v-layout align-center justify-space-between>
           <vv-progress-dots-tooltips :current="currentSteps" :total="5" />
           <router-link :to="{ name: 'match' }" tag='span'>
-            <vv-base-button-arrow color='#00b1a7' name='see details' />
+            <vv-base-button-arrow color='#00b1a7' colorHover="#6c6c72" name='see details' />
           </router-link>
         </v-layout>
       </div>
@@ -38,7 +38,7 @@
         <router-link :to="{ name: 'startDefault' }" class='btn-settings' tag='button'>
           <span>settings</span>
         </router-link>
-        <vv-base-button-arrow color='#6c6c72' name='participate again' />
+        <vv-base-button-arrow color='#6c6c72' colorHover="#00b1a7" class="btn-card-arrow" name='participate again' />
       </div>
     </div>
   </vv-simple-card>
@@ -188,5 +188,13 @@
     text-align: center;
     color: $primaryGrey;
     text-transform: uppercase;
+    transition: color .3s ease;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+  .btn-card-arrow:hover {
+    color: $primary;
   }
 </style>

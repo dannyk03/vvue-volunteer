@@ -40,10 +40,12 @@
 
 .current-programs-select {
   max-width: 116px;
+  padding: 0;
 
   .input-group__details {
+    display: none;
     &:before,
-    &:after, {
+    &:after {
       display: none !important;
     }
   }
@@ -69,6 +71,7 @@
 // settings popup
 .simple-program-card-custom-list-item {
   .list__tile {
-    height: 40px;
+    height: 34px;
+    font-size: 14px;
   }
 }
