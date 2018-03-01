@@ -7,10 +7,10 @@
     <div class='bottom'>
       <vv-back-button way='availabilityDefault' />
 
-      <button class='mentoring-nav-next' @click='goToNext'>
+      <router-link  :to='{ name: "programs" }' tag='button' class='mentoring-nav-next'>
         <span>Next</span>
         <svg class='svg-icon' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"><defs><path id="a" d="M0 0h16v16H0z"/></defs><g fill="none" fill-rule="evenodd"><use fill="#417505" fill-opacity="0" xlink:href="#a"/><path stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6.062 12L10 8 6 4"/></g></svg>
-      </button>
+      </router-link>
     </div>
   </div>
 </template>

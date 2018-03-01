@@ -7,15 +7,21 @@
       </div>
     </v-layout>
     <div class="content">
-      <vv-linked-list class="steps" :list="steps">
-        <div class="icon" slot="icon" slot-scope="{ item: { icon } }">
-          <vv-icon :name="icon" width="12" height="12"  backgroundColor="white" />
-        </div>
-        <div class="text ml-3" slot="body" slot-scope="{ item }">
-          <div class='content-title'>{{ item.text }}</div>
-          <div class='content-subtitle'>{{ item.subtext }}</div>
-        </div>
-      </vv-linked-list>
+      <!-- TODO: refactoring this code -->
+      <ul class="vv-linked-list steps">
+        <li class="item" v-for="(item, index) in preparation.steps" :key='index'>
+          <div v-if='item.type === "documents"' class="item-image">
+            <svg class='svg-icon' xmlns="http://www.w3.org/2000/svg" width="30" height="30"><g fill="none" fill-rule="evenodd"><circle cx="15" cy="15" r="15" fill="#E0E0E0"/><path d="M7 7h16v16H7z"/><path fill="#FFF" d="M19.667 13H17V9h-4v4h-2.667L15 17.667 19.667 13zm-9.334 7.2v1h9.334v-1h-9.334z"/></g></svg>
+          </div>
+          <div v-else class="item-image count">
+            <span>{{ index }}</span>
+          </div>
+          <div>
+            <div class="steps-title" >{{ item.title }}</div>
+            <div class="steps-subtitle">{{ item.subtitle }}</div>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -25,39 +31,17 @@
   import '@/../static/icons/compiled-svg/airplane';
 
   export default {
+    name: 'Preparation',
     components: {
       VvLinkedList,
       VvIcon,
     },
+    props: {
+      preparation: Object,
+    },
     data() {
       return {
-        steps: [
-          {
-            icon: 'airplane',
-            text: 'General documents Online Student Mentoring',
-            subtext: 'General information',
-          },
-          {
-            icon: 'airplane',
-            text: 'Documents Session',
-            subtext: 'Personal goals',
-          },
-          {
-            icon: 'airplane',
-            text: 'Documents Session',
-            subtext: 'Personal goals',
-          },
-          {
-            icon: 'airplane',
-            text: 'Documents Session',
-            subtext: 'Personal goals',
-          },
-          {
-            icon: 'airplane',
-            text: 'Documents Session',
-            subtext: 'Personal goals',
-          },
-        ],
+        
       };
     },
   };
@@ -111,6 +95,68 @@
 
     &-subtitle {
       @include captionFont;
+    }
+  }
+
+  .steps {
+    &-title {
+      @include boldBodyFont;
+      position: relative;
+      top: -3px;
+    }
+
+    &-subtitle {
+      font-size: 12px;
+      color: $primaryGrey;
+    }
+  }
+
+  .vv-linked-list {
+    width: 100%;
+    list-style: none;
+    
+    .item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+
+      .item-image {
+        margin-right: 16px;
+
+        &.count {
+          display: flex;
+          justify-content: center;
+          align-content: flex-start;
+          width: 30px;
+          height: 30px;
+          margin-right: 16px;
+          background-color: $secondary;
+          border-radius: 100%;
+          color: $white;
+          font-size: 14px;
+          font-weight: 500;
+
+          span {
+            position: relative;
+            top: 4px;
+          }
+        }
+      }
+
+      &:not(:last-child) {
+        .item-image {
+          position: relative;
+          &::after {
+            content: '';
+            position: absolute;
+            height: 30px;
+            width: 1px;
+            background-color: #E0E0E0;
+            bottom: -115%;
+            left: 50%;
+          }
+        }
+      }
     }
   }
 </style>

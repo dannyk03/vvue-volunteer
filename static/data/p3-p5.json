@@ -1,0 +1,112 @@
+{
+  "match": {
+    "user": {
+      "avatar": "http://fillmurray.com/400/400",
+      "name": "Travis",
+      "role": "mentee"
+    },
+    "steps": [
+      {
+        "type": "schedule",
+        "title": "Schedule and appointment in schedule tab"
+      },
+      {
+        "type": "check",
+        "title": "Check system before session to make sure everyhting works"
+      },
+      {
+        "type": "download",
+        "title": "Read or download preparation materials in preparation tab"
+      }
+    ]
+  },
+  "preparation": {
+    "steps": [
+      {
+        "type": "documents",
+        "title": "General documents Online Student Mentoring",
+        "subtitle": "General information"
+      },
+      {
+        "type": "simple",
+        "title": "Documents Session 1",
+        "subtitle": "Session 1 is all about getting to know each other."
+      },
+      {
+        "type": "simple",
+        "title": "Documents Session 2",
+        "subtitle": "Personal goals"
+      },
+      {
+        "type": "simple",
+        "title": "Documents Session 3",
+        "subtitle": "Personal goals"
+      },
+      {
+        "type": "simple",
+        "title": "Documents Session 4",
+        "subtitle": "Personal goals"
+      },
+      {
+        "type": "simple",
+        "title": "Documents Session 5",
+        "subtitle": "Personal goals"
+      },
+      {
+        "type": "simple",
+        "title": "Documents Session 6",
+        "subtitle": "Personal goals"
+      },
+      {
+        "type": "simple",
+        "title": "Documents Session 7",
+        "subtitle": "Personal goals"
+      }
+    ]
+  },
+  "schedule": {
+    "steps": [
+      {
+        "type": "schedule",
+        "title": "Wed 27 Jan 2018 • 10:00",
+        "subtitle": "Scheduled"
+      },
+      {
+        "type": "cancel",
+        "title": "Wed 27 Jan 2018 • 10:00",
+        "subtitle": "Appointment cancelled",
+        "passed": "1h ago"
+      },
+      {
+        "type": "done",
+        "title": "Wed 27 Jan 2018 • 10:00",
+        "subtitle": "Done",
+        "passed": "1h ago"
+      },
+      {
+        "type": "schedule",
+        "title": "Wed 27 Jan 2018 • 10:00",
+        "subtitle": "Apointment set to hangup",
+        "passed": "1h ago"
+      },
+      {
+        "type": "done",
+        "title": "Wed 27 Jan 2018 • 10:00",
+        "subtitle": "Done",
+        "passed": "1h ago"
+      },
+      {
+        "type": "hold",
+        "title": "Wed 27 Jan 2018 • 10:00",
+        "subtitle": "Apointment set to hangup",
+        "passed": "1h ago"
+      },
+      {
+        "type": "hold",
+        "title": "Wed 27 Jan 2018 • 10:00",
+        "subtitle": "Apointment set to hangup",
+        "passed": "1h ago"
+      }
+    ]
+  }
+}

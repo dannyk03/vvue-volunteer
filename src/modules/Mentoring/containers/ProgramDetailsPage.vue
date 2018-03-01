@@ -48,11 +48,11 @@
 
       axios.get('http://localhost:8080/static/data/p2-1.json')
         .then((response) => {
-          this.program = _.find(response.data.data, item => item.id === id);
-
-          console.log(this.program);
+          this.program = _.find(response.data.data, (item) => {
+            return item.id === id;
+          });
         })
-        .catch(error => console.log(error));
+        .catch((error) => { console.log(error); });
     },
   };
 </script>
@@ -66,37 +66,20 @@
     &-wrap {
       position: relative;
     }
-
+    
     .sidebar {
       margin-right: 20px;
       max-width: 250px;
     }
-  //   display: grid;
-  //   height: 100%;
-  //   grid-gap: 20px;
-  //   padding-bottom: 32px;
-
-  //   grid-template-columns: 250px 1fr 200px;
-  //   // grid-template-rows: 191px 186px 1fr;
-  //   grid-template-areas:
-  //     "estart body chat"
-  //     "system body chat";
 
     .estart-card {
       margin-bottom: 20px;
-      // grid-area: estart;
     }
-
-  //   .system-check {
-  //     grid-area: system;
-  //   }
 
     .body {
       min-width: 600px;
+      max-width: 960px;
+      width: 100%;
     }
-
-  //   .chat {
-  //     grid-area: chat;
-  //   }
   }
 </style>

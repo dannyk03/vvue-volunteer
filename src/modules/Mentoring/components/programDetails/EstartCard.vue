@@ -162,6 +162,7 @@
      .bar {
        width: 0%;
        height: 8px;
+       border-radius: 5px;
        background-color: $secondary;
      }
     }

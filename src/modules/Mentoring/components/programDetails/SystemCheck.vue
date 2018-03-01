@@ -11,7 +11,7 @@
       </v-layout>
       <div class="content-text">Check systems before the session starts to make sure the camera, microphone and dynamic works.</div>
       <v-layout justify-center="true">
-        <vv-base-button-arrow color='#6c6c72' colorHover="#00b1a7" class="btn-card-arrow" name='participate again' />
+        <vv-base-button-arrow color='#6c6c72' colorHover="#00b1a7" class="btn-card-arrow" name='check system' />
       </v-layout>
     </div>
   </vv-simple-card>

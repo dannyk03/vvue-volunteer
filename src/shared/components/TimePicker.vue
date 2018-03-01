@@ -1,39 +1,24 @@
 <template>
-  <v-dialog v-model="timepicker.toggle" max-width="367" :persistent='true'>
-    <v-card class='card'>
-      <div class='card-title'>{{ timepicker.data.day }}</div>
-      <div class="card-subtitle">Please set the time you are available on {{ timepicker.data.day }}.</div>
-
-      <v-carousel 
-        :hide-delimiters='true' 
-        :cycle='false' 
-        class='timepicker-carousel'>
-        <v-carousel-item v-for='(data, index) in timepickerTimes' :key='index'>
-          <div class="timepicker-time">{{ data.time_range}}</div>
-          <ul ref='timepicker' class='timepicker-list'>
-            <li class='timepicker-item'
-                v-for='(time, index) in data.times'
-                :key='index'
-                :data-time='time'
-                @click='selectTime'>
-                {{ time }}
-            </li>
-          </ul>
-        </v-carousel-item>
-      </v-carousel>
-
-      <div class="card-hint">Hold shift to select multiple time slots.</div>
-      <div class="card-actions">
-        <button class='clear' @click='clearTime'>Clear All</button>
-        <div>
-          <button class='button -empty' @click='cancel'>Cancel</button>
-          <button class='button -fill' @click='setTime'>Set</button>
-        </div>
-      </div>
-    </v-card>
-  </v-dialog>
+  <v-carousel 
+    :hide-delimiters='true' 
+    :cycle='false' 
+    class='timepicker-carousel'>
+    <v-carousel-item v-for='(data, index) in timepickerTimes' :key='index'>
+      <div class="timepicker-time">{{ data.time_range}}</div>
+      <ul ref='timepicker' class='timepicker-list'>
+        <li class='timepicker-item'
+            v-for='(time, index) in data.times'
+            :key='index'
+            :data-time='time'
+            @click='selectTime'>
+            {{ time }}
+        </li>
+      </ul>
+    </v-carousel-item>
+  </v-carousel>
 </template>
 <script>
+  import _ from "lodash";
   import { mapGetters } from 'vuex';
 
   export default {
@@ -91,59 +76,20 @@
           this.selectedTime.push(el.dataset.time);
         }
       },
-      clearTime() {
-        // const times = document.querySelectorAll('.timepicker li');
-        const times = this.$refs.timepicker.querySelectorAll('li');
+      clear() {
+        const times = this.$el.querySelectorAll('.timepicker-item');
 
-        console.log(times);
-
-        // this.selectedTime = [];
-
-        // _.each(times, function(el) {
-        //   if (el.classList.contains('is-active')) {
-        //     el.classList.remove('is-active');
-        //   }
-        // });
-
-        // console.log(this.timepicker);
+        _.each(times, function(el) {
+          if (el.classList.contains('is-active')) {
+            el.classList.remove('is-active');
+          }
+        });
       },
     },
   };
 </script>
 <style lang="scss" scoped>
   @import "~@/styles/index";
-
-  .card {
-    padding: 30px 30px 20px;
-
-    &-title {
-      margin-bottom: 7px;
-      font-size: 20px;
-      font-weight: 500;
-      line-height: 1.3;
-      letter-spacing: -0.2px;
-      text-align: left;
-      color: $primaryDark;
-    }
-    &-subtitle {
-      margin-bottom: 35px;
-      font-size: 17px;
-      line-height: 1.41;
-      text-align: left;
-      color: $primaryGrey;
-    }
-
-    &-hint {
-      margin-bottom: 35px;
-      font-size: 12px;
-      color: $primaryGrey;
-    }
-
-    &-actions {
-      display: flex;
-      justify-content: space-between;
-    }
-  }
 
   .timepicker {
     &-carousel {
@@ -188,20 +134,6 @@
       }
     }
   }
-
-  .clear {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.2px;
-    text-align: center;
-    color: $primaryGrey;
-    text-transform: uppercase;
-  }
-
-  .button.-fill {
-    margin-left: 15px;
-  }
-
 </style>
 
 
