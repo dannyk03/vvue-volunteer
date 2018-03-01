@@ -3,11 +3,11 @@
     <div class='vv-current-programs'>
       <v-layout class='header' justify-space-between align-center>
         <h1 class='display-1 heading'>Current <span class='accented'>Programs</span></h1>
-        <v-select 
+        <v-select
           v-if='!programsEmpty'
-          class='current-programs-select' 
-          :items='selectOptions' 
-          v-model="selected" 
+          class='current-programs-select'
+          :items='selectOptions'
+          v-model="selected"
           content-class='current-programs-menu'
           bottom>
         </v-select>
@@ -15,7 +15,7 @@
 
       <!-- TODO: show something when Data loading, for example Skeleton UI -->
       <div v-if='loadData' class='display-1 heading'>Load data</div>
-      
+
       <div v-if='programsEmpty'>
         <v-layout align-center="true" column="true" >
           <div class="icon">
@@ -45,10 +45,14 @@
   </div>
 </template>
 <script>
+  /* eslint-disable */
+
+
   import axios from 'axios';
   import { fetchPrograms } from '@/api';
 
   import VvCurrentProgramsList from '../components/currentPrograms/CurrentProgramsList';
+
 
   export default {
     name: 'CurrentPrograms',
@@ -68,7 +72,7 @@
       axios.get('http://localhost:8080/static/data/p2-1.json')
         .then((response) => {
           this.programs = response.data.data;
-      
+
           if (this.programs.length === 0) {
             this.programsEmpty = true;
           }

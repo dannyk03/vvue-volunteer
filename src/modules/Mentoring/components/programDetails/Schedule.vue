@@ -58,8 +58,8 @@
           this.activitySteps = response.data;
           console.log(response.data);
         })
-        .catch((error) => console.log(error));
-    }
+        .catch(error => console.log(error));
+    },
   };
 </script>
 <style lang="scss" scoped>

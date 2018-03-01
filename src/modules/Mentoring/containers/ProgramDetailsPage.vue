@@ -44,17 +44,15 @@
     methods: {
     },
     created() {
-      const id = this.$route.params['program_id'];
+      const id = this.$route.params.program_id;
 
       axios.get('http://localhost:8080/static/data/p2-1.json')
         .then((response) => {
-          this.program = _.find(response.data.data, (item) => {
-            return item.id === id;
-          });
+          this.program = _.find(response.data.data, item => item.id === id);
 
           console.log(this.program);
         })
-        .catch((error) => console.log(error));
+        .catch(error => console.log(error));
     },
   };
 </script>
@@ -68,7 +66,7 @@
     &-wrap {
       position: relative;
     }
-    
+
     .sidebar {
       margin-right: 20px;
       max-width: 250px;
