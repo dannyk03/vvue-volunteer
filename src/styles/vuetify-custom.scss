@@ -1,0 +1,77 @@
+.calendar {
+  .carousel__left {
+    top: 13px !important;
+    left: calc(50% - 95px) !important;
+  }
+
+  .carousel__right {
+    top: 13px !important;
+    right: calc(50% - 95px) !important;
+  }
+
+  .btn__content {
+    color: #454545 !important;
+
+    i.icon {
+      font-size: 20px !important;
+    }
+  }
+}
+
+.timepicker-carousel {
+  .carousel__left {
+    top: 11px !important;
+    left: calc(50% - 72px) !important;
+  }
+
+  .carousel__right {
+    top: 11px !important;
+    right: calc(50% - 72px) !important;
+  }
+
+  .btn__content {
+    color: #454545 !important;
+
+    i.icon {
+      font-size: 20px !important;
+    }
+  }
+}
+
+.current-programs-select {
+  max-width: 116px;
+  padding: 0;
+
+  .input-group__details {
+    display: none;
+    &:before,
+    &:after {
+      display: none !important;
+    }
+  }
+
+  .input-group__selections__comma {
+    @include calloutFont;
+    width: 100%;
+    display: inline-flex;
+    justify-content:  flex-end;
+  }
+}
+
+.current-programs-menu {
+  max-width: 103px;
+
+  .list__tile--link {
+    font-size: 14px;
+    line-height: 1.57;
+    color: $primaryGrey;
+  }
+}
+
+// settings popup
+.simple-program-card-custom-list-item {
+  .list__tile {
+    height: 34px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "title": "Time to organize your desk",
+  "data": [
+    {
+      "radio_name": "unique_name_1",
+      "radio_one": {
+        "image": "https://images.unsplash.com/photo-1519033285472-99145631eaab?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=05c36d7e44c7196fc03ad515b929fd8b&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb",
+        "text": "I am a bit late and I am running to the train"
+      },
+      "radio_two": {
+        "image": "https://fthmb.tqn.com/ScnIfg0l-_gKWeNqj_0Qj5mGO00=/960x0/filters:no_upscale()/where-is-mount-everest-568b305f3df78ccc1543f913.jpg",
+        "text": "I am arriving on time at the train station"
+      }
+    }
+  ]
+}

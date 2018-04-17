@@ -1,0 +1,57 @@
+.rotate-right {
+  transform: rotate(90deg);
+}
+
+.rotate-down {
+  transform: rotate(180deg);
+}
+
+.rotate-left {
+  transform: rotate(-90deg);
+}
+.customTooltip {
+  font-size: 12px;
+  background: rgba(0, 0, 0, .5);
+  padding: 4px 10px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 0 0 0 transparent;
+  border-radius: 4px;
+
+  &::after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-style: solid;
+  }
+
+  &.bottom {
+    &::after {
+      bottom: -8px;
+      border-width: 8px 8px 0 8px;
+      border-color: rgba(0, 0, 0, .5) transparent transparent transparent;
+    }
+  }
+
+  &.right {
+    &::after {
+      top: calc(50% - 4px);
+      right: -8px;
+      border-width: 8px 0 8px 8px;
+      border-color: transparent  transparent transparent rgba(0, 0, 0, .5);
+    }
+  }
+
+  // for
+  &.program-card {
+    margin-top: -31px;
+  }
+  &.schedule {
+    margin-top: -19px;
+  }
+  &.details-tabs {
+    margin-top: -7px;
+  }
+
+}
